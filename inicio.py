@@ -22,27 +22,32 @@ while True:
         if opcaocertaouerrada == 0:
             break
         elif opcaocertaouerrada == 1:
-            print("Antes de criar uma conta, diga seu usuário e senha de administrador: ")
-            usuarioADM = input("Usuário: ")
-            senhaADM = input("Senha: ")
-            if administradores.readline() == "usuarioADM" + " " + "senhaADM":
+            while True:
+                print("Antes de criar uma conta, diga seu usuário e senha de administrador: ")
+                usuarioADM = input("Usuário: ")
+                senhaADM = input("Senha: ")
+                osdoisjuntos = usuarioADM+senhaADM
+                
+                if administradores.readline() == osdoisjuntos:
 
-                print("Certo você acertou a senha.")
+                    print("Certo você acertou a senha.")
 
-                niveldepermissao = input("Você é um estudante")
-                usuario = input("Digite o nome do úsuario a ser criado: ")
-                senha = input(
-                    "Digite sua senha, ela tem que ter 8 caractéres: ")
-                # OBS de OMAR: arquivo txt não aceita inteiro so string por isso a senha ta string
-                if len(senha) == 8:
-                    pass  # OBS de OMAR: arquivo txt não aceita inteiro so string por isso a senha ta string
+                    usuario = input("Digite o nome do úsuario a ser criado: ")
+                    senha = input("Digite sua senha, ela tem que ter 8 caractéres: ")
+                    niveldepermissao = input("O usuário é um Estudante ou um Professor: ")
+                    #obs omar: aqui eu cansei um pouco, dps tem que adicionar pra caso o cara digite certo ou nn e os escambal...
+                    # OBS de OMAR: arquivo txt não aceita inteiro so string por isso a senha ta string
+
+                    # OBS IMPORTANTE: NO FINAL QUANDO O CARA CRIAR UMA CONTA TEM QUE TER UM BREAK PORQUE TEM 2 WHILE TRUE
+                    if len(senha) == 8:
+                        pass  # OBS de OMAR: arquivo txt não aceita inteiro so string por isso a senha ta string
+                else:
+                    print("Você errou o úsuario ou a senha, tente novamente")
+
             else:
-                print("Você errou o úsuario ou a senha, tente novamente")
-
+                print("Você digitou uma opção inválida")
         else:
-            print("Você digitou uma opção inválida")
-    else:
-        print("calma que to terminando essa parte")
+            print("calma que to terminando essa parte")
 
 
 while True:
