@@ -25,14 +25,19 @@ while True:
         elif opcaocertaouerrada == 1:
             print("Antes de criar uma conta, diga seu usuário e senha de administrador: ")
             usuarioADM = input("Usuário: ")
-            senhaADM = input("Senha: ") 
-            niveldepermissao = input("Você é um estudante")
-            usuario = input("Digite seu nome de úsuario: ")
-            senha = input("Digite sua senha, ela tem que ter 8 caractéres: ")
-            #OBS de OMAR: arquivo txt não aceita inteiro so string por isso a senha ta string
-            if len(senha) == 8:
+            senhaADM = input("Senha: ")
+            if administradores.readline() == "usuarioADM" + " " + "senhaADM":
+                
+                print("Certo você acertou a senha.")
 
-                pass #OBS de OMAR: arquivo txt não aceita inteiro so string por isso a senha ta string
+                niveldepermissao = input("Você é um estudante")
+                usuario = input("Digite o nome do úsuario a ser criado: ")
+                senha = input("Digite sua senha, ela tem que ter 8 caractéres: ")
+                #OBS de OMAR: arquivo txt não aceita inteiro so string por isso a senha ta string
+                if len(senha) == 8:
+                    pass #OBS de OMAR: arquivo txt não aceita inteiro so string por isso a senha ta string
+            else:
+                print("Você errou o úsuario ou a senha, tente novamente")
             
         else:
             print("Você digitou uma opção inválida")
