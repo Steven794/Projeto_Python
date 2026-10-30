@@ -11,7 +11,8 @@ arquivo = open("BancoDeDados.txt", "a", encoding="utf-8")
 nomes = []
 
 
-
+#OBS omar: pode ser bom criar uma pasta so de registro de acesso com o nome da pessoa e a classificação
+#OBS omar: to tentando da uma entendida melhor no projeto no que passaram no slide, e acho que a gente é livre pra escolher algumas coisas, além do nome, matricula... a gente podia adicionar pro professor colocar uma nota para tal aluno
 
 while True:
     usuario = input(f"Você é um Estudante, Professor ou Administrador? ").lower
@@ -23,7 +24,7 @@ while True:
         print("pedir senha e mudar tudo que ta embaixa para dentro daqui")
 
 #OBS Omar:pessoal tudo que ta aqui membaixo deve ficar dentro desses if's de usuarios, cada usuario vai ter uma interação diferente de acordo com seu nivel de Aura
-
+#OBS Omar: IMPORTANTE quando a gente for criar o sistema de segurança a gente NÃO pode colocar a senha no código (tenho 99% de certeza)
 
     print("Digite 1 caso deseje adicionar.\nDigite 2 para ver os dados informados. \nDigite 3 caso deseje editar um dado.\nDigite 4 para deletar algum dado.\nDigite 5 para encerrar o programa. ")
     opcao = int(input("Digite a opção que você deseja acessar: "))
