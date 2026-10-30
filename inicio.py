@@ -5,14 +5,42 @@ from datetime import datetime
 
 
 arquivo = open("BancoDeDados.txt", "a", encoding="utf-8")
-
+senhas = open("BancoDeContasExistentes.txt", "a", encoding="utf-8")
+administradores = open("ApenasADM's.txt", "r", encoding="utf-8")
 #OBS  Omar: pessoal a base desse código é um que a gente fez um tempo atras na aula que to modificando com as demandar do projeto, como a parte de adicionar a um arquivo e tals, entao vai ter coisas que a gente vai apagar e outras que utiliza
 
 nomes = []
 
-
 #OBS omar: pode ser bom criar uma pasta so de registro de acesso com o nome da pessoa e a classificação
 #OBS omar: to tentando da uma entendida melhor no projeto no que passaram no slide, e acho que a gente é livre pra escolher algumas coisas, além do nome, matricula... a gente podia adicionar pro professor colocar uma nota para tal aluno
+ 
+while True:
+    print("Digite 0 caso deseje criar uma conta (Apenas Administradores podem criar contas). \nDigite 1 caso deseje logar com sua conta")
+    OpcaoConta = input("Resposta: ")
+    if OpcaoConta == "0":
+        print("Caso tenha selecionado a opção errada: Escreva 0 para voltar ao ínicio. \nSe não, Digite 1 para continuar")
+        opcaocertaouerrada = int(input("Resposta: "))
+        if opcaocertaouerrada == 0:
+            break
+        elif opcaocertaouerrada == 1:
+            print("Antes de criar uma conta, diga seu usuário e senha de administrador: ")
+            usuarioADM = input("Usuário: ")
+            senhaADM = input("Senha: ") 
+            niveldepermissao = input("Você é um estudante")
+            usuario = input("Digite seu nome de úsuario: ")
+            senha = input("Digite sua senha, ela tem que ter 8 caractéres: ")
+            #OBS de OMAR: arquivo txt não aceita inteiro so string por isso a senha ta string
+            if len(senha) == 8:
+
+                pass #OBS de OMAR: arquivo txt não aceita inteiro so string por isso a senha ta string
+            
+        else:
+            print("Você digitou uma opção inválida")
+    else:
+        print("calma que to terminando essa parte")
+        
+            
+
 
 while True:
     usuario = input(f"Você é um Estudante, Professor ou Administrador? ").lower
@@ -59,3 +87,7 @@ while True:
 
     else:
         print("Índice Inválidos! ")
+
+arquivo.close()
+senhas.close()
+administradores.close()

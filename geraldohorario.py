@@ -6,7 +6,9 @@ print("Estrutura geral do sistema de hórario: ")
 hora = datetime.now()
 HorarioDeAcesso = hora.strftime("%H")
 
-if HorarioDeAcesso >= 7 and HorarioDeAcesso <= 22:
-    #(OMAR): isso vai dizer que pelo menos o horário de acesso não é suspeito
-else:
-    #nessa parte a gente vai ter que classificar já que a tentativa é suspeita
+def timer(HorarioDeAcesso):
+    if HorarioDeAcesso >= 7 and HorarioDeAcesso <= 22:
+        #(OMAR): isso vai dizer que pelo menos o horário de acesso não é suspeito
+        return
+    else:
+        #nessa parte a gente vai ter que classificar já que a tentativa é suspeita
