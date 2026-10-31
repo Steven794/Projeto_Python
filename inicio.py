@@ -14,10 +14,11 @@ nomes = []
 # OBS omar: to tentando da uma entendida melhor no projeto no que passaram no slide, e acho que a gente é livre pra escolher algumas coisas, além do nome, matricula... a gente podia adicionar pro professor colocar uma nota para tal aluno
 
 while True:
-    print("Digite 0 caso deseje criar uma conta (Apenas Administradores podem criar contas). \nDigite 1 caso deseje logar com sua conta")
-    OpcaoConta = input("Resposta: ")
+    print(" Digite '0' caso deseje criar uma conta (Apenas Administradores podem criar contas). \nDigite '1' caso deseje logar com sua conta")
+    OpcaoConta = input("Resposta: ").strip()
+    #obs steven: adicionei um strip para nao ter o perigo de deixar o espaço para que a condicional não ignore a comparação 
     if OpcaoConta == "0":
-        print("Caso tenha selecionado a opção errada: Escreva 0 para voltar ao ínicio. \nSe não, Digite 1 para continuar")
+        print(" Caso tenha selecionado a opção errada: Escreva 0 para voltar ao ínicio. \nSe não, Digite 1 para continuar")
         opcaocertaouerrada = int(input("Resposta: "))
         if opcaocertaouerrada == 0:
             break
@@ -49,9 +50,29 @@ while True:
         else:
             print("calma que to terminando essa parte")
 
+    elif OpcaoConta == "1":
+        while True:
+            print(" Caso tenha selecionado a opção errada: Escreva 0 para voltar ao ínicio. \nSe não, Digite 1 para continuar")
+            opcao = int(input("Resposta: "))
+            if opcao == 0:
+                break
+            elif opcao == 1:
+                LogarusuarioADM = input("Digite o usuario de ADM para logar: ")
+                LogarsenhaADM = input("Digite a senha de ADM para logar: ")
+                osdoisjuntosLogar = LogarusuarioADM + LogarsenhaADM
+
+
+            else:
+                print("Valor Invalido! Digite um valor válido.")
+                continue
+
+    else:
+        continue
+
+
 
 while True:
-    usuario = input(f"Você é um Estudante, Professor ou Administrador? ").lower
+    usuario = input(f"Você é um Estudante, Professor ou Administrador? ").lower()
     if usuario == "estudante":
         print("fazer algo daqui")
     elif usuario == "professor":
