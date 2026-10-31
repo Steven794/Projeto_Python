@@ -11,7 +11,7 @@ administradores = open("ApenasADM's.txt", "r", encoding="utf-8")
 tentativadelogin = 0
 
 nomes = []
-matriculas = []
+matriculas1 = []
 
 
 # OBS omar: pode ser bom criar uma pasta so de registro de acesso com o nome da pessoa e a classificação
