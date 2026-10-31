@@ -1,5 +1,6 @@
 from datetime import datetime
 import os
+from Projeto_Python import inicio 
 os.system('cls')
 
 
@@ -57,16 +58,20 @@ while True:
             if opcao == 0:
                 break
             elif opcao == 1:
-                LogarusuarioADM = input("Digite o usuario de ADM para logar: ")
-                LogarsenhaADM = input("Digite a senha de ADM para logar: ")
-                osdoisjuntosLogar = LogarusuarioADM + LogarsenhaADM
+                while True:
+                    print("Antes de criar uma conta, diga seu usuário e senha de administrador: ")
+                    LogarusuarioADM = input("Digite o usuario de ADM para logar: ")
+                    LogarsenhaADM = input("Digite a senha de ADM para logar: ")
+                    osdoisjuntosLogar = LogarusuarioADM + LogarsenhaADM
 
+                    if administradores.readline() == osdoisjuntosLogar:
 
             else:
                 print("Valor Invalido! Digite um valor válido.")
                 continue
 
     else:
+        print("Valor Invalido! Digite um valor válido.")
         continue
 
 
