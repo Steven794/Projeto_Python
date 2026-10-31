@@ -1,6 +1,5 @@
 def confirmacao_adm():
     while True:
-        print("Antes de criar uma conta, diga seu usuário e senha de administrador: ")
         usuarioADM = input("Usuário: ")
         senhaADM = input("Senha: ")
         osdoisjuntos = usuarioADM+senhaADM
