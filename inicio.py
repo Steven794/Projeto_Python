@@ -8,6 +8,7 @@ arquivo = open("BancoDeDados.txt", "a", encoding="utf-8")
 senhas = open("BancoDeContasExistentes.txt", "a", encoding="utf-8")
 administradores = open("ApenasADM's.txt", "r", encoding="utf-8")
 # OBS  Omar: pessoal a base desse código é um que a gente fez um tempo atras na aula que to modificando com as demandar do projeto, como a parte de adicionar a um arquivo e tals, entao vai ter coisas que a gente vai apagar e outras que utiliza
+tentativadelogin = 0
 
 nomes = []
 matriculas = []
@@ -40,14 +41,30 @@ while True:
                         usuario = input("Digite o nome do úsuario a ser criado: ")
                         senha = input("Digite sua senha, ela tem que ter 8 caractéres: ")
                         niveldepermissao = input("O usuário é um Estudante ou um Professor: ")
+
+                    usuario = input("Digite o nome do usuário a ser criado: ")
+                    senha = input("Digite sua senha: ")
+                    niveldepermissao = input("O usuário é um Estudante ou um Professor: ").lower()
+                    if niveldepermissao == "estudante" or niveldepermissao == "professor":
+                        senhas.write(usuario + " "+ senha + " " + niveldepermissao)
+                        break
+
                     #obs omar: aqui eu cansei um pouco, dps tem que adicionar pra caso o cara digite certo ou nn e os escambal...
                     # OBS de OMAR: arquivo txt não aceita inteiro so string por isso a senha ta string
 
-                    # OBS IMPORTANTE: NO FINAL QUANDO O CARA CRIAR UMA CONTA TEM QUE TER UM BREAK PORQUE TEM 2 WHILE TRUE
-                    if len(senha) == 8:
-                        pass  # OBS de OMAR: arquivo txt não aceita inteiro so string por isso a senha ta string
+                        # OBS IMPORTANTE: NO FINAL QUANDO O CARA CRIAR UMA CONTA TEM QUE TER UM BREAK PORQUE TEM 2 WHILE TRUE
+                        if len(senha) == 8:
+                            pass  # OBS de OMAR: arquivo txt não aceita inteiro so string por isso a senha ta string
+                        else:
+                            continue
                 else:
                     print("Você errou o úsuario ou a senha, tente novamente")
+                    tentativadelogin+=1
+                    if tentativadelogin == 3:
+                        print("Tente com calma você so tem mais 2 tentativas")
+                        #obs omar: aqui a gente ve se pode adicionar a biblioteca timer
+                    if tentativadelogin == 5:
+                        break
 
             else:
                 print("Você digitou uma opção inválida")
@@ -68,6 +85,7 @@ while True:
                     osdoisjuntosLogar = LogarusuarioADM + LogarsenhaADM
 
                     if administradores.readline() == osdoisjuntosLogar:
+                        print()
 
             else:
                 print("Valor Invalido! Digite um valor válido.")
@@ -98,11 +116,23 @@ while True:
         print("Valor invalido!")
         continue
 
+"""    elif OpcaoConta == "1":
+        print()
+        print("Caso tenha selecionado a opção errada: Escreva 0 para voltar ao ínicio. \nSe não, Digite 1 para continuar")
+        opcaocertaouerrada2 = int(input("Resposta: "))
+        if opcaocertaouerrada2 == 0:
+            break
+        elif opcaocertaouerrada2 == 1:
+            print("Digite seu usuário e senha. ")
+            Usuario = input("Digite seu usuário: ")
+            Senha = input("Digite sua senha: ")"""
+
+
 # OBS Omar:pessoal tudo que ta aqui membaixo deve ficar dentro desses if's de usuarios, cada usuario vai ter uma interação diferente de acordo com seu nivel de Aura
 # OBS Omar: IMPORTANTE quando a gente for criar o sistema de segurança a gente NÃO pode colocar a senha no código (tenho 99% de certeza)
 
-    print("Digite [1] caso deseje adicionar.\nDigite [2] para ver os dados informados.\nDigite [3] caso deseje editar um dado.\nDigite [4] para deletar algum dado.\nDigite [5] para encerrar o programa. ")
-    opcao = int(input("Digite a opção que você deseja acessar: "))
+"""print("Digite [1] caso deseje adicionar.\nDigite [2] para ver os dados informados.\nDigite [3] caso deseje editar um dado.\nDigite [4] para deletar algum dado.\nDigite [5] para encerrar o programa. ")
+   opcao = int(input("Digite a opção que você deseja acessar: "))
     if opcao == 1:
         nome = input("Digite o nome: ").strip()
         nomes.append(nome)
@@ -150,3 +180,4 @@ while True:
 arquivo.close()
 senhas.close()
 administradores.close()
+"""
