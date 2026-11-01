@@ -22,16 +22,16 @@ while True:
     string 'estudante' inteira e facilitaria apenas digitar um numero."""
     usuario = int(input(" Se você é um Estudante digite [1]\n Professor digite [2]\n Administrador digite [3] "))
     if usuario == 1:
-        estudanteUsuarioLogar = input("Digite o nome do estudante: ").strip().lower()
+        estudanteUsuarioLogar = input("Digite o nome do estudante: ").strip()
         estudanteSenhaLogar = input("Digite a senha do estudante: ").strip()
-        logar(usuario, estudanteUsuarioLogar, estudanteSenhaLogar)
+        logarNormal(usuario, estudanteUsuarioLogar, estudanteSenhaLogar)
 
     elif usuario == 2:
-        professorUsuarioLogar = input("Digite o nome do professor: ").strip().lower()
+        professorUsuarioLogar = input("Digite o nome do professor: ").strip()
         professorSenhaLogar = input("Digite a senha do professor: ").strip()
-        logar(usuario, professorUsuarioLogar=professorUsuarioLogar, professorSenhaLogar=professorSenhaLogar)
+        logarNormal(usuario, professorUsuarioLogar=professorUsuarioLogar, professorSenhaLogar=professorSenhaLogar)
     elif usuario == 3:
-        admUsuarioLogar = input("Digite o nome do administrador: ").strip().lower()
+        admUsuarioLogar = input("Digite o nome do administrador: ").strip()
         print("Digite [1] caso deseje adicionar.\nDigite [2] para ver os dados informados.\nDigite [3] caso deseje editar um dado.\nDigite [4] para deletar algum dado.\nDigite [5] para encerrar o programa. ")
         opcao = int(input("Digite a opção que você deseja acessar: "))
 
@@ -39,7 +39,7 @@ while True:
             nome = input("Digite o nome: ").strip()
             nomes.append(nome)
             matricula = input("Digite a matrícula: ").strip()
-            matriculas.append(matricula)
+            matriculas1.append(matricula)
 
         elif opcao == 2:
             print(f"Nome: {nome}")

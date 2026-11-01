@@ -1,21 +1,25 @@
 # Função que confirma se a entidade é adm
+
 def confirmacao_adm():
-    confirmacao = open("ApenasADM´s.txt", "r", encoding='utf8')
-    tentativas = 3
-    senha_correta = "xxxxxxxxxx" # obs Gustavo: isso é exemplo
-    usuario_correto ="xxxxxxx" # obs Gustavo: isso é exemplo
+    administradores = open("ApenasADM´s.txt", "r", encoding='utf8')
+    tentativas = 5
+
     while tentativas > 0:
-        senha = input("Informe a senha do administrador: ").strip()
-        usuario = input("Informe o usuario do administrador: ").strip()
-        if senha == senha_correta and usuario == usuario_correto :
+        usuarioADM = input("Informe o usuario do administrador: ").strip()
+        senhaADM = input("Informe a senha do administrador: ").strip()
+        osdoisjuntos = usuarioADM+senhaADM
+                
+        if administradores.readline() == osdoisjuntos:
             print("Senha correta, login concluido.")
             return True
-        else:
-            tentativas-=1
-            print(f"Senha incorreta {tentativas} tentativas restantes!")
-    print("Acesso negado!")
+        tentativas-=1
+        if tentativas == 2:
+            print("Alerta! Acesso suspeito, 2 tentativas restantes.")
+        elif tentativas > 0:
+            print(f"Senha incorreta!Mais {tentativas} tentativas restantes.")
+    print("Acesso negado!Limite de tentativas atingido")
     return False
-    confirmacao.close()
+    administradores.close()
 
 
 # Função para limpar o terminal
@@ -27,13 +31,13 @@ def clear_terminal():
         os.system("clear")
     
 
-#LUCAS: TA PRONTO
-def logar(usuario, estudanteUsuarioLogar="", estudanteSenhaLogar="", professorUsuarioLogar="", professorSenhaLogar=""):
+#LUCAS: TA PRONTO (Omar: Mentiroso)
+def logarNormal(usuario, estudanteUsuarioLogar="", estudanteSenhaLogar="", professorUsuarioLogar="", professorSenhaLogar=""):
     estudantesUsuario = []
     estudantesSenha = []
     professorUsuario = []
     professorSenha = []
-    arquivo = open("tentativaLogin_tempo.txt", "a", encoding='utf8')
+    arquivo = open("BancoDeDados.txt", "r", encoding='utf8')
     if usuario == 1:
         estudantesUsuario.append(estudanteUsuarioLogar)
         estudantesSenha.append(estudanteSenhaLogar)
@@ -55,14 +59,12 @@ def logar(usuario, estudanteUsuarioLogar="", estudanteSenhaLogar="", professorUs
 
 #FALTA ADICIONAR AS VARIARIES PORQUE A PERGUNTA PARA ADICIONAR DENTRO DAS LISTAS NO APPEND() AINDA NAO FORAM-
 #-CRIADAS NO INICIO.PY E OBVIAMENTE FALTA ADICIONAR OS PARAMETROS, MAS A FUNCAO EM SI PARA CRIAR O LOGIN É ESSA
-def criar(tipo, ):
+def criarNormal(tipo, ):
     estudanteUsuarioADM = []
     estudanteSenhaADM = []
     professorUsuarioADM = []
     professorSenhaADM = []
-    admUsuarioADM = []
-    admSenhaADM  = []
-    arquivo = open("ApenasADM's.txt", "a", encoding='utf8')
+    arquivo = open("BancoDeContasExistentes.txt", "a", encoding='utf8')
     if tipo == 1:
         estudanteUsuarioADM.append()
         estudanteSenhaADM.append()
@@ -71,11 +73,18 @@ def criar(tipo, ):
         professorUsuarioADM.append()
         professorSenhaADM.append()
         arquivo.write("login professor: " + professorUsuarioADM[0] + " " + " senha professor: " + professorSenhaADM[0] + "\n")
-    elif tipo == 3:
+    arquivo.close()
+    
+def criarAdm(tipo, ):
+    admUsuarioADM = []
+    admSenhaADM  = []
+    arquivo = open("ApenasADM's.txt", "a", encoding='utf8')
+    if tipo == 3:
         admUsuarioADM.append()
         admSenhaADM.append()
         arquivo.write("login adm: " + admUsuarioADM[0] + " " + " senha adm: " + admSenhaADM[0] + "\n")
     arquivo.close()
+
 
 
 
