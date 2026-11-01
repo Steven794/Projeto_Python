@@ -1,3 +1,13 @@
+# Função para limpar o terminal. Gustavo:Corrigi, agr ta certo.
+import os
+import platform
+
+def clear_terminal():
+    if platform == "Windows":
+        os.system("cls")
+    else:
+        os.system("clear")
+
 # Função que confirma se a entidade é adm
 def confirmacao_adm():
     confirmacao = open("ApenasADM´s.txt", "r", encoding='utf8')
@@ -18,13 +28,7 @@ def confirmacao_adm():
     confirmacao.close()
 
 
-# Função para limpar o terminal
-def clear_terminal():
-    import platform, os
-    if platform == "Windows":
-        os.system("cls")
-    else:
-        os.system("clear")
+
     
 
 #LUCAS: TA PRONTO

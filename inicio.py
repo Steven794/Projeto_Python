@@ -13,7 +13,6 @@ tentativadelogin = 0
 nomes = []
 matriculas = []
 
-
 # OBS omar: pode ser bom criar uma pasta so de registro de acesso com o nome da pessoa e a classificação
 # OBS omar: to tentando da uma entendida melhor no projeto no que passaram no slide, e acho que a gente é livre pra escolher algumas coisas, além do nome, matricula... a gente podia adicionar pro professor colocar uma nota para tal aluno
 
@@ -30,60 +29,68 @@ while True:
         professorUsuarioLogar = input("Digite o nome do professor: ").strip().lower()
         professorSenhaLogar = input("Digite a senha do professor: ").strip()
         logar(usuario, professorUsuarioLogar=professorUsuarioLogar, professorSenhaLogar=professorSenhaLogar)
-    elif usuario == 3:
-        admUsuarioLogar = input("Digite o nome do administrador: ").strip().lower()
-        print("Digite [1] caso deseje adicionar.\nDigite [2] para ver os dados informados.\nDigite [3] caso deseje editar um dado.\nDigite [4] para deletar algum dado.\nDigite [5] para encerrar o programa. ")
-        opcao = int(input("Digite a opção que você deseja acessar: "))
-
-        if opcao == 1:
-            nome = input("Digite o nome: ").strip()
-            nomes.append(nome)
-            matricula = input("Digite a matrícula: ").strip()
-            matriculas.append(matricula)
-
-        elif opcao == 2:
-            print(f"Nome: {nome}")
-            print(f"Matricula:{matricula}")
-
-            if usuario == 1:
-                print("Perfil: estudante")
-
-            elif usuario == 2:
-                print("Perfil: professor")
-                
-            elif usuario == 3:
-                print("Perfil: Administrador")
-                
-                print("hora: xx horas até yy horas")
-
-        elif opcao == 3:
-            indice = int(input("Digite o índice do nome que deseja atualizar: "))
-            if 0 <= indice < len(nomes):
-                novo_nome = input("Digite o novo nome: ")
-                nomes[indice] = novo_nome
-
-            else:
-                print("Índice Inválidos! ")
-
-        elif opcao == 4:
-            indice = int(input("Digite o índice do nome que deseja deletar: "))
-            if 0 <= indice < len(nomes):
-                nomes.pop(indice)
-
-            else:
-                print("Índice Inválidos! ")
-
-        elif opcao == 5:
-            print("Encerrando...")
-            break
-
+    elif usuario == 3:            #Gustavo:Aqui coloquei se a confirmação_adm for falsa, acesso negado, se nao acesso ao menu administrativo
+        if not confirmacao_adm():
+            print("Acesso negado!")
         else:
-            print("Valor invalido!")
-            continue
+            print("Bem vindo ao menu administrativo!")
+            admUsuarioLogar = input("Digite o nome do administrador: ").strip().lower()
+            print("Digite [1] caso deseje adicionar.\nDigite [2] para ver os dados informados.\nDigite [3] caso deseje editar um dado.\nDigite [4] para deletar algum dado.\nDigite [5] para encerrar o programa. ")
+            opcao = int(input("Digite a opção que você deseja acessar: "))
+
+            if opcao == 1:
+                nome = input("Digite o nome: ").strip()
+                nomes.append(nome)
+                matricula = input("Digite a matrícula: ").strip()
+                matriculas.append(matricula)
+            
+
+            elif opcao == 2:
+                print("===Usuários cadastrados===")
+
+                print(f"Nome: {nome}")
+                print(f"Matricula:{matricula}")
+
+                if usuario == 1:
+                    print("Perfil: estudante")
+
+                elif usuario == 2:
+                    print("Perfil: professor")
+                
+                elif usuario == 3:
+                    print("Perfil: Administrador")
+                
+                    print("hora: xx horas até yy horas")
+
+            elif opcao == 3:
+                indice = int(input("Digite o índice do nome que deseja atualizar: "))
+                if 0 <= indice < len(nomes):
+                    novo_nome = input("Digite o novo nome: ")
+                    nomes[indice] = novo_nome
+
+                else:
+                    print("Índice Inválidos! ")
+
+            elif opcao == 4:
+                indice = int(input("Digite o índice do nome que deseja deletar: "))
+                if 0 <= indice < len(nomes):
+                    nomes.pop(indice)
+
+                else:
+                    print("Índice Inválidos! ")
+
+            elif opcao == 5:
+                print("Encerrando...")
+                break
+
+            else:
+                print("Valor invalido!")
+                continue
 
     else:
-        print("Valor Invalido!")
+        print("Valor inválido!")
         continue
+
 
 """    elif OpcaoConta == "1":
         print()
