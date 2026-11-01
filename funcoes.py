@@ -32,7 +32,7 @@ def confirmacao_adm():
     
 
 #LUCAS: TA PRONTO
-def logar(usuario, estudanteUsuarioLogar="", estudanteSenhaLogar="", professorUsuarioLogar="", professorSenhaLogar=""):
+def logarNormal(usuario, estudanteUsuarioLogar="", estudanteSenhaLogar="", professorUsuarioLogar="", professorSenhaLogar=""):
     estudantesUsuario = []
     estudantesSenha = []
     professorUsuario = []
@@ -59,7 +59,7 @@ def logar(usuario, estudanteUsuarioLogar="", estudanteSenhaLogar="", professorUs
 
 #FALTA ADICIONAR AS VARIARIES PORQUE A PERGUNTA PARA ADICIONAR DENTRO DAS LISTAS NO APPEND() AINDA NAO FORAM-
 #-CRIADAS NO INICIO.PY E OBVIAMENTE FALTA ADICIONAR OS PARAMETROS, MAS A FUNCAO EM SI PARA CRIAR O LOGIN É ESSA
-def criar(tipo, ):
+def criarNormal(tipo, ):
     estudanteUsuarioADM = []
     estudanteSenhaADM = []
     professorUsuarioADM = []

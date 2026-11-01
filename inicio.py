@@ -23,12 +23,12 @@ while True:
     if usuario == 1:
         estudanteUsuarioLogar = input("Digite o nome do estudante: ").strip().lower()
         estudanteSenhaLogar = input("Digite a senha do estudante: ").strip()
-        logar(usuario, estudanteUsuarioLogar, estudanteSenhaLogar)
+        logarNormal(usuario, estudanteUsuarioLogar, estudanteSenhaLogar)
 
     elif usuario == 2:
         professorUsuarioLogar = input("Digite o nome do professor: ").strip().lower()
         professorSenhaLogar = input("Digite a senha do professor: ").strip()
-        logar(usuario, professorUsuarioLogar=professorUsuarioLogar, professorSenhaLogar=professorSenhaLogar)
+        logarNormal(usuario, professorUsuarioLogar=professorUsuarioLogar, professorSenhaLogar=professorSenhaLogar)
     elif usuario == 3:            #Gustavo:Aqui coloquei se a confirmação_adm for falsa, acesso negado, se nao acesso ao menu administrativo
         if not confirmacao_adm():
             print("Acesso negado!")
@@ -62,14 +62,47 @@ while True:
                 
                     print("hora: xx horas até yy horas")
 
+                    #Lucas: tem que mudar isso aqui porque pensa comigo vai ser um programa para muitas pessoas usar, -
+        #como a pessoa X vai saber o indice do nome e da matricula dela?? nao faz sentido
+        
+        #tem que ter alguma forma de linkar a conta com seus dados ja no login da pesssoa, pegando-
+        #diretamente da lista de nomes e matriculas, porque como eu vou saber-
+        #o indice da minha matricula e do meu usuario no portal de aluno da cesar??? wtf
+        #mas fiz desse jeito por enquanto
             elif opcao == 3:
-                indice = int(input("Digite o índice do nome que deseja atualizar: "))
-                if 0 <= indice < len(nomes):
-                    novo_nome = input("Digite o novo nome: ")
-                    nomes[indice] = novo_nome
-
+                escolher = int(input("digite 1. para editar o nome, 2. para editar a matricula ou 3. para editar os dois: "))
+                if escolher != 1 and escolher != 2 and escolher !=3:
+                    print("codigo para edição invalido, tente novamente")
                 else:
-                    print("Índice Inválidos! ")
+                    if escolher == 1:
+                        indice = int(input("Digite o índice do nome que deseja atualizar: "))
+                        if 0 <= indice < len(nomes):
+                            novo_nome = input("Digite o novo nome: ")
+                            nomes[indice] = novo_nome
+                        
+                        else:
+                            print("Índice Inválidos! ")
+
+                    elif escolher == 2:
+                        indice = int(input("Digite o índice da matricula que deseja atualizar: "))
+                        if 0 <= indice < len(matriculas):
+                            nova_matricula = input("Digite a nova matricula: ")
+                            matriculas[indice] = nova_matricula
+                        
+                        else:
+                            print("Índice Inválidos! ")
+                    elif escolher == 3:
+                        indicenome3 = int(input("Digite o índice do nome que deseja atualizar: "))
+                        indicematricula3 = int(input("Digite o índice da matricula que deseja atualizar: "))                   
+                        if (0 <= indicenome3 < len(nomes)) and (0 <= indicematricula3 < len(matriculas)):
+                            novo_nome3 = input("Digite o novo nome: ")
+                            nomes[indicenome3] = novo_nome3
+                            nova_matricula3 = input("Digite a nova matricula: ")
+                            matriculas[indicematricula3] = nova_matricula3
+                        
+                        else:
+                            print("Índice Inválidos! ")
+
 
             elif opcao == 4:
                 indice = int(input("Digite o índice do nome que deseja deletar: "))
