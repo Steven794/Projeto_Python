@@ -10,17 +10,19 @@ def clear_terminal():
 # Função que confirma se a entidade é adm
 def confirmacao_adm():
     confirmacao = open("ApenasADM´s.txt", "r", encoding='utf8')
+    arquivo = open("BancoDeDados.txt", "a", encoding="utf-8")
+    hora = datetime.now()
+    HorarioDeAcesso = hora.strftime("%H")
     tentativas = 5
     erros = 0
 
-    senha_correta = "xxxxxxxxxx" # obs Gustavo: isso é exemplo
-    usuario_correto ="xxxxxxx" # obs Gustavo: isso é exemplo
 
     while tentativas > 0:
-        senha = input("Informe a senha do administrador: ").strip()
-        usuario = input("Informe o usuario do administrador: ").strip()
+        usuarioADM = input("Informe o usuario do administrador: ").strip()
+        senhaADM = input("Informe a senha do administrador: ").strip()
+        osdoisjuntos = usuarioADM+senhaADM
 
-        if senha == senha_correta and usuario == usuario_correto :
+        if osdoisjuntos == confirmacao.readline():
             print("Senha correta, login concluido.")
             return True
         else:
@@ -29,10 +31,14 @@ def confirmacao_adm():
             print(f"Senha incorreta {tentativas} tentativas restantes!")
 
             if erros == 2:
-                print("Acesso suspeito!")
+                arquivo.write(f"Tentativa de login suspeita as {HorarioDeAcesso} horas")
+            if erros == 5:
+                arquivo.write(f"Tentativa de invasão as {HorarioDeAcesso} horas")
+            return True
     print("Acesso negado!")
     return False
-    confirmacao.close()    
+    confirmacao.close()
+    arquivo.close()    
 
 #LUCAS: TA PRONTO
 def logarNormal(usuario, estudanteUsuarioLogar="", estudanteSenhaLogar="", professorUsuarioLogar="", professorSenhaLogar=""):

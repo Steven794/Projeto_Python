@@ -1,12 +1,13 @@
 from datetime import datetime
 from funcoes import *
 import time # Obs: Perguntar a Carol se pode usar!!!!!!
+from funcoes import confirmacao_adm
 
 clear_terminal()
 
 arquivo = open("BancoDeDados.txt", "a", encoding="utf-8")
 senhas = open("BancoDeContasExistentes.txt", "a", encoding="utf-8")
-administradores = open("ApenasADM's.txt", "r", encoding="utf-8")
+confirmacao = open("ApenasADM's.txt", "r", encoding="utf-8")
 # OBS  Omar: pessoal a base desse código é um que a gente fez um tempo atras na aula que to modificando com as demandar do projeto, como a parte de adicionar a um arquivo e tals, entao vai ter coisas que a gente vai apagar e outras que utiliza
 tentativadelogin = 0
 
@@ -31,11 +32,11 @@ while True:
         professorSenhaLogar = input("Digite a senha do professor: ").strip()
         logarNormal(usuario, professorUsuarioLogar=professorUsuarioLogar, professorSenhaLogar=professorSenhaLogar)
     elif usuario == 3:            #Gustavo:Aqui coloquei se a confirmação_adm for falsa, acesso negado, se nao acesso ao menu administrativo
-        if not confirmacao_adm():
-            print("Acesso negado!")
-        else:
+        if usuario ==3:
             print("Bem vindo ao menu administrativo!")
-            admUsuarioLogar = input("Digite o nome do administrador: ").strip()
+            usuarioADM = input("Digite o nome do administrador: ").strip()
+            senhaADM = input("Digite a senha do administrador: ").strip()
+            confirmacao_adm(usuarioADM, senhaADM)
             print("Digite [1] caso deseje adicionar.\nDigite [2] para ver os dados informados.\nDigite [3] caso deseje editar um dado.\nDigite [4] para deletar os dados.\nDigite [5] para encerrar o programa. ")
             opcao = int(input("Digite a opção que você deseja acessar: "))
 
@@ -157,4 +158,4 @@ while True:
 
 arquivo.close()
 senhas.close()
-administradores.close()
+confirmacao.close()
