@@ -12,6 +12,7 @@ tentativadelogin = 0
 
 nomes = []
 matriculas = []
+perfis = []
 
 # OBS omar: pode ser bom criar uma pasta so de registro de acesso com o nome da pessoa e a classificação
 # OBS omar: to tentando da uma entendida melhor no projeto no que passaram no slide, e acho que a gente é livre pra escolher algumas coisas, além do nome, matricula... a gente podia adicionar pro professor colocar uma nota para tal aluno
@@ -21,12 +22,12 @@ while True:
     string 'estudante' inteira e facilitaria apenas digitar um numero."""
     usuario = int(input(" Se você é um Estudante digite [1]\n Professor digite [2]\n Administrador digite [3] "))
     if usuario == 1:
-        estudanteUsuarioLogar = input("Digite o nome do estudante: ").strip().lower()
+        estudanteUsuarioLogar = input("Digite o nome do estudante: ").strip()
         estudanteSenhaLogar = input("Digite a senha do estudante: ").strip()
         logarNormal(usuario, estudanteUsuarioLogar, estudanteSenhaLogar)
 
     elif usuario == 2:
-        professorUsuarioLogar = input("Digite o nome do professor: ").strip().lower()
+        professorUsuarioLogar = input("Digite o nome do professor: ").strip()
         professorSenhaLogar = input("Digite a senha do professor: ").strip()
         logarNormal(usuario, professorUsuarioLogar=professorUsuarioLogar, professorSenhaLogar=professorSenhaLogar)
     elif usuario == 3:            #Gustavo:Aqui coloquei se a confirmação_adm for falsa, acesso negado, se nao acesso ao menu administrativo
@@ -34,32 +35,28 @@ while True:
             print("Acesso negado!")
         else:
             print("Bem vindo ao menu administrativo!")
-            admUsuarioLogar = input("Digite o nome do administrador: ").strip().lower()
-            print("Digite [1] caso deseje adicionar.\nDigite [2] para ver os dados informados.\nDigite [3] caso deseje editar um dado.\nDigite [4] para deletar algum dado.\nDigite [5] para encerrar o programa. ")
+            admUsuarioLogar = input("Digite o nome do administrador: ").strip()
+            print("Digite [1] caso deseje adicionar.\nDigite [2] para ver os dados informados.\nDigite [3] caso deseje editar um dado.\nDigite [4] para deletar os dados.\nDigite [5] para encerrar o programa. ")
             opcao = int(input("Digite a opção que você deseja acessar: "))
 
             if opcao == 1:
                 nome = input("Digite o nome: ").strip()
                 nomes.append(nome)
+
                 matricula = input("Digite a matrícula: ").strip()
                 matriculas.append(matricula)
+
+                perfil = input("Digite o perfil(estudante/professor/administrador)").strip().lower()
+                perfis.append(perfil)
             
 
             elif opcao == 2:
                 print("===Usuários cadastrados===")
 
-                print(f"Nome: {nome}")
-                print(f"Matricula:{matricula}")
-
-                if usuario == 1:
-                    print("Perfil: estudante")
-
-                elif usuario == 2:
-                    print("Perfil: professor")
-                
-                elif usuario == 3:
-                    print("Perfil: Administrador")
-                
+                for i in range(len(nomes)):
+                    print(f"Nome: {nomes[i]}")
+                    print(f"Matrícula: {matriculas[i]}")
+                    print(f"Perfil: {perfil[i]}")
                     print("hora: xx horas até yy horas")
 
                     #Lucas: tem que mudar isso aqui porque pensa comigo vai ser um programa para muitas pessoas usar, -
@@ -105,12 +102,29 @@ while True:
 
 
             elif opcao == 4:
-                indice = int(input("Digite o índice do nome que deseja deletar: "))
-                if 0 <= indice < len(nomes):
-                    nomes.pop(indice)
+                UsuarioSenha_juntos = []
+                with open("BancoDeDados.txt", "r", encoding="utf-8") as deletar_dados:
+                    for linha in deletar_dados:
+                        UsuarioSenha_juntos.append(linha.strip())
 
-                else:
-                    print("Índice Inválidos! ")
+                    while True:
+                        print("Digite os dados para deletar os dados")
+                        nome_deletar = input("Digite o do nome: ").strip()
+                        senha_deletar = input("Digite a senha: ").strip()
+                        juncaodedados = nome_deletar+senha_deletar
+
+                        for linhas in UsuarioSenha_juntos:
+                            if linhas == juncaodedados:
+                                UsuarioSenha_juntos.remove(juncaodedados)
+                                print("Dados deletados com sucesso!")
+                                break
+
+                        else:
+                            print("Dados não encontrados. Por favor, reveja as informações.")
+                            continue
+                for i in UsuarioSenha_juntos:
+                    deletar_dados.write(i)
+                deletar_dados.close()
 
             elif opcao == 5:
                 print("Encerrando...")

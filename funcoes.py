@@ -1,9 +1,8 @@
 # Função para limpar o terminal. Gustavo:Corrigi, agr ta certo.
-import os
-import platform
 
 def clear_terminal():
-    if platform == "Windows":
+    import os, platform
+    if platform.system() == "Windows":
         os.system("cls")
     else:
         os.system("clear")
@@ -11,25 +10,29 @@ def clear_terminal():
 # Função que confirma se a entidade é adm
 def confirmacao_adm():
     confirmacao = open("ApenasADM´s.txt", "r", encoding='utf8')
-    tentativas = 3
+    tentativas = 5
+    erros = 0
+
     senha_correta = "xxxxxxxxxx" # obs Gustavo: isso é exemplo
     usuario_correto ="xxxxxxx" # obs Gustavo: isso é exemplo
+
     while tentativas > 0:
         senha = input("Informe a senha do administrador: ").strip()
         usuario = input("Informe o usuario do administrador: ").strip()
+
         if senha == senha_correta and usuario == usuario_correto :
             print("Senha correta, login concluido.")
             return True
         else:
             tentativas-=1
+            erros+=1
             print(f"Senha incorreta {tentativas} tentativas restantes!")
+
+            if erros == 2:
+                print("Acesso suspeito!")
     print("Acesso negado!")
     return False
-    confirmacao.close()
-
-
-
-    
+    confirmacao.close()    
 
 #LUCAS: TA PRONTO
 def logarNormal(usuario, estudanteUsuarioLogar="", estudanteSenhaLogar="", professorUsuarioLogar="", professorSenhaLogar=""):
