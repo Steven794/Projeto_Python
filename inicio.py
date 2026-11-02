@@ -32,11 +32,10 @@ while True:
         professorSenhaLogar = input("Digite a senha do professor: ").strip()
         logarNormal(usuario, professorUsuarioLogar=professorUsuarioLogar, professorSenhaLogar=professorSenhaLogar)
     elif usuario == 3:            #Gustavo:Aqui coloquei se a confirmação_adm for falsa, acesso negado, se nao acesso ao menu administrativo
-        if usuario ==3:
-            print("Bem vindo ao menu administrativo!")
-            usuarioADM = input("Digite o nome do administrador: ").strip()
-            senhaADM = input("Digite a senha do administrador: ").strip()
-            confirmacao_adm(usuarioADM, senhaADM)
+        print("Bem vindo ao menu administrativo!")
+        if not confirmacao_adm():
+            print("Acesso Negado!!")
+        else:
             print("Digite [1] caso deseje adicionar.\nDigite [2] para ver os dados informados.\nDigite [3] caso deseje editar um dado.\nDigite [4] para deletar os dados.\nDigite [5] para encerrar o programa. ")
             opcao = int(input("Digite a opção que você deseja acessar: "))
 

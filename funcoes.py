@@ -9,7 +9,7 @@ def clear_terminal():
 
 # Função que confirma se a entidade é adm
 def confirmacao_adm():
-    confirmacao = open("ApenasADM´s.txt", "r", encoding='utf8')
+    confirmacao = open("ApenasADM's.txt", "r", encoding="utf-8")
     arquivo = open("BancoDeDados.txt", "a", encoding="utf-8")
     hora = datetime.now()
     HorarioDeAcesso = hora.strftime("%H")
@@ -34,7 +34,7 @@ def confirmacao_adm():
                 arquivo.write(f"Tentativa de login suspeita as {HorarioDeAcesso} horas")
             if erros == 5:
                 arquivo.write(f"Tentativa de invasão as {HorarioDeAcesso} horas")
-            return True
+            return False
     print("Acesso negado!")
     return False
     confirmacao.close()
