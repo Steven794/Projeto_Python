@@ -11,8 +11,8 @@ def clear_terminal():
 def confirmacao_adm():
     confirmacao = open("ApenasADM's.txt", "r", encoding="utf-8")
     arquivo = open("BancoDeDados.txt", "a", encoding="utf-8")
-    hora = datetime.now()
-    HorarioDeAcesso = hora.strftime("%H")
+    agora = datetime.now()
+    agoraajeitado = agora.strftime("%d/%m/%Y %H:%M")
     tentativas = 5
     erros = 0
 
@@ -25,17 +25,16 @@ def confirmacao_adm():
         if osdoisjuntos == confirmacao.readline():
             print("Senha correta, login concluido.")
             return True
-        else:
-            tentativas-=1
-            erros+=1
-            print(f"Senha incorreta {tentativas} tentativas restantes!")
+        
+        tentativas-=1
+        erros+=1
+        print(f"Senha incorreta {tentativas} tentativas restantes!")
 
-            if erros == 2:
-                arquivo.write(f"Tentativa de login suspeita as {HorarioDeAcesso} horas")
-            if erros == 5:
-                arquivo.write(f"Tentativa de invasão as {HorarioDeAcesso} horas")
-            return False
-    print("Acesso negado!")
+        if erros == 2 :
+            arquivo.write(f"\nTentativa de login suspeita as {agoraajeitado} horas")
+        if erros == 5:
+            arquivo.write(f"\nTentativa de invasão as {agoraajeitado} horas")
+        
     return False
     confirmacao.close()
     arquivo.close()    
