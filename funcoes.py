@@ -1,5 +1,4 @@
 # Função para limpar o terminal. Gustavo:Corrigi, agr ta certo.
-
 def clear_terminal():
     import os, platform
     if platform.system() == "Windows":
@@ -107,3 +106,109 @@ def timer(HorarioDeAcesso):
     else:
         return "Tente logar em outro horario"
         #nessa parte a gente vai ter que classificar já que a tentativa é suspeita
+
+ARQUIVO_USUARIOS = "usuarios.csv"
+SEPARADOR = ";"
+
+#RODOLFO: Registrar Horário de entrada
+def registrarAuditoria(operacao, usuarioAfetado):
+    data_hora = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
+
+    with open("BancoDeDados.txt", "a", encoding="utf-8") as arquivo:
+        arquivo.write(f"{data_hora};{operacao};{usuarioAfetado}\n")
+
+#RODOLFO: Isso daqui é pra conferir se o usuário de fato existe, usei ela nas funções de adcionar e excluir usuário.
+def salvarUsuario(nomes, matriculas, perfis):
+    if not (len(nomes) == len(matriculas) == len(perfis)):
+        raise ValueError("Usuário não encontrado ou incoerente com o que foi listado.")
+
+    with open(ARQUIVO_USUARIOS, "w", encoding="utf-8") as arquivo:
+        for nome, matricula, perfil in zip(nomes, matriculas, perfis):
+            arquivo.write(
+                f"{nome}{SEPARADOR}"
+                f"{matricula}{SEPARADOR}"
+                f"{perfil}\n")
+
+#RODOLFO: Essa função serve pra carregar os usuários de uma rodagem do código pra outra.
+def carregarUsuario(nomes, matriculas, perfis):
+    try:
+        with open(ARQUIVO_USUARIOS, "r", encoding="utf-8") as arquivo:
+            for linha in arquivo:
+                linha = linha.strip()
+
+                if not linha:
+                    continue
+
+                dados = linha.split(SEPARADOR)
+
+                if len(dados) != 3:
+                    continue
+
+                nome, matricula, perfil = dados
+
+                nomes.append(nome)
+                matriculas.append(matricula)
+                perfis.append(perfil)
+
+    except FileNotFoundError:
+        pass
+
+#RODOLFO: Função para adcionar novos usuários (lembrar de chamar no código principaç).
+def adcionarUsuario(nomes, matriculas, perfis):
+    nome = input("Digite o nome do novo usuário: ").strip()
+    matricula = input("Digite a matrícula do novo usuário: ").strip()
+    perfil = input("Digite o perfil (estudante/professor/administrador): ").strip().lower()
+
+    if not nome or not matricula or not perfil:
+        print("Preencha todos os campos!")
+        return False
+
+    if matricula in matriculas:
+        print("Esse usuário já foi registrado.")
+        return False
+
+    perfisValidos = ("estudante", "professor", "administrador")
+
+    if perfil not in perfisValidos:
+        print("Perfil inválido!")
+        return False
+
+    nomes.append(nome)
+    matriculas.append(matricula)
+    perfis.append(perfil)
+
+    salvarUsuario(nomes, matriculas, perfis)
+    registrarAuditoria("ADIÇÃO_USUARIO", f"{nome} - matrícula {matricula}")
+    print("Usuário adcionado com sucesso")
+    return True
+
+
+#RODOLFO: Função para excluir o usuário (só chamar lá no código principal agr).
+def excluirUsuario(nomes, matriculas, perfis):
+    matricula = input("Digite a matrícula do usuário que será exluído: ").strip()
+
+    if matricula not in matriculas:
+        print("usuário não encontrado.")
+        return False
+
+    indiceMatricula = matriculas.index(matricula)
+
+    print(f"Nome: {nomes[indiceMatricula]}")
+    print(f"Perfil: {perfis[indiceMatricula]}")
+
+    confirmar = input("Digite 'S' para confirmar a exclusão: ").strip().upper()
+
+    if confirmar != 'S':
+        print("Exclusão cancelada.")
+        return False
+
+    nomeExcluido = nomes[indiceMatricula]
+
+    del nomes[indiceMatricula]
+    del perfis[indiceMatricula]
+    del matriculas[indiceMatricula]
+
+    salvarUsuario(nomes, matriculas, perfis)
+    registrarAuditoria("EXCLUSÃO_USUARIO", f"{nomeExcluido} - matrícula {matricula}")
+    print("Usuário excluído com sucesso.")
+    return True

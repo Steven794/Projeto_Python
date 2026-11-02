@@ -57,9 +57,10 @@ while True:
                 for i in range(len(nomes)):
                     print(f"Nome: {nomes[i]}")
                     print(f"Matrícula: {matriculas[i]}")
-                    print(f"Perfil: {perfil[i]}")
+                    print(f"Perfil: {perfis[i]}")
                     print("hora: xx horas até yy horas")
-
+                    
+                    #RODOLFO: A lista "perfil" não existe. Troquei o nome pra "perfis", que é o nome da lista lá encima.
                     #Lucas: tem que mudar isso aqui porque pensa comigo vai ser um programa para muitas pessoas usar, -
         #como a pessoa X vai saber o indice do nome e da matricula dela?? nao faz sentido
         
