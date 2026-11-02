@@ -1,0 +1,3 @@
+login estudante:   senha estudante: C:\Users\omarg\.local\bin\python3.14.exe "c:/Users/omarg/Projetos de FP/Projeto_Python/inicio.py"
+login estudante: omar  senha estudante: 1432
+login professor: omar  senha professor: 3232
