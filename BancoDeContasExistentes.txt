@@ -1,0 +1,3 @@
+Nome: t1 --- Matricula: 1 --- Perfil: estudante
+Nome: t-editado --- Matricula: 67 --- Perfil: professor
+Nome: t --- Matricula: 1 --- Perfil: estudante
