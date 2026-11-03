@@ -1,4 +1,5 @@
 # Função para limpar o terminal. Gustavo:Corrigi, agr ta certo.
+
 def clear_terminal():
     import os, platform
     if platform.system() == "Windows":
@@ -8,10 +9,10 @@ def clear_terminal():
 
 # Função que confirma se a entidade é adm
 def confirmacao_adm():
-    confirmacao = open("ApenasADM´s.txt", "r", encoding='utf8')
+    confirmacao = open("ApenasADM's.txt", "r", encoding="utf-8")
     arquivo = open("BancoDeDados.txt", "a", encoding="utf-8")
     hora = datetime.now()
-    HorarioDeAcesso = hora.strftime("%H")
+    HorarioAjeitado = hora.strftime("%d/%m/%Y %H:%M")
     tentativas = 5
     erros = 0
 
@@ -24,16 +25,15 @@ def confirmacao_adm():
         if osdoisjuntos == confirmacao.readline():
             print("Senha correta, login concluido.")
             return True
-        else:
-            tentativas-=1
-            erros+=1
-            print(f"Senha incorreta {tentativas} tentativas restantes!")
+        
+        tentativas-=1
+        erros+=1
+        print(f"Senha incorreta {tentativas} tentativas restantes!")
 
-            if erros == 2:
-                arquivo.write(f"Tentativa de login suspeita as {HorarioDeAcesso} horas")
-            if erros == 5:
-                arquivo.write(f"Tentativa de invasão as {HorarioDeAcesso} horas")
-            return True
+        if erros == 2:
+            arquivo.write(f"\nTentativa de login suspeita as {HorarioAjeitado}")
+        if erros == 5:
+            arquivo.write(f"\nTentativa de invasão as {HorarioAjeitado}")
     print("Acesso negado!")
     return False
     confirmacao.close()
@@ -45,7 +45,7 @@ def logarNormal(usuario, estudanteUsuarioLogar="", estudanteSenhaLogar="", profe
     estudantesSenha = []
     professorUsuario = []
     professorSenha = []
-    arquivo = open("tentativaLogin_tempo.txt", "a", encoding='utf8')
+    arquivo = open("BancoDeDados.txt", "a", encoding='utf8')
     if usuario == 1:
         estudantesUsuario.append(estudanteUsuarioLogar)
         estudantesSenha.append(estudanteSenhaLogar)
@@ -78,7 +78,7 @@ def criarNormal(tipo, ):
     if tipo == 1:
         estudanteUsuarioADM.append()
         estudanteSenhaADM.append()
-        arquivo.writearquivo.write("login estudante: " + estudanteUsuarioADM[0] + " " + " senha estudante: " + estudanteSenhaADM[0] + "\n")
+        arquivo.write("login estudante: " + estudanteUsuarioADM[0] + " " + " senha estudante: " + estudanteSenhaADM[0] + "\n")
     elif tipo == 2:
         professorUsuarioADM.append()
         professorSenhaADM.append()
@@ -107,14 +107,14 @@ def timer(HorarioDeAcesso):
         return "Tente logar em outro horario"
         #nessa parte a gente vai ter que classificar já que a tentativa é suspeita
 
-ARQUIVO_USUARIOS = "usuarios.csv"
+ARQUIVO_USUARIOS = "BancoDeContasExistentes.txt"
 SEPARADOR = ";"
 
 #RODOLFO: Registrar Horário de entrada
 def registrarAuditoria(operacao, usuarioAfetado):
     data_hora = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
 
-    with open("BancoDeDados.txt", "a", encoding="utf-8") as arquivo:
+    with open("Projeto_Python/BancoDeDados.txt", "a", encoding="utf-8") as arquivo:
         arquivo.write(f"{data_hora};{operacao};{usuarioAfetado}\n")
 
 #RODOLFO: Isso daqui é pra conferir se o usuário de fato existe, usei ela nas funções de adcionar e excluir usuário.
@@ -154,10 +154,13 @@ def carregarUsuario(nomes, matriculas, perfis):
         pass
 
 #RODOLFO: Função para adcionar novos usuários (lembrar de chamar no código principaç).
-def adcionarUsuario(nomes, matriculas, perfis):
+def adcionarUsuario(nomes, matriculas, perfis, nome, matricula, perfil, senhas):
+    import random
     nome = input("Digite o nome do novo usuário: ").strip()
     matricula = input("Digite a matrícula do novo usuário: ").strip()
     perfil = input("Digite o perfil (estudante/professor/administrador): ").strip().lower()
+    senhaAleatoria = random.randint(100000000000, 999999999999)
+    print(f"Sua senha é: {senhaAleatoria}")
 
     if not nome or not matricula or not perfil:
         print("Preencha todos os campos!")
@@ -176,6 +179,7 @@ def adcionarUsuario(nomes, matriculas, perfis):
     nomes.append(nome)
     matriculas.append(matricula)
     perfis.append(perfil)
+    senhas.append(senhaAleatoria)
 
     salvarUsuario(nomes, matriculas, perfis)
     registrarAuditoria("ADIÇÃO_USUARIO", f"{nome} - matrícula {matricula}")
@@ -212,3 +216,12 @@ def excluirUsuario(nomes, matriculas, perfis):
     registrarAuditoria("EXCLUSÃO_USUARIO", f"{nomeExcluido} - matrícula {matricula}")
     print("Usuário excluído com sucesso.")
     return True
+
+#função ocultar a matricula
+def matricula_ocultada (matricula_string, letras_visiveis = 2):
+    matricula_string = str(matricula)
+    estrelas = "" (len(matricula_string) - letras_visiveis)
+
+    return(f"A sua matrícula é a: {matricula_string[:2]}{estrelas}")
+
+#print(matricula_ocultada(matricula, 2))
