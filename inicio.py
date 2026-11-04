@@ -15,7 +15,6 @@ matriculas = []
 perfis = []
 senhas = []
 nome = " "
-matricula = " "
 perfil = " "
 
 # OBS omar: pode ser bom criar uma pasta so de registro de acesso com o nome da pessoa e a classificação
@@ -24,18 +23,21 @@ perfil = " "
 while True:
     """OBS Steven: aqui eu atualizei o tipo de entrada, porque vini havia dito que quando nós testar daria muito trabalho digitar a 
     string 'estudante' inteira e facilitaria apenas digitar um numero."""
-    usuario = int(input(
-        " Se você é um Estudante digite [1]\n Professor digite [2]\n Administrador digite [3] \n Para encerrar o programa digite [4]"))
+    usuario = int(input(" Se você é um Estudante digite [1]\n Professor digite [2]\n Administrador digite [3] \n Para encerrar o programa digite [4]"))
     if usuario == 1:
         estudanteUsuarioLogar = input("Digite o nome do estudante: ").strip()
         estudanteSenhaLogar = input("Digite a senha do estudante: ").strip()
-        logarNormal(usuario, estudanteUsuarioLogar, estudanteSenhaLogar)
-
+#    if usuario == 1:
+#        estudanteUsuarioLogar = input("Digite o nome do estudante: ").strip()
+#        estudanteSenhaLogar = input("Digite a senha do estudante: ").strip()
+#        logarNormal(usuario, estudanteUsuarioLogar, estudanteSenhaLogar)
     elif usuario == 2:
         professorUsuarioLogar = input("Digite o nome do professor: ").strip()
         professorSenhaLogar = input("Digite a senha do professor: ").strip()
-        logarNormal(usuario, professorUsuarioLogar=professorUsuarioLogar,
-                    professorSenhaLogar=professorSenhaLogar)
+#    elif usuario == 2:
+#        professorUsuarioLogar = input("Digite o nome do professor: ").strip()
+#        professorSenhaLogar = input("Digite a senha do professor: ").strip()
+#        logarNormal(usuario, professorUsuarioLogar=professorUsuarioLogar, professorSenhaLogar=professorSenhaLogar)
     elif usuario == 3:  # Gustavo:Aqui coloquei se a confirmação_adm for falsa, acesso negado, se nao acesso ao menu administrativo
         if not confirmacao_adm():
             print()
@@ -46,7 +48,7 @@ while True:
                 opcao = int(input("Digite a opção que você deseja acessar: "))
 
                 if opcao == 1:
-                    adcionarUsuario(nomes, matriculas, perfis, nome, matricula, perfil, senhas)
+                    adcionarUsuario(nomes, matriculas, perfis, nome, perfil, senhas)
 
                 elif opcao == 2:
                     print("===Usuários cadastrados===")
@@ -58,7 +60,7 @@ while True:
                         print(f"Perfil: {perfis[i]}")
                         print("hora: xx horas até yy horas")
 
-                        # Lucas: tem que mudar isso aqui porque pensa comigo vai ser um programa para muitas pessoas usar, -
+            # Lucas: tem que mudar isso aqui porque pensa comigo vai ser um programa para muitas pessoas usar, -
             # como a pessoa X vai saber o indice do nome e da matricula dela?? nao faz sentido
 
             # tem que ter alguma forma de linkar a conta com seus dados ja no login da pesssoa, pegando-
@@ -66,8 +68,7 @@ while True:
             # o indice da minha matricula e do meu usuario no portal de aluno da cesar??? wtf
             # mas fiz desse jeito por enquanto
                 elif opcao == 3:
-                    escolher = int(input(
-                        "digite 1. para editar o nome, 2. para editar a matricula ou 3. para editar os dois: "))
+                    escolher = int(input("digite 1. para editar o nome, 2. para editar a matricula ou 3. para editar os dois: "))
                     if escolher != 1 and escolher != 2 and escolher != 3:
                         print("codigo para edição invalido, tente novamente")
                     else:
@@ -111,8 +112,7 @@ while True:
 
                 elif opcao == 5:
                     for i in range(len(nomes)):
-                        senhas.write(
-                            f"\nNome: {nomes[i]} --- Matricula: {matriculas[i]} --- Perfil: {perfis[i]}")
+                        senhas.write(f"\nNome: {nomes[i]} --- Matricula: {matriculas[i]} --- Perfil: {perfis[i]}")
 
                     print("Encerrando...")
                     break
