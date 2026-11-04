@@ -40,6 +40,7 @@ def confirmacao_adm():
     arquivo.close()    
 
 #LUCAS: TA PRONTO
+#LUCAS: TA PRONTO
 def logarNormal(usuario, estudanteUsuarioLogar="", estudanteSenhaLogar="", professorUsuarioLogar="", professorSenhaLogar=""):
     estudantesUsuario = []
     estudantesSenha = []
@@ -49,12 +50,21 @@ def logarNormal(usuario, estudanteUsuarioLogar="", estudanteSenhaLogar="", profe
     if usuario == 1:
         estudantesUsuario.append(estudanteUsuarioLogar)
         estudantesSenha.append(estudanteSenhaLogar)
-        if estudanteUsuarioLogar in "BancoDeContasExistentes.txt" and estudanteSenhaLogar in "BancoDeContasExistentes.txt"
+        if estudanteUsuarioLogar in "BancoDeContasExistentes.txt" and estudanteSenhaLogar in "BancoDeContasExistentes.txt":
+            print("login permitido")
+        else:
+            print("login não autorizado")
+    
+            professorUsuario.append(professorUsuarioLogar)
+            professorSenha.append(professorSenhaLogar)
     elif usuario == 2:
         professorUsuario.append(professorUsuarioLogar)
         professorSenha.append(professorSenhaLogar)
-
-    arquivo.close()    
+        if estudanteUsuarioLogar in "BancoDeContasExistentes.txt" and professorSenhaLogar in "BancoDeContasExistentes.txt":
+            print("login permitido")
+        else:
+            print("login não autorizado")
+    arquivo.close()          
 #def logarNormal(usuario, estudanteUsuarioLogar="", estudanteSenhaLogar="", professorUsuarioLogar="", professorSenhaLogar=""):
 #    estudantesUsuario = []
 #    estudantesSenha = []
@@ -137,12 +147,12 @@ def salvarUsuario(nomes, matriculas, perfis):
     if not (len(nomes) == len(matriculas) == len(perfis)):
         raise ValueError("Usuário não encontrado ou incoerente com o que foi listado.")
 
-    #with open(ARQUIVO_USUARIOS, "a", encoding="utf-8") as arquivo:
-        #for nome, matricula, perfil in zip(nomes, matriculas, perfis):
-            #arquivo.write(
-                #f"{nome}{SEPARADOR}"
-                #f"{matricula}{SEPARADOR}"
-                #f"{perfil}\n")
+    with open(ARQUIVO_USUARIOS, "a", encoding="utf-8") as arquivo:
+        for nome, matricula, perfil in zip(nomes, matriculas, perfis):
+            arquivo.write(
+                f"{nome}{SEPARADOR}"
+                f"{matricula}{SEPARADOR}"
+                f"{perfil}\n")
 
 #RODOLFO: Essa função serve pra carregar os usuários de uma rodagem do código pra outra.
 def carregarUsuario(nomes, matriculas, perfis):
@@ -170,6 +180,7 @@ def carregarUsuario(nomes, matriculas, perfis):
 
 #RODOLFO: Função para adcionar novos usuários (lembrar de chamar no código principaç).
 def adcionarUsuario(nomes, matriculas, perfis, nome, perfil, senhas):
+    senhas123 = open("BancoDeContasExistentes.txt", "a", encoding="utf-8")
     import random
     nome = input("Digite o nome do novo usuário: ").strip()
     matricula = random.randint(1000000000, 9999999999)
@@ -197,7 +208,7 @@ def adcionarUsuario(nomes, matriculas, perfis, nome, perfil, senhas):
     senhas.append(senhaAleatoria)
 
     salvarUsuario(nomes, matriculas, perfis)
-    registrarAuditoria("\nNome do usuário"f" {nome} - matrícula: {matricula} - Perfil: {perfil} - Senha: {senhaAleatoria}")
+    senhas123.write(f"\nNome do usuário: {nome} - matrícula: {matricula} - Perfil: {perfil} - Senha: {senhaAleatoria}")
     print("Usuário adicionado com sucesso: ")
     return True
 
@@ -247,4 +258,17 @@ def excluirUsuario(nomes, matriculas, perfis):
     revelar = matricula_ocultada(matricula, 2)
     return revelar"""
 #def matricula_revelar():
-    
+def matricula_ocultada (matricula, letras_visiveis=2):
+    matricula_string = str(matricula)
+    estrelas = "" (len(matricula_string) - letras_visiveis)
+
+    return f"A sua matrícula é a: {matricula_string[:2]}{estrelas}"
+
+"""def processo_reversao(matricula):
+    revelar = matricula_ocultada(matricula, 2)
+    return revelar"""
+
+def mostrar_matricula(matricula):
+    matricula_string = str(matricula)
+
+    return f"A sua matrícula é {matricula_string}"

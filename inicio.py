@@ -112,7 +112,7 @@ while True:
 
                 elif opcao == 5:
                     for i in range(len(nomes)):
-                        senhas.write(f"\nNome: {nomes[i]} --- Matricula: {matriculas[i]} --- Perfil: {perfis[i]}")
+                        senhasar.write(f"\nNome: {nomes[i]} --- Matricula: {matriculas[i]} --- Perfil: {perfis[i]}")
 
                     print("Encerrando...")
                     break

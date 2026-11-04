@@ -3,3 +3,5 @@ Tentativa de invasão as 02/11/2026 14:57
 Tentativa de login suspeita as 02/11/2026 14:57
 Tentativa de invasão as 02/11/2026 14:57
 03/11/2026 12:20:05;ADIÇÃO_USUARIO;andre - matrícula 12
+
+Tentativa de login suspeita as 04/11/2026 15:41
