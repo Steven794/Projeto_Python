@@ -30,7 +30,7 @@ def confirmacao_adm():
         erros+=1
         print(f"Senha incorreta {tentativas} tentativas restantes!")
 
-        if erros == 2:
+        if erros == 3:
             arquivo.write(f"\nTentativa de login suspeita as {HorarioAjeitado}")
         if erros == 5:
             arquivo.write(f"\nTentativa de invasão as {HorarioAjeitado}")
@@ -45,14 +45,15 @@ def logarNormal(usuario, estudanteUsuarioLogar="", estudanteSenhaLogar="", profe
     estudantesSenha = []
     professorUsuario = []
     professorSenha = []
-    arquivo = open("BancoDeContasExistentes.txt", "", encoding='utf8')
+    arquivo = open("BancoDeContasExistentes.txt", "r", encoding='utf8')
     if usuario == 1:
-        if    
+        estudantesUsuario.append(estudanteUsuarioLogar)
+        estudantesSenha.append(estudanteSenhaLogar)
+        if estudanteUsuarioLogar in "BancoDeContasExistentes.txt" and estudanteSenhaLogar in "BancoDeContasExistentes.txt"
     elif usuario == 2:
         professorUsuario.append(professorUsuarioLogar)
         professorSenha.append(professorSenhaLogar)
-        print("pedir senha e fazer algo daqui. EX: publicar notas, adicionar falta, etc")
-        arquivo.write("login professor: " + professorUsuario[0] + " " + " senha professor: " + professorSenha[0] + "\n")
+
     arquivo.close()    
 #def logarNormal(usuario, estudanteUsuarioLogar="", estudanteSenhaLogar="", professorUsuarioLogar="", professorSenhaLogar=""):
 #    estudantesUsuario = []
@@ -244,6 +245,6 @@ def excluirUsuario(nomes, matriculas, perfis):
 #print(matricula_ocultada(matricula, 2))
 """def processo_revelar():
     revelar = matricula_ocultada(matricula, 2)
-    return  revelar"""
+    return revelar"""
 #def matricula_revelar():
     
