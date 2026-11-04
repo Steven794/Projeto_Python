@@ -47,7 +47,7 @@ def logarNormal(usuario, estudanteUsuarioLogar="", estudanteSenhaLogar="", profe
     professorSenha = []
     arquivo = open("BancoDeContasExistentes.txt", "", encoding='utf8')
     if usuario == 1:
-        if 
+        if    
     elif usuario == 2:
         professorUsuario.append(professorUsuarioLogar)
         professorSenha.append(professorSenhaLogar)
@@ -244,6 +244,6 @@ def excluirUsuario(nomes, matriculas, perfis):
 #print(matricula_ocultada(matricula, 2))
 """def processo_revelar():
     revelar = matricula_ocultada(matricula, 2)
-    return revelar """
+    return  revelar"""
 #def matricula_revelar():
     
