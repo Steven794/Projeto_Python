@@ -54,14 +54,13 @@ def logarNormal(usuario, estudanteUsuarioLogar="", estudanteSenhaLogar="", profe
             print("login permitido")
         else:
             print("login não autorizado")
-    
-            professorUsuario.append(professorUsuarioLogar)
-            professorSenha.append(professorSenhaLogar)
+    v
     elif usuario == 2:
         professorUsuario.append(professorUsuarioLogar)
         professorSenha.append(professorSenhaLogar)
         if estudanteUsuarioLogar in "BancoDeContasExistentes.txt" and professorSenhaLogar in "BancoDeContasExistentes.txt":
             print("login permitido")
+ 
         else:
             print("login não autorizado")
     arquivo.close()          
