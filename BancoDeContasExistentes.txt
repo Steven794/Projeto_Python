@@ -1,4 +1,6 @@
-Nome: t1 --- Matricula: 1 --- Perfil: estudante
-Nome: t-editado --- Matricula: 67 --- Perfil: professor
-Nome: t --- Matricula: 1 --- Perfil: estudante
-Nome: steven xu --- Matricula: 67 --- Perfil: estudante
+03/11/2026 22:10:53;
+Nome do usuário: StevenXu - matrícula: 8796581071 - Perfil: professor - Senha: 563119142910
+03/11/2026 22:20:47;
+Nome do usuário: teste - matrícula: 2262010670 - Perfil: estudante - Senha: 801352692345
+03/11/2026 22:21:37;
+Nome do usuário: mega teste - matrícula: 7982639182 - Perfil: professor - Senha: 748195052138
