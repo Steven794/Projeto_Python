@@ -50,14 +50,14 @@ def logarNormal(usuario, estudanteUsuarioLogar="", estudanteSenhaLogar="", profe
         if dados[0] == "Nome":
             if usuario == 1 and dados[9] == "estudante":
                 if estudanteUsuarioLogar == dados[3] and estudanteSenhaLogar == dados[12]:        
-                    arquivo = open("BancoDeDados.txt", "a", encoding="utf-8")
-                    arquivo.write(f"tentativa login estudante nome digitado: " + {estudanteUsuarioLogar} + " " + "senha digitada: " + {estudanteSenhaLogar})
+                    arquivo = open("BancoDeDados.txt", "a", encoding="utf8")
+                    arquivo.write("tentativa login estudante nome digitado: " + estudanteUsuarioLogar + " " + "senha digitada: " + estudanteSenhaLogar)
                     arquivo.close()
                     return "Login de estudante permitido"
             elif usuario == 2 and dados[9] == "professor":
                 if professorUsuarioLogar == dados[3] and professorSenhaLogar == dados[12]:
-                    arquivo = open("BancoDeDados.txt", "a", encoding="utf-8")
-                    arquivo.write(f"tentativa login professor nome digitado: " + {professorUsuarioLogar} + " " + "senha digitada: " + {professorSenhaLogar})
+                    arquivo = open("BancoDeDados.txt", "a", encoding="utf8")
+                    arquivo.write("tentativa login professor nome digitado: " + professorUsuarioLogar + " " + "senha digitada: " + professorSenhaLogar)
                     arquivo.close()
                     return "Login de professor permitido"
     arquivo.close()
@@ -253,11 +253,11 @@ def matricula_ocultada (usuario, estudanteUsuarioLogar, numeros_visiveis=2):
             continue    
         if dados[0] == "Nome":
             if usuario == 1 and dados[9] == "estudante" and dados[3] == estudanteUsuarioLogar:
-                stringado = dados[5]
+                stringado = dados[6]
                 matriculastringada = str(stringado)
             elif usuario == 2:
                 if dados[9] == "estudante" and dados[3] == estudanteUsuarioLogar:
-                    stringado = dados [5]
+                    stringado = dados [6]
                     matriculastringada = str(stringado)
     arquivo.close()
     estrelas = "*" * (len(matriculastringada) - numeros_visiveis)
@@ -271,11 +271,11 @@ def mostrar_matricula(usuario, estudanteUsuarioLogar):
             continue    
         if dados[0] == "Nome":
             if usuario == 1 and dados[9] == "estudante" and dados[3] == estudanteUsuarioLogar:
-                stringado = dados[5]
+                stringado = dados[6]
                 matriculastringada = str(stringado)
             elif usuario == 2:
                 if dados[9] == "estudante" and dados[3] == estudanteUsuarioLogar:
-                    stringado = dados [5]
+                    stringado = dados [6]
                     matriculastringada = str(stringado)
     arquivo.close()
 
