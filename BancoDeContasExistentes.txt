@@ -1,5 +1,0 @@
-Nome do usuário: StevenXu - matrícula: 8796581071 - Perfil: professor - Senha: 563119142910
-Nome do usuário: teste - matrícula: 2262010670 - Perfil: estudante - Senha: 801352692345
-Nome do usuário: mega teste - matrícula: 7982639182 - Perfil: professor - Senha: 748195052138
-Nome do usuário: Lucas - matrícula: 7144108341 - Perfil: estudante - Senha: 584539849715
-Nome do usuário: Gustavo - matrícula: 8267808669 - Perfil: estudante - Senha: 561212819045

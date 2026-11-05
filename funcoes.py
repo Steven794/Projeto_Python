@@ -46,16 +46,24 @@ def logarNormal(usuario, estudanteUsuarioLogar="", estudanteSenhaLogar="", profe
     for linha in arquivo:
         dados = linha.strip().split()
         if not dados:
-            continue
+            continue            
         if dados[0] == "Nome":
             if usuario == 1 and dados[9] == "estudante":
-                if estudanteUsuarioLogar == dados[3] and estudanteSenhaLogar == dados[12]:
+                if estudanteUsuarioLogar == dados[3] and estudanteSenhaLogar == dados[12]:        
+                    arquivo = open("BancoDeDados.txt", "a", encoding="utf-8")
+                    arquivo.write(f"tentativa login estudante nome digitado: " + {estudanteUsuarioLogar} + " " + "senha digitada: " + {estudanteSenhaLogar})
+                    arquivo.close()
                     return "Login de estudante permitido"
             elif usuario == 2 and dados[9] == "professor":
                 if professorUsuarioLogar == dados[3] and professorSenhaLogar == dados[12]:
-                        return "Login de professor permitido"
+                    arquivo = open("BancoDeDados.txt", "a", encoding="utf-8")
+                    arquivo.write(f"tentativa login professor nome digitado: " + {professorUsuarioLogar} + " " + "senha digitada: " + {professorSenhaLogar})
+                    arquivo.close()
+                    return "Login de professor permitido"
     arquivo.close()
     return "Login não autorizado"
+    
+
 
 def numero_maquina (numeracao_maquina =""):
     maquinas = []
@@ -214,16 +222,17 @@ def excluirUsuario(nomes, matriculas, perfis):
         print("usuário não encontrado.")
         return False
 
-    indiceMatricula = matriculas.index(matricula)
+    else:
+        indiceMatricula = matriculas.index(matricula)
 
-    print(f"Nome: {nomes[indiceMatricula]}")
-    print(f"Perfil: {perfis[indiceMatricula]}")
+        print(f"Nome: {nomes[indiceMatricula]}")
+        print(f"Perfil: {perfis[indiceMatricula]}")
 
-    confirmar = input("Digite 'S' para confirmar a exclusão: ").strip().upper()
+        confirmar = input("Digite 'S' para confirmar a exclusão: ").strip().upper()
 
-    if confirmar != 'S':
-        print("Exclusão cancelada.")
-        return False
+        if confirmar != 'S':
+            print("Exclusão cancelada.")
+            return False
 
     nomeExcluido = nomes[indiceMatricula]
 
@@ -236,13 +245,38 @@ def excluirUsuario(nomes, matriculas, perfis):
     print("Usuário excluído com sucesso.")
     return True
 
-def matricula_ocultada (matricula, letras_visiveis=2):
-    matricula_string = str(matricula)
-    estrelas = "*" * (len(matricula_string) - letras_visiveis)
+def matricula_ocultada (usuario, estudanteUsuarioLogar, numeros_visiveis=2):
+    arquivo = open("BancoDeContasExistentes.txt", "r", encoding="utf8")
+    for linha in arquivo:
+        dados = linha.strip().split()
+        if not dados:
+            continue    
+        if dados[0] == "Nome":
+            if usuario == 1 and dados[9] == "estudante" and dados[3] == estudanteUsuarioLogar:
+                stringado = dados[5]
+                matriculastringada = str(stringado)
+            elif usuario == 2:
+                if dados[9] == "estudante" and dados[3] == estudanteUsuarioLogar:
+                    stringado = dados [5]
+                    matriculastringada = str(stringado)
+    arquivo.close()
+    estrelas = "*" * (len(matriculastringada) - numeros_visiveis)
+    return f"A matrícula é: {matriculastringada[:2]}{estrelas}"
 
-    return f"A sua matrícula é a: {matricula_string[:2]}{estrelas}"
+def mostrar_matricula(usuario, estudanteUsuarioLogar):
+    arquivo = open("BancoDeContasExistentes.txt", "r", encoding="utf8")
+    for linha in arquivo:
+        dados = linha.strip().split()
+        if not dados:
+            continue    
+        if dados[0] == "Nome":
+            if usuario == 1 and dados[9] == "estudante" and dados[3] == estudanteUsuarioLogar:
+                stringado = dados[5]
+                matriculastringada = str(stringado)
+            elif usuario == 2:
+                if dados[9] == "estudante" and dados[3] == estudanteUsuarioLogar:
+                    stringado = dados [5]
+                    matriculastringada = str(stringado)
+    arquivo.close()
 
-def mostrar_matricula(matricula):
-    matricula_string = str(matricula)
-
-    return f"A sua matrícula é {matricula_string}"
+    return f"A matrícula inteira é: {matriculastringada}"

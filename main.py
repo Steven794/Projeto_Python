@@ -1,6 +1,6 @@
 from funcoes import *
-import time  
-import random 
+import time
+import random
 
 clear_terminal()
 
@@ -8,41 +8,104 @@ arquivo = open("BancoDeDados.txt", "a", encoding="utf-8")
 senhasar = open("BancoDeContasExistentes.txt", "a", encoding="utf-8")
 confirmacao = open("ApenasADM's.txt", "r", encoding="utf-8")
 # OBS  Omar: pessoal a base desse código é um que a gente fez um tempo atras na aula que to modificando com as demandar do projeto, como a parte de adicionar a um arquivo e tals, entao vai ter coisas que a gente vai apagar e outras que utiliza
-tentativadelogin = 0
+# tentativadelogin = 0
 nomes = []
 matriculas = []
 perfis = []
 senhas = []
 nome = " "
 perfil = " "
+hora123 = datetime.now()
+HorarioAjeitado123 = hora.strftime("%d/%m/%Y %H:%M")
+tentativas123 = 5
+erros123 = 0
 
 # OBS omar: pode ser bom criar uma pasta so de registro de acesso com o nome da pessoa e a classificação
 
 while True:
     """OBS Steven: aqui eu atualizei o tipo de entrada, porque vini havia dito que quando nós testar daria muito trabalho digitar a 
     string 'estudante' inteira e facilitaria apenas digitar um numero."""
-    usuario = int(input("Estudante digite [1]\nProfessor digite [2]\nAdministrador digite [3]\nEncerrar programa digite [4]\nDigite qual opção você deseja acessar: "))
+    usuario = int(input(
+        "Estudante digite [1]\nProfessor digite [2]\nAdministrador digite [3]\nEncerrar programa digite [4]\nDigite qual opção você deseja acessar: "))
     if usuario == 1:
         estudanteUsuarioLogar = input("Digite o nome do estudante: ").strip()
         estudanteSenhaLogar = input("Digite a senha do estudante: ").strip()
         maquina = input("Insira o número da máquina utilizada (entre 01-30): ")
-        resultado = logarNormal(usuario,estudanteUsuarioLogar,estudanteSenhaLogar,"","")
+        resultado = logarNormal(
+            usuario, estudanteUsuarioLogar, estudanteSenhaLogar, "", "")
         numero_maquina(maquina)
         print(resultado)
+
         if resultado == "Login de estudante permitido":
             print("Bem vindo ao menu do estudante")
-            print("1.Boletim.\n2.Consultar seus dados.\n3.Consultar suas faltas.\n4.xxxxxx")
+            while True:
+                print("1.Boletim.\n2.Consultar seus dados.\n3.Consultar suas faltas.\n4.Para Encerrar o seu Login.")
+                opcaoE = int(input("Digite qual opção deseja acessar: "))
+                if opcaoE == 1:
+                    print("Seu boletim")
+
+                elif opcaoE == 2:
+                    matricula_censurada = matricula_ocultada(usuario, estudanteUsuarioLogar, 2)
+                    print(matricula_censurada)
+
+                    revelar = input("Você deseja exibir a sua matrícula? ")
+                    if revelar == "sim":
+                        matricula_sem_censura = mostrar_matricula(usuario, estudanteUsuarioLogar)
+                        print(matricula_sem_censura)
+
+                elif opcaoE == 3:
+                    print("Aqui ele vai consultar as faltas")
+
+                elif opcaoE == 4:
+                    print("Encerrando Login...")
+                    break
+                else:
+                    print("Opção inválida")
+        if resultado == "Login não autorizado":
+            tentativas123-=1
+            erros123+=1
+            print(f"Senha incorreta {tentativas123} tentativas restantes!")
+                                
+            if erros123 == 3:
+                arquivo.write(f"\nTentativa de login suspeita as {HorarioAjeitado123}")
+                time.sleep(5)
+            if erros123 == 5:
+                arquivo.write(f"\nTentativa de invasão as {HorarioAjeitado123}")
+                time.sleep(10)
 
     elif usuario == 2:
         professorUsuarioLogar = input("Digite o nome do professor: ").strip()
         professorSenhaLogar = input("Digite a senha do professor: ").strip()
         maquina = input("Insira o número da máquina utilizada (entre 01-30): ")
-        resultado = logarNormal(usuario,"","",professorUsuarioLogar,professorSenhaLogar)
+        resultado = logarNormal(
+            usuario, "", "", professorUsuarioLogar, professorSenhaLogar)
         numero_maquina(maquina)
         print(resultado)
 
         if resultado == "Login de professor permitido":
-            print("1.???????")
+            while True:
+                print("Bem vindo ao menu Professor")
+                print("1.Publicar notas??.\n2.Consultar dados dos alunos.\n3.Consultar faltas dos alunos.\n4.Para Encerrar o seu Login.")
+                opcaoP = int(
+                    input("Digite um número de 1 a 4 para acessar suas opções: "))
+                if opcaoP == 1:
+                    print("Publique notas")
+
+                elif opcaoP == 2:
+                    nomeEstudante = input("Informe o nome do estudante: ")
+                    nomeEstudante = estudanteUsuarioLogar
+                    matricula_censurada = matricula_ocultada(usuario, estudanteUsuarioLogar, 2)
+                    print(matricula_censurada)
+                    #aqui deverá ser possível ver a matrícula ocultada do aluno
+
+                elif opcaoP == 3:
+                    print("Aqui será possível consultar as faltas dos alunos")
+                elif opcaoP == 4:
+                    print("Encerrando Login...")
+                    break
+
+                else:
+                    print("Opção inválida")
 
     elif usuario == 3:  # Gustavo:Aqui coloquei se a confirmação_adm for falsa, acesso negado, se nao acesso ao menu administrativo
         if not confirmacao_adm():
@@ -50,16 +113,21 @@ while True:
         else:
             while True:
                 print("Bem vindo ao menu administrativo!")
-                print("1.Adicionar usuário.\n2.Consultar dados.\n3.Editar dados.\n4.Excluir usuário.\n5.Encerrar o programa. ")
+                print(
+                    "1.Adicionar usuário.\n2.Consultar dados.\n3.Editar dados.\n4.Excluir usuário.\n5.Encerrar o programa. ")
                 opcao = int(input("Digite a opção que você deseja acessar: "))
 
                 if opcao == 1:
-                    adicionarUsuario(nomes, matriculas, perfis, nome, perfil, senhas)
+                    adicionarUsuario(nomes, matriculas, perfis,
+                                     nome, perfil, senhas)
 
                 elif opcao == 2:
                     print("=== Dados Cadastrados ===")
-                    print(senhasar.read())
-    
+                    with open("BancoDeContasExistentes.txt", "r", encoding="utf-8") as senhaler:
+                        print(senhaler.read())
+                    matricula_censurada = matricula_ocultada(matriculas, 2)
+                    print(matricula_censurada)
+
             # Lucas: tem que mudar isso aqui porque pensa comigo vai ser um programa para muitas pessoas usar, -
             # como a pessoa X vai saber o indice do nome e da matricula dela?? nao faz sentido
 
@@ -68,20 +136,24 @@ while True:
             # o indice da minha matricula e do meu usuario no portal de aluno da cesar??? wtf
             # mas fiz desse jeito por enquanto
                 elif opcao == 3:
-                    escolher = int(input("1.Editar nome.\n 2.Editar matrícula .\n3.Editar nome e matrícula.")) 
-                    #OBS de omar: matricula tem 10 digitos e senha tem 12
+                    escolher = int(
+                        input("1.Editar nome.\n 2.Editar matrícula .\n3.Editar nome e matrícula."))
+                    # OBS de omar: matricula tem 10 digitos e senha tem 12
                     if escolher != 1 and escolher != 2 and escolher != 3:
                         print("codigo para edição invalido, tente novamente")
                     else:
                         if escolher == 1:
-                            nome = input("Digite o nome do aluno para encontrar a matricula\nObs: com letra maiuscula e minuscula ")
+                            nome = input(
+                                "Digite o nome do aluno para encontrar a matricula\nObs: com letra maiuscula e minuscula ")
                             with open("BancoDeContasExistentes.txt", "r", encoding="utf-8") as arquivo:
                                 linha = arquivo.readline()
                                 while linha:
                                     if "matricula:" and nome in linha:
-                                    # pega tudo quem vem depois de "matricula:"
-                                        parte_matricula = linha.split("matricula:")[1]
-                                        numero_matricula = parte_matricula.split("-").strip()
+                                        # pega tudo quem vem depois de "matricula:"
+                                        parte_matricula = linha.split(
+                                            "matricula:")[1]
+                                        numero_matricula = parte_matricula.split(
+                                            "-").strip()
                                         print(f"matricula {numero_matricula}")
                                         break
                                     else:
@@ -89,36 +161,49 @@ while True:
 
                         elif escolher == 2:
                             matricula_atualizada = []
-                            matricula_antiga = input("Digite a matricula do aluno: ")
-                            matricula_nova = input("Digite a nova matricula do aluno para atualizar: ")
+                            matricula_antiga = input(
+                                "Digite a matricula do aluno: ")
+                            matricula_nova = input(
+                                "Digite a nova matricula do aluno para atualizar: ")
                             with open("BancoDeContasExistentes.txt", "r", encoding="utf-8") as arquivo:
                                 for linha in arquivo:
                                     if f"matrícula: {numero_matricula}" in linha:
-                                        linha = linha.replace(matricula_antiga, matricula_nova)
+                                        linha = linha.replace(
+                                            matricula_antiga, matricula_nova)
                                     matricula_atualizada.append(linha)
                             with open("BancoDeContasExistentes.txt", "a", encoding="utf-8") as arquivo:
                                 arquivo.writelines(matricula_atualizada)
                             print("Matrícula atualizada com sucesso!")
-                        
+
                         elif escolher == 3:
-                            indicenome3 = int(input("Digite o índice do nome que deseja atualizar: "))
-                            indicematricula3 = int(input("Digite o índice da matricula que deseja atualizar: "))
+                            indicenome3 = int(
+                                input("Digite o índice do nome que deseja atualizar: "))
+                            indicematricula3 = int(
+                                input("Digite o índice da matricula que deseja atualizar: "))
                             if (0 <= indicenome3 < len(nomes)) and (0 <= indicematricula3 < len(matriculas)):
                                 novo_nome3 = input("Digite o novo nome: ")
                                 nomes[indicenome3] = novo_nome3
-                                nova_matricula3 = input("Digite a nova matricula: ")
+                                nova_matricula3 = input(
+                                    "Digite a nova matricula: ")
                                 matriculas[indicematricula3] = nova_matricula3
 
                             else:
                                 print("Índice Inválidos! ")
 
                 elif opcao == 4:
-                    excluirUsuario(nomes, matriculas, perfis)
+                    # excluirUsuario(nomes, matriculas, perfis)
+                    # Vamo testar com o código que Omar fez e com a função acima, o que der melhor vai ser usado
+                    with open("BancoDeContasExistentes.txt", "r", encoding='utf-8') as senhas123:
+                        LinhaDoExcluirUsuario = int(
+                            input("Informe a linha do usuário que deseja apagar: ")) - 1
+                        linhas = senhas123.readlines()
+                    if 0 <= LinhaDoExcluirUsuario < len(linhas):
+                        del linhas[LinhaDoExcluirUsuario]
+
+                    with open("BancoDeContasExistentes.txt", "w", encoding='utf-8') as senhas123:
+                        senhas123.writelines(linhas)
 
                 elif opcao == 5:
-                    for i in range(len(nomes)):
-                        senhasar.write(f"\nNome: {nomes[i]} --- Matricula: {matriculas[i]} --- Perfil: {perfis[i]}")
-
                     print("Encerrando...")
                     break
                 else:
