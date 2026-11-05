@@ -1,5 +1,4 @@
-# Função para limpar o terminal. Gustavo:Corrigi, agr ta certo.
-
+from datetime import datetime
 def clear_terminal():
     import os, platform
     if platform.system() == "Windows":
@@ -9,6 +8,7 @@ def clear_terminal():
 
 # Função que confirma se a entidade é adm
 def confirmacao_adm():
+    import time
     confirmacao = open("ApenasADM's.txt", "r", encoding="utf-8")
     arquivo = open("BancoDeDados.txt", "a", encoding="utf-8")
     hora = datetime.now()
@@ -16,10 +16,10 @@ def confirmacao_adm():
     tentativas = 5
     erros = 0
 
-
     while tentativas > 0:
         usuarioADM = input("Informe o usuario do administrador: ").strip()
         senhaADM = input("Informe a senha do administrador: ").strip()
+        #maquina = input("Insira o número da máquina utilizada (entre 01-30): ")
         osdoisjuntos = usuarioADM+senhaADM
 
         if osdoisjuntos == confirmacao.readline():
@@ -32,105 +32,72 @@ def confirmacao_adm():
 
         if erros == 3:
             arquivo.write(f"\nTentativa de login suspeita as {HorarioAjeitado}")
+            time.sleep(5)
         if erros == 5:
             arquivo.write(f"\nTentativa de invasão as {HorarioAjeitado}")
+            time.sleep(10)
     print("Acesso negado!")
     return False
     confirmacao.close()
     arquivo.close()    
 
-#LUCAS: TA PRONTO
-#LUCAS: TA PRONTO
 def logarNormal(usuario, estudanteUsuarioLogar="", estudanteSenhaLogar="", professorUsuarioLogar="", professorSenhaLogar=""):
-    estudantesUsuario = []
-    estudantesSenha = []
-    professorUsuario = []
-    professorSenha = []
-    arquivo = open("BancoDeContasExistentes.txt", "r", encoding='utf8')
-    if usuario == 1:
-        estudantesUsuario.append(estudanteUsuarioLogar)
-        estudantesSenha.append(estudanteSenhaLogar)
-        if estudanteUsuarioLogar in "BancoDeContasExistentes.txt" and estudanteSenhaLogar in "BancoDeContasExistentes.txt":
-            print("login permitido")
-        else:
-            print("login não autorizado")
-    v
-    elif usuario == 2:
-        professorUsuario.append(professorUsuarioLogar)
-        professorSenha.append(professorSenhaLogar)
-        if estudanteUsuarioLogar in "BancoDeContasExistentes.txt" and professorSenhaLogar in "BancoDeContasExistentes.txt":
-            print("login permitido")
- 
-        else:
-            print("login não autorizado")
-    arquivo.close()          
-#def logarNormal(usuario, estudanteUsuarioLogar="", estudanteSenhaLogar="", professorUsuarioLogar="", professorSenhaLogar=""):
-#    estudantesUsuario = []
-#    estudantesSenha = []
-#    professorUsuario = []
-#    professorSenha = []
-#    arquivo = open("BancoDeDados.txt", "a", encoding='utf8')
-#    if usuario == 1:
-#        estudantesUsuario.append(estudanteUsuarioLogar)
-#        estudantesSenha.append(estudanteSenhaLogar)
-#        print("Fazer algo aqui. EX:Ver boletim, ver faltas, etc")
-#        arquivo.write("login estudante: " + estudantesUsuario[0] + " " + " senha estudante: " + estudantesSenha[0] + "\n")
-#    elif usuario == 2:
-#        professorUsuario.append(professorUsuarioLogar)
-#        professorSenha.append(professorSenhaLogar)
-#        print("pedir senha e fazer algo daqui. EX: publicar notas, adicionar falta, etc")
-#        arquivo.write("login professor: " + professorUsuario[0] + " " + " senha professor: " + professorSenha[0] + "\n")
-#    arquivo.close()    
-
-
-
-
-
-#LUCAS:
-#ESSA FUNCAO É SO PRA CRIAR O LOGIN, COM NOME E SENHA, SENDO TIPO 1 ESTUDANTE, TIPO 2 PROFESSOR, TIPO 3 ADM
-
-#FALTA ADICIONAR AS VARIARIES PORQUE A PERGUNTA PARA ADICIONAR DENTRO DAS LISTAS NO APPEND() AINDA NAO FORAM-
-#-CRIADAS NO INICIO.PY E OBVIAMENTE FALTA ADICIONAR OS PARAMETROS, MAS A FUNCAO EM SI PARA CRIAR O LOGIN É ESSA
-def criarNormal(tipo, ):
-    estudanteUsuarioADM = []
-    estudanteSenhaADM = []
-    professorUsuarioADM = []
-    professorSenhaADM = []
-    admUsuarioADM = []
-    admSenhaADM  = []
-    arquivo = open("ApenasADM's.txt", "a", encoding='utf8')
-    if tipo == 1:
-        estudanteUsuarioADM.append()
-        estudanteSenhaADM.append()
-        arquivo.write("login estudante: " + estudanteUsuarioADM[0] + " " + " senha estudante: " + estudanteSenhaADM[0] + "\n")
-    elif tipo == 2:
-        professorUsuarioADM.append()
-        professorSenhaADM.append()
-        arquivo.write("login professor: " + professorUsuarioADM[0] + " " + " senha professor: " + professorSenhaADM[0] + "\n")
-    elif tipo == 3:
-        admUsuarioADM.append()
-        admSenhaADM.append()
-        arquivo.write("login adm: " + admUsuarioADM[0] + " " + " senha adm: " + admSenhaADM[0] + "\n")
+    arquivo = open("BancoDeContasExistentes.txt", "r", encoding="utf8")
+    for linha in arquivo:
+        dados = linha.strip().split()
+        if not dados:
+            continue
+        if dados[0] == "Nome":
+            if usuario == 1 and dados[9] == "estudante":
+                if estudanteUsuarioLogar == dados[3] and estudanteSenhaLogar == dados[12]:
+                    return "Login de estudante permitido"
+            elif usuario == 2 and dados[9] == "professor":
+                if professorUsuarioLogar == dados[3] and professorSenhaLogar == dados[12]:
+                        return "Login de professor permitido"
     arquivo.close()
+    return "Login não autorizado"
 
-
-
-#LUCAS: ISSO TAVA NUM OUTRO ARQUIVO MAS JA QUE É UMA FUNCAO COPIEI PRA CA
-#OBS de Omar: criei aqui so pra explicar mais separado do código principal
-from datetime import datetime
+def numero_maquina (numeracao_maquina =""):
+    maquinas = []
+    maquinas.append(numeracao_maquina)
 
 print("Estrutura geral do sistema de hórario: ")
 hora = datetime.now()
 HorarioDeAcesso = hora.strftime("%H")
+acesso_normal = 0
+acesso_suspeito = 0
+login_normal = []
+login_suspeito = []
+maquinas_normais = []
+maquinas_suspeitas = []
 
-def timer(HorarioDeAcesso):
+def timer(HorarioDeAcesso, tipo_usuario, conta_estudante, conta_professor, ):
     if HorarioDeAcesso >= 7 and HorarioDeAcesso <= 22:
+        if tipo_usuario == 1:
+            acesso_normal+=1
+            login_normal.append(conta_estudante)
+            maquinas_normais.append()
+
+        elif tipo_usuario ==2:
+            acesso_normal+=1
+            login_normal.append(conta_estudante)
+            maquinas_normais.append()
+
+        return 
         #(OMAR): isso vai dizer que pelo menos o horário de acesso não é suspeito
-        return
     else:
+        if tipo_usuario == 1:
+            acesso_suspeito+=1
+            login_suspeito.append(conta_professor)
+            maquinas_suspeitas.append()
+
+        elif tipo_usuario ==2:
+            acesso_normal+=1
+            login_suspeito.append(conta_professor)
+            maquinas_suspeitas.append()
         return "Tente logar em outro horario"
         #nessa parte a gente vai ter que classificar já que a tentativa é suspeita
-
+        
 ARQUIVO_USUARIOS = "BancoDeContasExistentes.txt"
 SEPARADOR = ";"
 
@@ -141,7 +108,13 @@ def registrarAuditoria(operacao, usuarioAfetado):
     with open("BancoDeContasExistentes.txt", "a", encoding="utf-8") as arquivo:
         arquivo.write(f"{data_hora};{operacao};{usuarioAfetado}\n")
 
-#RODOLFO: Isso daqui é pra conferir se o usuário de fato existe, usei ela nas funções de adcionar e excluir usuário.
+#RODOLFO: Essa função registra se teve sucesso ou falha na consulta de informações.
+def registrarResultado(usuario, maquina, sucesso):
+    resultado = "sucesso" if sucesso else "falha"
+
+    registrarAuditoria(f"CONSULTA_INFORMAÇÕES\nUsuário={usuario}\nMáquina={maquina}\nResultado={resultado}")
+
+#RODOLFO: Isso daqui é pra conferir se o usuário de fato existe, usei ela nas funções de adicionar e excluir usuário.
 def salvarUsuario(nomes, matriculas, perfis):
     if not (len(nomes) == len(matriculas) == len(perfis)):
         raise ValueError("Usuário não encontrado ou incoerente com o que foi listado.")
@@ -152,6 +125,26 @@ def salvarUsuario(nomes, matriculas, perfis):
                 f"{nome}{SEPARADOR}"
                 f"{matricula}{SEPARADOR}"
                 f"{perfil}\n")
+
+#RODOLFO: Essa daqui é pra chamar no código principal, vai dizer se a consulta deu certo ou errado.
+def consultarUsuario(nomes, matriculas, perfis):
+    matricula = input("Digite a matrícula que deseja consultar: ").strip()
+    maquina = input("Digite a máquina de origem: ").strip()
+
+    if matricula not in matriculas:
+        print("Usuário não encontrado.")
+        registrarResultado(matricula, maquina, False)
+        return False
+
+    indice = matriculas.index(matricula)
+
+    print(f"Nome: {nomes[indice]}")
+    print(f"Matrícula: {matriculas[indice]}")
+    print(f"Perfil: {perfis[indice]}")
+    registrarResultado(matricula, maquina, True)
+
+    print("Consulta de informações realizada com sucesso.")
+    return True
 
 #RODOLFO: Essa função serve pra carregar os usuários de uma rodagem do código pra outra.
 def carregarUsuario(nomes, matriculas, perfis):
@@ -177,15 +170,16 @@ def carregarUsuario(nomes, matriculas, perfis):
     except FileNotFoundError:
         pass
 
-#RODOLFO: Função para adcionar novos usuários (lembrar de chamar no código principaç).
-def adcionarUsuario(nomes, matriculas, perfis, nome, perfil, senhas):
+#RODOLFO: Função para adicionar novos usuários (lembrar de chamar no código principaç).
+def adicionarUsuario(nomes, matriculas, perfis, nome, perfil, senhas):
     senhas123 = open("BancoDeContasExistentes.txt", "a", encoding="utf-8")
     import random
     nome = input("Digite o nome do novo usuário: ").strip()
     matricula = random.randint(1000000000, 9999999999)
-    perfil = input("Digite o perfil (estudante/professor/administrador): ").strip().lower()
+    perfil = input("Digite o perfil (estudante/professor): ").strip().lower()
     senhaAleatoria = random.randint(100000000000, 999999999999)
     print(f"Sua senha é: {senhaAleatoria}")
+    print(f"Sua matrícula é: {matricula}")
 
     if not nome or not matricula or not perfil:
         print("Preencha todos os campos!")
@@ -208,9 +202,9 @@ def adcionarUsuario(nomes, matriculas, perfis, nome, perfil, senhas):
 
     salvarUsuario(nomes, matriculas, perfis)
     senhas123.write(f"\nNome do usuário: {nome} - matrícula: {matricula} - Perfil: {perfil} - Senha: {senhaAleatoria}")
-    print("Usuário adicionado com sucesso: ")
+    print("Usuário adicionado com sucesso. ")
+    senhas123.close()
     return True
-
 
 #RODOLFO: Função para excluir o usuário (só chamar lá no código principal agr).
 def excluirUsuario(nomes, matriculas, perfis):
@@ -242,30 +236,11 @@ def excluirUsuario(nomes, matriculas, perfis):
     print("Usuário excluído com sucesso.")
     return True
 
-#função ocultar a matricula
-"""def matricula_ocultada (matricula_string, letras_visiveis = 2):
-    matricula_string = str(matricula)
-    matricula = 0
-    estrelas = "*" * (len(matricula_string) - letras_visiveis)
-
-    return f"A sua matrícula é a: {matricula_string[:2]}{estrelas}"""""
-
-#revelar = matricula_ocultada()
-
-#print(matricula_ocultada(matricula, 2))
-"""def processo_revelar():
-    revelar = matricula_ocultada(matricula, 2)
-    return revelar"""
-#def matricula_revelar():
 def matricula_ocultada (matricula, letras_visiveis=2):
     matricula_string = str(matricula)
-    estrelas = "" (len(matricula_string) - letras_visiveis)
+    estrelas = "*" * (len(matricula_string) - letras_visiveis)
 
     return f"A sua matrícula é a: {matricula_string[:2]}{estrelas}"
-
-"""def processo_reversao(matricula):
-    revelar = matricula_ocultada(matricula, 2)
-    return revelar"""
 
 def mostrar_matricula(matricula):
     matricula_string = str(matricula)

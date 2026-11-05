@@ -1,12 +1,5 @@
-03/11/2026 22:10:53;
 Nome do usuário: StevenXu - matrícula: 8796581071 - Perfil: professor - Senha: 563119142910
-03/11/2026 22:20:47;
 Nome do usuário: teste - matrícula: 2262010670 - Perfil: estudante - Senha: 801352692345
-03/11/2026 22:21:37;
 Nome do usuário: mega teste - matrícula: 7982639182 - Perfil: professor - Senha: 748195052138
-Lucas;7144108341;estudante
-
-Nome do usuário: Lucas - matrícula: 7144108341 - Perfil: estudante - Senha: 584539849715Gustavo;8267808669;estudante
-
+Nome do usuário: Lucas - matrícula: 7144108341 - Perfil: estudante - Senha: 584539849715
 Nome do usuário: Gustavo - matrícula: 8267808669 - Perfil: estudante - Senha: 561212819045
-Nome: Gustavo --- Matricula: 8267808669 --- Perfil: estudante

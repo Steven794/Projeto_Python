@@ -1,21 +1,18 @@
 from datetime import datetime
 from funcoes import *
-import time  # Obs: Perguntar a Carol se pode usar!!!!!!
-import random
+import time # Obs: Perguntar a Carol se pode usar!!!!!!
+from funcoes import confirmacao_adm
 
 clear_terminal()
 
 arquivo = open("BancoDeDados.txt", "a", encoding="utf-8")
-senhasar = open("BancoDeContasExistentes.txt", "a", encoding="utf-8")
+senhas = open("BancoDeContasExistentes.txt", "a", encoding="utf-8")
 confirmacao = open("ApenasADM's.txt", "r", encoding="utf-8")
 # OBS  Omar: pessoal a base desse código é um que a gente fez um tempo atras na aula que to modificando com as demandar do projeto, como a parte de adicionar a um arquivo e tals, entao vai ter coisas que a gente vai apagar e outras que utiliza
 tentativadelogin = 0
 nomes = []
 matriculas = []
 perfis = []
-senhas = []
-nome = " "
-perfil = " "
 
 # OBS omar: pode ser bom criar uma pasta so de registro de acesso com o nome da pessoa e a classificação
 # OBS omar: to tentando da uma entendida melhor no projeto no que passaram no slide, e acho que a gente é livre pra escolher algumas coisas, além do nome, matricula... a gente podia adicionar pro professor colocar uma nota para tal aluno
@@ -27,18 +24,15 @@ while True:
     if usuario == 1:
         estudanteUsuarioLogar = input("Digite o nome do estudante: ").strip()
         estudanteSenhaLogar = input("Digite a senha do estudante: ").strip()
-#    if usuario == 1:
-#        estudanteUsuarioLogar = input("Digite o nome do estudante: ").strip()
-#        estudanteSenhaLogar = input("Digite a senha do estudante: ").strip()
-#        logarNormal(usuario, estudanteUsuarioLogar, estudanteSenhaLogar)
+        maquina = input("Insira o número da máquina utilizada (entre 01-30): ").strip()
+        logarNormal(usuario, estudanteUsuarioLogar, estudanteSenhaLogar, numeracao_maquina=maquina)
+
     elif usuario == 2:
         professorUsuarioLogar = input("Digite o nome do professor: ").strip()
         professorSenhaLogar = input("Digite a senha do professor: ").strip()
-#    elif usuario == 2:
-#        professorUsuarioLogar = input("Digite o nome do professor: ").strip()
-#        professorSenhaLogar = input("Digite a senha do professor: ").strip()
-#        logarNormal(usuario, professorUsuarioLogar=professorUsuarioLogar, professorSenhaLogar=professorSenhaLogar)
-    elif usuario == 3:  # Gustavo:Aqui coloquei se a confirmação_adm for falsa, acesso negado, se nao acesso ao menu administrativo
+        maquina = input("Insira o número da máquina utilizada (entre 01-30): ").strip()
+        logarNormal(usuario, professorUsuarioLogar=professorUsuarioLogar, professorSenhaLogar=professorSenhaLogar, numeracao_maquina=maquina)
+    elif usuario == 3:            #Gustavo:Aqui coloquei se a confirmação_adm for falsa, acesso negado, se nao acesso ao menu administrativo
         if not confirmacao_adm():
             print()
         else:
@@ -48,71 +42,96 @@ while True:
                 opcao = int(input("Digite a opção que você deseja acessar: "))
 
                 if opcao == 1:
-                    adcionarUsuario(nomes, matriculas, perfis, nome, perfil, senhas)
+                    nome = input("Digite o nome: ").strip()
+                    nomes.append(nome)
 
+                    matricula = input("Digite a matrícula: ").strip()
+                    matriculas.append(matricula)
+
+                    perfil = input("Digite o perfil(estudante/professor)").strip().lower()
+                    perfis.append(perfil)
+            
+
+                    
                 elif opcao == 2:
                     print("===Usuários cadastrados===")
 
                     for i in range(len(nomes)):
                         print(f"Nome: {nomes[i]}")
-                        # OBS omar: pessoal faltou ajeitar aqui pra aparecer so uma parte da matricula
-                        print(f"Matrícula: {matriculas[i]}")
-                        print(f"Perfil: {perfis[i]}")
+                        print(f"Matrícula: {matriculas[i]}") #OBS omar: pessoal faltou ajeitar aqui pra aparecer so uma parte da matricula
+                        print(f"Perfil: {perfil[i]}")
                         print("hora: xx horas até yy horas")
 
-            # Lucas: tem que mudar isso aqui porque pensa comigo vai ser um programa para muitas pessoas usar, -
-            # como a pessoa X vai saber o indice do nome e da matricula dela?? nao faz sentido
-
-            # tem que ter alguma forma de linkar a conta com seus dados ja no login da pesssoa, pegando-
-            # diretamente da lista de nomes e matriculas, porque como eu vou saber-
-            # o indice da minha matricula e do meu usuario no portal de aluno da cesar??? wtf
-            # mas fiz desse jeito por enquanto
+                        #Lucas: tem que mudar isso aqui porque pensa comigo vai ser um programa para muitas pessoas usar, -
+            #como a pessoa X vai saber o indice do nome e da matricula dela?? nao faz sentido
+        
+            #tem que ter alguma forma de linkar a conta com seus dados ja no login da pesssoa, pegando-
+            #diretamente da lista de nomes e matriculas, porque como eu vou saber-
+            #o indice da minha matricula e do meu usuario no portal de aluno da cesar??? wtf
+            #mas fiz desse jeito por enquanto
                 elif opcao == 3:
                     escolher = int(input("digite 1. para editar o nome, 2. para editar a matricula ou 3. para editar os dois: "))
-                    if escolher != 1 and escolher != 2 and escolher != 3:
+                    if escolher != 1 and escolher != 2 and escolher !=3:
                         print("codigo para edição invalido, tente novamente")
                     else:
                         if escolher == 1:
-                            indice = int(
-                                input("Digite o índice do nome que deseja atualizar: "))
+                            indice = int(input("Digite o índice do nome que deseja atualizar: "))
                             if 0 <= indice < len(nomes):
                                 novo_nome = input("Digite o novo nome: ")
                                 nomes[indice] = novo_nome
-
+                        
                             else:
                                 print("Índice Inválidos! ")
 
                         elif escolher == 2:
-                            indice = int(
-                                input("Digite o índice da matricula que deseja atualizar: "))
+                            indice = int(input("Digite o índice da matricula que deseja atualizar: "))
                             if 0 <= indice < len(matriculas):
-                                nova_matricula = input(
-                                    "Digite a nova matricula: ")
+                                nova_matricula = input("Digite a nova matricula: ")
                                 matriculas[indice] = nova_matricula
-
+                        
                             else:
                                 print("Índice Inválidos! ")
                         elif escolher == 3:
-                            indicenome3 = int(
-                                input("Digite o índice do nome que deseja atualizar: "))
-                            indicematricula3 = int(
-                                input("Digite o índice da matricula que deseja atualizar: "))
+                            indicenome3 = int(input("Digite o índice do nome que deseja atualizar: "))
+                            indicematricula3 = int(input("Digite o índice da matricula que deseja atualizar: "))                   
                             if (0 <= indicenome3 < len(nomes)) and (0 <= indicematricula3 < len(matriculas)):
                                 novo_nome3 = input("Digite o novo nome: ")
                                 nomes[indicenome3] = novo_nome3
-                                nova_matricula3 = input(
-                                    "Digite a nova matricula: ")
+                                nova_matricula3 = input("Digite a nova matricula: ")
                                 matriculas[indicematricula3] = nova_matricula3
-
+                        
                             else:
                                 print("Índice Inválidos! ")
 
+
                 elif opcao == 4:
-                    excluirUsuario(nomes, matriculas, perfis)
+                    UsuarioSenha_juntos = []
+                    with open("BancoDeDados.txt", "r", encoding="utf-8") as deletar_dados:
+                        for linha in deletar_dados:
+                            UsuarioSenha_juntos.append(linha.strip())
+
+                        while True:
+                            print("Digite os dados para deletar os dados")
+                            nome_deletar = input("Digite o do nome: ").strip()
+                            senha_deletar = input("Digite a senha: ").strip()
+                            juncaodedados = nome_deletar+senha_deletar
+
+                            for linhas in UsuarioSenha_juntos:
+                                if linhas == juncaodedados:
+                                    UsuarioSenha_juntos.remove(juncaodedados)
+                                    print("Dados deletados com sucesso!")
+                                    break
+
+                            else:
+                                print("Dados não encontrados. Por favor, reveja as informações.")
+                                continue
+                    for i in UsuarioSenha_juntos:
+                        deletar_dados.write(i)
+                    deletar_dados.close()
 
                 elif opcao == 5:
                     for i in range(len(nomes)):
-                        senhasar.write(f"\nNome: {nomes[i]} --- Matricula: {matriculas[i]} --- Perfil: {perfis[i]}")
+                        senhas.write(f"\nNome: {nomes[i]} --- Matricula: {matriculas[i]} --- Perfil: {perfis[i]}")
 
                     print("Encerrando...")
                     break
@@ -120,7 +139,7 @@ while True:
                     print("Valor invalido!")
                     continue
     elif usuario == 4:
-        break
+        break                
     else:
         print("Valor inválido!")
         continue
@@ -143,5 +162,5 @@ while True:
 
 
 arquivo.close()
-senhasar.close()
+senhas.close()
 confirmacao.close()
