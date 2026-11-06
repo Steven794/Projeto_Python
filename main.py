@@ -25,14 +25,12 @@ erros123 = 0
 while True:
     """OBS Steven: aqui eu atualizei o tipo de entrada, porque vini havia dito que quando nós testar daria muito trabalho digitar a 
     string 'estudante' inteira e facilitaria apenas digitar um numero."""
-    usuario = int(input(
-        "Estudante digite [1]\nProfessor digite [2]\nAdministrador digite [3]\nEncerrar programa digite [4]\nDigite qual opção você deseja acessar: "))
+    usuario = int(input("Estudante digite [1]\nProfessor digite [2]\nAdministrador digite [3]\nEncerrar programa digite [4]\nDigite qual opção você deseja acessar: "))
     if usuario == 1:
         estudanteUsuarioLogar = input("Digite o nome do estudante: ").strip()
         estudanteSenhaLogar = input("Digite a senha do estudante: ").strip()
         maquina = input("Insira o número da máquina utilizada (entre 01-30): ")
-        resultado = logarNormal(
-            usuario, estudanteUsuarioLogar, estudanteSenhaLogar, "", "")
+        resultado = logarNormal(usuario, estudanteUsuarioLogar, estudanteSenhaLogar, "", "")
         numero_maquina(maquina)
         print(resultado)
 
@@ -47,11 +45,31 @@ while True:
                 elif opcaoE == 2:
                     matricula_censurada = matricula_ocultada(usuario, estudanteUsuarioLogar, 2)
                     print(matricula_censurada)
-
-                    revelar = input("Você deseja exibir a sua matrícula? ")
+                    revelar = input("Você deseja exibir a sua matrícula? ").strip().lower()
                     if revelar == "sim":
-                        matricula_sem_censura = mostrar_matricula(usuario, estudanteUsuarioLogar)
-                        print(matricula_sem_censura)
+                        import random
+                        numeros = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+                        operacao = ["+", "-", "*", "/"]
+                        numero1 = random.choice(numeros)
+                        numero2 = random.choice(numeros)
+                        operador = random.choice(operacao)
+                        pergunta = f"{numero1} {operador} {numero2}"
+                        if operador == "+":
+                            resultado2 = numero1 + numero2
+                        elif operador == "-":
+                            resultado2 = numero1 - numero2
+                        elif operador == "*":
+                            resultado2 = numero1 * numero2
+                        elif operador == "/":
+                            resultado2 = numero1 / numero2
+                        print(pergunta)
+                        resposta = int(input("resposta: "))
+                        if resposta == resultado2:
+                            print("confirmação concluida com exito")
+                            matricula_sem_censura = mostrar_matricula(usuario, estudanteUsuarioLogar)
+                            print(matricula_sem_censura)
+                        else:
+                            print("resposta incorreta")
 
                 elif opcaoE == 3:
                     print("Aqui ele vai consultar as faltas")
