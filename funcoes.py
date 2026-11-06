@@ -62,9 +62,8 @@ def logarNormal(usuario, estudanteUsuarioLogar="", estudanteSenhaLogar="", profe
                     return "Login de professor permitido"
     arquivo.close()
     return "Login não autorizado"
+
     
-
-
 def numero_maquina (numeracao_maquina =""):
     maquinas = []
     maquinas.append(numeracao_maquina)
@@ -280,3 +279,13 @@ def mostrar_matricula(usuario, estudanteUsuarioLogar):
     arquivo.close()
 
     return f"A matrícula inteira é: {matriculastringada}"
+
+def identificar_risco(tentativas, horario_permitido, maquinajabloqueada):
+    if tentativas >= 5 or maquinajabloqueada:
+        return "CRÍTICO"
+    
+    elif tentativas >= 3 or not horario_permitido:
+        return "SUSPEITO"
+    
+    else:
+        return "NORMAL"        
