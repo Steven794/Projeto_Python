@@ -11,6 +11,7 @@ confirmacao = open("ApenasADM's.txt", "r", encoding="utf-8")
 # tentativadelogin = 0
 nomes = []
 matriculas = []
+maquinas = []
 perfis = []
 senhas = []
 nome = " "
@@ -118,7 +119,7 @@ while True:
             print("Opção inválida!")
 
         elif maquina >= 1 and maquina <= 30: 
-            numero_maquina(professorUsuarioLogar, maquina)
+            acessoMaquinas(usuario, "", professorUsuarioLogar, maquina)
             print(resultado)
 
             if resultado == "Login de professor permitido":
@@ -128,7 +129,7 @@ while True:
                     opcaoP = int(input("Digite um número de 1 a 4 para acessar suas opções: "))
                     if opcaoP == 1:
                         matriculaEstudante = int(input("digite os 2 primeiros digitos da matricula do aluno: "))
-                        notas = int(input("1. adicionar nota 1, 2. nota2, 3. nota3"))
+                        notas = int(input("1. adicionar nota 1, 2. nota2, 3. nota3: "))
                         if notas != 1 and notas != 2 and notas != 3:
                             print("codigo para adicionar notas invalido")
                         else:
@@ -187,8 +188,7 @@ while True:
                 opcao = int(input("Digite a opção que você deseja acessar: "))
 
                 if opcao == 1:
-                    adicionarUsuario(nomes, matriculas, perfis,
-                                     nome, perfil, senhas)
+                    adicionarUsuario(nomes, matriculas, perfis, nome, perfil, senhas, maquinas, maquinas)
 
                 elif opcao == 2:
                     print("=== Dados Cadastrados ===")
@@ -205,59 +205,72 @@ while True:
             # o indice da minha matricula e do meu usuario no portal de aluno da cesar??? wtf
             # mas fiz desse jeito por enquanto
                 elif opcao == 3:
-                    escolher = int(
-                        input("1.Editar nome.\n 2.Editar matrícula .\n3.Editar nome e matrícula."))
-                    # OBS de omar: matricula tem 10 digitos e senha tem 12
-                    if escolher != 1 and escolher != 2 and escolher != 3:
-                        print("codigo para edição invalido, tente novamente")
+                    linhas_atualizadas = []
+                    encontrado = False
+                    escolher = int(input("1.Editar nome.\n2.Editar matrícula.\n3.Editar nome e matrícula: "))
+
+                    if escolher == 1:
+                        nome_antigo = input("Digite o nome do aluno para atualizar\nObs: com letra maiuscula e minuscula: ")
+                        nome_novo = input("Digite o novo nome do aluno\nObs: com letra maiuscula e minuscula: ")
+
+                        with open("BancoDeContasExistentes.txt", "r", encoding="utf-8") as arquivo:
+                            for linha in arquivo:
+                                if "Nome do usuário:" in linha and nome_antigo in linha:
+                                    linha = linha.replace(nome_antigo, nome_novo)
+                                    encontrado = True
+                        
+                                linhas_atualizadas.append(linha)
+
+                        if encontrado:
+                            with open("BancoDeContasExistentes.txt", "w", encoding="utf-8") as arquivo:
+                                arquivo.writelines(linhas_atualizadas)
+                                print(f"Nome atualizado com sucesso para: {nome_novo}")
+                        else:
+                            print("Usuário não encontrado no arquivo.")
+
+                    elif escolher == 2:
+                        matricula_antiga = input("Digite a matricula do aluno: ")
+                        matricula_nova = input("Digite a nova matricula do aluno para atualizar: ")
+
+                        with open("BancoDeContasExistentes.txt", "r", encoding="utf-8") as arquivo:
+                            for linha in arquivo:
+                                if "matrícula:" in linha and matricula_antiga in linha:
+                                    linha = linha.replace(matricula_antiga, matricula_nova)
+                                    encontrado = True
+                        
+                        linhas_atualizadas.append(linha)
+
+                        if encontrado:
+                            with open("BancoDeContasExistentes.txt", "w", encoding="utf-8") as arquivo:
+                                arquivo.writelines(linhas_atualizadas)
+                                print("Matrícula atualizada com sucesso!")
+                        else:
+                            print("Usuário não encontrado no arquivo.")
+
+                    elif escolher == 3:
+                        matricula_antiga = input("Digite a matricula do aluno para ver se esta no sistema: ")
+                        nome_antigo = input("Digite o nome do aluno para atualizar\nObs: com letra maiuscula e minuscula: ")
+                        matricula_nova = input("Digite a nova matricula do aluno para atualizar: ")
+                        nome_novo = input("Digite o novo nome do aluno\nObs: com letra maiuscula e minuscula: ")
+
+                        with open("BancoDeContasExistentes.txt", "r", encoding="utf-8") as arquivo:
+                            for linha in arquivo:
+
+                                if matricula_antiga in linha and nome_antigo in linha:
+                                    linha = linha.replace(nome_antigo, nome_novo).replace(matricula_antiga, matricula_nova)
+                                    encontrado = True
+
+                                linhas_atualizadas.append(linha)
+
+                        if encontrado:
+                            with open("BancoDeContasExistentes.txt", "w", encoding="utf-8") as arquivo:
+                                arquivo.writelines(linhas_atualizadas)
+                            print(f"Nome atualizado com sucesso para: {nome_novo} e Matrícula atualizada para: {matricula_nova}")
+                        else:
+                            print("Usuário não encontrado no arquivo.")
+
                     else:
-                        if escolher == 1:
-                            nome = input(
-                                "Digite o nome do aluno para encontrar a matricula\nObs: com letra maiuscula e minuscula ")
-                            with open("BancoDeContasExistentes.txt", "r", encoding="utf-8") as arquivo:
-                                linha = arquivo.readline()
-                                while linha:
-                                    if "matricula:" and nome in linha:
-                                        # pega tudo quem vem depois de "matricula:"
-                                        parte_matricula = linha.split(
-                                            "matricula:")[1]
-                                        numero_matricula = parte_matricula.split(
-                                            "-").strip()
-                                        print(f"matricula {numero_matricula}")
-                                        break
-                                    else:
-                                        print("Índice Inválidos! ")
-
-                        elif escolher == 2:
-                            matricula_atualizada = []
-                            matricula_antiga = input(
-                                "Digite a matricula do aluno: ")
-                            matricula_nova = input(
-                                "Digite a nova matricula do aluno para atualizar: ")
-                            with open("BancoDeContasExistentes.txt", "r", encoding="utf-8") as arquivo:
-                                for linha in arquivo:
-                                    if f"matrícula: {numero_matricula}" in linha:
-                                        linha = linha.replace(
-                                            matricula_antiga, matricula_nova)
-                                    matricula_atualizada.append(linha)
-                            with open("BancoDeContasExistentes.txt", "a", encoding="utf-8") as arquivo:
-                                arquivo.writelines(matricula_atualizada)
-                            print("Matrícula atualizada com sucesso!")
-
-                        elif escolher == 3:
-                            indicenome3 = int(
-                                input("Digite o índice do nome que deseja atualizar: "))
-                            indicematricula3 = int(
-                                input("Digite o índice da matricula que deseja atualizar: "))
-                            if (0 <= indicenome3 < len(nomes)) and (0 <= indicematricula3 < len(matriculas)):
-                                novo_nome3 = input("Digite o novo nome: ")
-                                nomes[indicenome3] = novo_nome3
-                                nova_matricula3 = input(
-                                    "Digite a nova matricula: ")
-                                matriculas[indicematricula3] = nova_matricula3
-
-                            else:
-                                print("Índice Inválidos! ")
+                        print("Digite um valor válido!")
 
                 elif opcao == 4:
                     # excluirUsuario(nomes, matriculas, perfis)
