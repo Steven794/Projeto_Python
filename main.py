@@ -38,7 +38,7 @@ while True:
             print("Opção inválida!")
 
         elif maquina >= 1 and maquina <= 30: 
-            numero_maquina(maquina)
+            acessoMaquinas(usuario, "", estudanteUsuarioLogar, maquina)
             print(resultado)
 
             if resultado == "Login de estudante permitido":
@@ -47,8 +47,8 @@ while True:
                     print("1.Boletim.\n2.Consultar seus dados.\n3.Consultar suas faltas.\n4.Para Encerrar o seu Login.")
                     opcaoE = int(input("Digite qual opção deseja acessar: "))
                     if opcaoE == 1:
-                        print("Seu boletim")
-
+                        escolha = int(input("1. ver nota1, 2. nota2, 3. nota3, 4. mediaFinal: "))
+                        mostrarNotas(escolha)
                     elif opcaoE == 2:
                         matricula_censurada = matricula_ocultada(usuario, estudanteUsuarioLogar, 2)
                         print(matricula_censurada)

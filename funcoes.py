@@ -427,3 +427,31 @@ def adicionarNotas(matriculaEstudante, notas):
                             return print("nota3 adicioanda com sucesso, e media final formada")
                     arquivo2.close()
     arquivo1.close()
+
+def mostrarNotas(escolha):
+    arquivo = open("DadosDoAluno.txt", "r" encoding="utf-8")
+    for linha in arquivo:
+        dados = linha.strip().split()
+        if not dados:
+            continue
+        arquivo1 = open("BancoDeContasExistentes.txt", "r", encoding="utf-8")
+        for linha1 in arquivo1:
+            dados1 = linha1.strip().split()
+            if not dados1:
+                continue
+            if escolha == 1:
+                if (dados[3] == dados[6]) and dados[5] == "primeira":
+                    return print(dados[6])
+            elif escolha == 2:
+                if (dados[3] == dados[6]) and dados[5] == "segunda":
+                    return print(dados[6])
+            elif escolha == 3:
+                if (dados[3] == dados[6]) and dados[5] == "terceira":
+                    return print(dados[6])
+            elif escolha == 4:
+                if (dados[3] == dados[6]) and dados[4] == "media-final":
+                    return print(dados[6])
+            else:
+                return print("codigo para visualização de notas invalido")
+        arquivo1.close()
+    arquivo.close()
