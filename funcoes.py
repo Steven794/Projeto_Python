@@ -429,7 +429,7 @@ def adicionarNotas(matriculaEstudante, notas):
     arquivo1.close()
 
 def mostrarNotas(escolha):
-    arquivo = open("DadosDoAluno.txt", "r" encoding="utf-8")
+    arquivo = open("DadosDoAluno.txt", "r", encoding="utf-8")
     for linha in arquivo:
         dados = linha.strip().split()
         if not dados:
@@ -439,19 +439,37 @@ def mostrarNotas(escolha):
             dados1 = linha1.strip().split()
             if not dados1:
                 continue
-            if escolha == 1:
-                if (dados[3] == dados[6]) and dados[5] == "primeira":
-                    return print(dados[6])
-            elif escolha == 2:
-                if (dados[3] == dados[6]) and dados[5] == "segunda":
-                    return print(dados[6])
-            elif escolha == 3:
-                if (dados[3] == dados[6]) and dados[5] == "terceira":
-                    return print(dados[6])
-            elif escolha == 4:
-                if (dados[3] == dados[6]) and dados[4] == "media-final":
-                    return print(dados[6])
-            else:
-                return print("codigo para visualização de notas invalido")
+            if len(dados1) < 7:
+                continue
+            if dados[3] == dados1[6]:
+                if escolha == 1 and dados[5] == "primeira":
+                    print(dados[7])
+                    arquivo1.close()
+                    arquivo.close()
+                    return
+                elif escolha == 2 and dados[5] == "segunda":
+                    print(dados[7])
+                    arquivo1.close()
+                    arquivo.close()
+                    return
+                elif escolha == 3 and dados[5] == "terceira":
+                    print(dados[7])
+                    arquivo1.close()
+                    arquivo.close()
+                    return
+                elif escolha == 4 and dados[4] == "media-final:":
+                    print(dados[5])
+                    arquivo1.close()
+                    arquivo.close()
+                    return
         arquivo1.close()
     arquivo.close()
+    if escolha != 1 and escolha != 2 and escolha != 3 and escolha != 4: 
+        return print("codigo para visualização de notas invalido")
+    else:
+        return print("nenhuma nota inserida")
+
+def adicionarFaltas():
+    print("oi")
+def mostrarFaltas():
+    print("oi")
