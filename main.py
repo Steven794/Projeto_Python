@@ -70,13 +70,13 @@ while True:
                             elif operador == "/":
                                 resultado2 = numero1 / numero2
                             print(pergunta)
-                            resposta = int(input("resposta: "))
+                            resposta = int(input("Resposta: "))
                             if resposta == resultado2:
-                                print("confirmação concluida com exito")
+                                print("Confirmação concluida com exito.")
                                 matricula_sem_censura = mostrar_matricula(usuario, estudanteUsuarioLogar)
                                 print(matricula_sem_censura)
                             else:
-                                print("resposta incorreta")
+                                print("Resposta incorreta.")
 
                     elif opcaoE == 3:
                         mostrarFaltas(estudanteUsuarioLogar)
@@ -183,8 +183,7 @@ while True:
         else:
             while True:
                 print("Bem vindo ao menu administrativo!")
-                print(
-                    "1.Adicionar usuário.\n2.Consultar dados.\n3.Editar dados.\n4.Excluir usuário.\n5.Encerrar o programa. ")
+                print("1.Adicionar usuário.\n2.Consultar dados.\n3.Editar dados.\n4.Excluir usuário.\n5.Encerrar o programa. ")
                 opcao = int(input("Digite a opção que você deseja acessar: "))
 
                 if opcao == 1:

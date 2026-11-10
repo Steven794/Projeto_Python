@@ -265,8 +265,8 @@ def adicionarUsuario(nomes, matriculas, perfis, nome, perfil, senhas, maquina, m
     perfis.append(perfil)
     senhas.append(senhaAleatoria)
 
-    salvarUsuario(nomes, matriculas, perfis)
-    senhas123.write(f"\nNome do usuário: {nome} - Matrícula: {matricula} - Perfil: {perfil} - Senha: {senhaAleatoria} ")
+    #salvarUsuario(nomes, matriculas, perfis)
+    senhas123.write(f"\nNome do usuário: {nome} - Matrícula: {matricula} - Perfil: {perfil} - Senha: {senhaAleatoria} - Máquina: {maquina}")
     print("Usuário adicionado com sucesso. ")
     senhas123.close()
     return True
@@ -297,7 +297,7 @@ def excluirUsuario(nomes, matriculas, perfis):
     del perfis[indiceMatricula]
     del matriculas[indiceMatricula]
 
-    salvarUsuario(nomes, matriculas, perfis)
+    #salvarUsuario(nomes, matriculas, perfis)
     registrarAuditoria("EXCLUSÃO_USUARIO", f"{nomeExcluido} - matrícula {matricula}")
     print("Usuário excluído com sucesso.")
     return True
