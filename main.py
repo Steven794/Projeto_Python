@@ -54,7 +54,7 @@ while True:
                         print(matricula_censurada)
                         revelar = input("Você deseja exibir a sua matrícula? ").strip().lower()
                         if revelar == "sim":
-                            import random
+                            import random ################################TRANSFORMAR ISSO EM DEF EM FUNCOES.PY
                             numeros = [1, 2, 3, 4, 5, 6, 7, 8, 9]
                             operacao = ["+", "-", "*", "/"]
                             numero1 = random.choice(numeros)
@@ -79,25 +79,25 @@ while True:
                                 print("resposta incorreta")
 
                     elif opcaoE == 3:
-                        print("Aqui ele vai consultar as faltas")
+                        mostrarFaltas(estudanteUsuarioLogar)
 
                     elif opcaoE == 4:
                         print("Encerrando Login...")
                         break
                     else:
                         print("Opção inválida")
-            """if resultado == "Login não autorizado":
+            if resultado == "Login não autorizado":
                 tentativas123-=1
                 erros123+=1
 
                 hora_atual = datetime.now().hour#de "hora_atual" até  "print(f"Nível de risco: {risco}.")"" é a parte de análise de risco
                 horario_permitido = 7<= hora_atual<=22
-                risco = identificar_risco(erros123,horario_permitido)
-                with open("BancoDeDados.txt","a",encoding="uft-8") as arquivo:
-                    print(f"\nAluno: {usuario}")
-                    print(f"\nHorário:{hora_atual}")
-                    print(f"\nTentativas incorretas: {erros123}")
-                    print(f"\nNível de risco: {risco}")
+                risco = identificar_risco(erros123,horario_permitido,False)
+                with open("BancoDeDados.txt","a",encoding="utf-8") as arquivo:
+                    arquivo.write(f"\nAluno: {usuario}")
+                    arquivo.write(f"\nHorário:{hora_atual}")
+                    arquivo.write(f"\nTentativas incorretas: {erros123}")
+                    arquivo.write(f"\nNível de risco: {risco}")
 
                 print(f"Senha incorreta {tentativas123} tentativas restantes!")
                 print(f"Nível de risco: {risco}.")
@@ -107,7 +107,7 @@ while True:
                     time.sleep(5)
                 if erros123 == 5:
                     arquivo.write(f"\nTentativa de invasão as {HorarioAjeitado123}")
-                    time.sleep(10)"""
+                    time.sleep(10)
 
     elif usuario == 2:
         professorUsuarioLogar = input("Digite o nome do professor: ").strip()
@@ -125,7 +125,7 @@ while True:
             if resultado == "Login de professor permitido":
                 while True:
                     print("Bem vindo ao menu Professor")
-                    print("1.Publicar notas??.\n2.Consultar dados dos alunos.\n3.Consultar faltas dos alunos.\n4.Para Encerrar o seu Login.")
+                    print("1.Publicar notas.\n2.Consultar dados dos alunos.\n3.adicionar faltas dos alunos.\n4.Para Encerrar o seu Login.")
                     opcaoP = int(input("Digite um número de 1 a 4 para acessar suas opções: "))
                     if opcaoP == 1:
                         matriculaEstudante = int(input("digite os 2 primeiros digitos da matricula do aluno: "))
@@ -145,25 +145,27 @@ while True:
                         print(matricula_censurada)
 
                     elif opcaoP == 3:
-                        print("Aqui será possível consultar as faltas dos alunos")
+                        matriculaEstudante = int(input("digite os 2 primeiros digitos da matricula do aluno: "))
+                        adicionarFaltas(matriculaEstudante)
+                   
                     elif opcaoP == 4:
                         print("Encerrando Login...")
                         break
 
                     else:
                         print("Opção inválida")
-            """if resultado == "Login não autorizado":#fiz a mesma coisa do "Login não autorizado" de estudante aqui
+            if resultado == "Login não autorizado":#fiz a mesma coisa do "Login não autorizado" de estudante aqui
                 tentativas123-=1
                 erros123+=1
                 hora_atual = datetime.now().hour
                 horario_permitido = 7<= hora_atual <=22
 
-                risco = identificar_risco(erros123,horario_permitido)
-                with open("BancoDeDados.txt","a",encoding="uft-8") as arquivo:
-                    print(f"\nProfessor: {usuario}")
-                    print(f"\nHorário:{hora_atual}")
-                    print(f"\nTentativas incorretas: {erros123}")
-                    print(f"\nNível de risco: {risco}")
+                risco = identificar_risco(erros123,horario_permitido,False)
+                with open("BancoDeDados.txt","a",encoding="utf-8") as arquivo:
+                    arquivo.write(f"\nProfessor: {usuario}")
+                    arquivo.write(f"\nHorário:{hora_atual}")
+                    arquivo.write(f"\nTentativas incorretas: {erros123}")
+                    arquivo.write(f"\nNível de risco: {risco}")
 
                 print(f"Senha incorreta {tentativas123} tentativas restantes!")
                 print(f"Nível de risco: {risco}.")
@@ -173,7 +175,7 @@ while True:
                     time.sleep(5)
                 if erros123 == 5:
                     arquivo.write(f"\nTentativa de invasão as {HorarioAjeitado123}")
-                    time.sleep(10)"""
+                    time.sleep(10)
 
 
 

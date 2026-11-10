@@ -337,7 +337,7 @@ def mostrar_matricula(usuario, estudanteUsuarioLogar):
 
     return f"A matrícula inteira é: {matriculastringada}"
 
-"""def identificar_risco(tentativas, horario_permitido, maquinajabloqueada):
+def identificar_risco(tentativas, horario_permitido, maquinajabloqueada):
     if tentativas >= 5 or maquinajabloqueada:
         return "CRÍTICO"
     
@@ -345,7 +345,7 @@ def mostrar_matricula(usuario, estudanteUsuarioLogar):
         return "SUSPEITO"
     
     else:
-        return "NORMAL"  """
+        return "NORMAL"
 def adicionarNotas(matriculaEstudante, notas):
     arquivo1 = open("BancoDeContasExistentes.txt", "r", encoding="utf8")
     nota1 = 0
@@ -381,7 +381,7 @@ def adicionarNotas(matriculaEstudante, notas):
                         else:
                             nota1 = nota1 + nota1add
                             arquivo3 = open("DadosDoAluno.txt", "a", encoding="utf8")
-                            arquivo3.write(f"matricula do estudante: {dados[6]} nota primeira unidade: {nota1}")
+                            arquivo3.write(f"\nmatricula do estudante: {dados[6]} nota primeira unidade: {nota1}")
                             arquivo3.close()
                             return print("nota1 adicioanda com sucesso")
                     elif notas == 2:
@@ -421,7 +421,7 @@ def adicionarNotas(matriculaEstudante, notas):
                                                     nota3float = float(dados4[7])
                             mediaFinal = (nota1float + nota2float + nota3float) / 3
                             arquivo3 = open("DadosDoAluno.txt", "a", encoding="utf8")
-                            arquivo3.write(f"\nmatricula do estudante: {dados[6]} media-final: {mediaFinal}")
+                            arquivo3.write(f"\nmatricula do estudante: {dados[6]} media-final: {mediaFinal:2f}")
                             arquivo4.close()
                             arquivo3.close()
                             return print("nota3 adicioanda com sucesso, e media final formada")
@@ -469,7 +469,54 @@ def mostrarNotas(escolha):
     else:
         return print("nenhuma nota inserida")
 
-def adicionarFaltas():
-    print("oi")
-def mostrarFaltas():
-    print("oi")
+def adicionarFaltas(matriculaEstudante): ############ ADICIONAR MAIS FALTAS ELE DA MAIS UM WRITE AI INVES DE SOMAR E SOBREPOR
+    arquivo = open("BancoDeContasExistentes.txt", "r", encoding="utf8")
+    for linha in arquivo:
+        dados = linha.strip().split()
+        if not dados:
+            continue            
+        if dados[0] == "Nome":
+            if dados[9] == "estudante":
+                if int(dados[6][:2]) == matriculaEstudante:
+                    print("Estudante encontrado!")
+                    arquivo1 = open("DadosDoAluno.txt", "r", encoding="utf-8")
+                    for linha1 in arquivo1:
+                        dados1 = linha1.strip().split()
+                        if not dados1:
+                            continue
+                        if len(dados1) != 7 and dados1[4] != "total":  ########### errado?
+                            quantidadefaltas = int(input("qual a quantidade de faltas: "))
+                            arquivo2 = open("DadosDoAluno.txt", "a", encoding="utf-8")
+                            arquivo2.write(f"\nMatricula do estudante: {dados[6]} total de faltas: {quantidadefaltas}")
+                            arquivo2.close()
+                            return print("falta adicionada com sucesso")                      
+                        elif dados1[3] == dados[6] and dados1[6] == "faltas": ############## nao sei???????
+                            quantidadefaltas = int(input("qual a quantidade de faltas: "))
+                            arquivo2 = open("DadosDoAluno.txt", "a", encoding="utf-8")
+                            faltaAnterior = int(dados[7])
+                            faltaAnterior = faltaAnterior + quantidadefaltas
+                            faltaAnteriorStringada = str(faltaAnterior)
+                            dados[7] = dados[7].replace(dados[7], faltaAnteriorStringada)
+                            arquivo2.close()
+                    arquivo1.close()
+    arquivo.close()
+                    
+
+def mostrarFaltas(estudanteUsuarioLogar):  ######### TESTAR ESSA FUNCAO, APOS A DE ADICIONAR FALTAS ESTIVER FUNCIONANDO 100%
+    arquivo = open("BancoDeContasExistentes.txt", "r", encoding="utf-8")
+    for linha in arquivo:
+        dados = linha.strip().split()
+        if not dados:
+            continue
+        if dados[3] == estudanteUsuarioLogar:
+            arquivo1 = open("DadosDoAluno.txt", "r", encoding="utf-8")
+            for linha1 in arquivo1:
+                dados1 = linha1.strip().split()
+                if not dados1:
+                    continue
+                if dados1[3] == dados[6]:
+                    return print(f"quantidade de faltas{dados1[7]}")
+                else:
+                    return print("não existe faltas cadastradas")
+            arquivo1.close()
+    arquivo.close()
