@@ -30,7 +30,8 @@ def confirmacao_adm():
         tentativas-=1
         erros+=1
         print(f"Senha incorreta {tentativas} tentativas restantes!")
-
+        if tentativas == 0:
+            time.sleep(5)
         if erros == 3:
             arquivo.write(f"\nTentativa de login suspeita as {HorarioAjeitado}")
             time.sleep(5)

@@ -95,19 +95,18 @@ while True:
                 risco = identificar_risco(erros123,horario_permitido,False)
                 with open("BancoDeDados.txt","a",encoding="utf-8") as arquivo:
                     arquivo.write(f"\nAluno: {usuario}")
-                    arquivo.write(f"\nHorário:{hora_atual}")
                     arquivo.write(f"\nTentativas incorretas: {erros123}")
                     arquivo.write(f"\nNível de risco: {risco}")
+                    arquivo.write(f"\nPerfil da tentativa: Estudante")
 
-                print(f"Senha incorreta {tentativas123} tentativas restantes!")
-                print(f"Nível de risco: {risco}.")
-                                    
-                if erros123 == 3:
-                    arquivo.write(f"\nTentativa de login suspeita as {HorarioAjeitado123}")
-                    time.sleep(5)
-                if erros123 == 5:
-                    arquivo.write(f"\nTentativa de invasão as {HorarioAjeitado123}")
-                    time.sleep(10)
+                print(f"Senha incorreta {tentativas123} tentativas restantes!") 
+                with open("BancoDeDados.txt","a",encoding="utf-8") as arquivo:                                   
+                    if erros123 == 3:
+                        arquivo.write(f"\nTentativa de login suspeita as {HorarioAjeitado123}")
+                        time.sleep(5)
+                    if erros123 == 5:
+                        arquivo.write(f"\nTentativa de invasão as {HorarioAjeitado123}")
+                        time.sleep(10)
 
     elif usuario == 2:
         professorUsuarioLogar = input("Digite o nome do professor: ").strip()
@@ -163,19 +162,18 @@ while True:
                 risco = identificar_risco(erros123,horario_permitido,False)
                 with open("BancoDeDados.txt","a",encoding="utf-8") as arquivo:
                     arquivo.write(f"\nProfessor: {usuario}")
-                    arquivo.write(f"\nHorário:{hora_atual}")
                     arquivo.write(f"\nTentativas incorretas: {erros123}")
                     arquivo.write(f"\nNível de risco: {risco}")
+                    arquivo.write(f"Perfil da tentativa: Professor")
+                    if erros123 == 3:
+                        arquivo.write(f"\nTentativa de login suspeita as {HorarioAjeitado123}")
+                        time.sleep(5)
+                    if erros123 == 5:
+                        arquivo.write(f"\nTentativa de invasão as {HorarioAjeitado123}")
+                        time.sleep(10)
 
                 print(f"Senha incorreta {tentativas123} tentativas restantes!")
                 print(f"Nível de risco: {risco}.")
-
-                if erros123 == 3:
-                    arquivo.write(f"\nTentativa de login suspeita as {HorarioAjeitado123}")
-                    time.sleep(5)
-                if erros123 == 5:
-                    arquivo.write(f"\nTentativa de invasão as {HorarioAjeitado123}")
-                    time.sleep(10)
 
 
 
