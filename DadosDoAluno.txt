@@ -1,3 +1,0 @@
-matricula do estudante: 7144108341 nota segunda unidade: 10.0
-Matricula do estudante: 7144108341 total de faltas: 5
-matricula do estudante: 7144108341 nota primeira unidade: 8.0
