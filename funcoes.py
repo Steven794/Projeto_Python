@@ -68,39 +68,24 @@ def logarNormal(usuario, estudanteUsuarioLogar="", estudanteSenhaLogar="", profe
 
 maquinas = []
 
-#Mari: lembrando que umm usuário só pode acessar uma máquina, caso contrário deverá ser alertado ao adm que mais de um usuário acessou a maquina 
-"""def numero_maquina (usuario, nomeprofessor, numeracao_maquina):
-    nome_arquivo = "BancoDeContasExistentes.txt"
-    with open(nome_arquivo, "r", encoding="utf-8") as arquivo:
-        linhas = arquivo.readlines()
-
-    for linha in nome_arquivo:
-        dados = linha.strip().split()
-        if not dados:
-            continue
-
-        if dados[15] == numeracao_maquina:
-            break
-
-        else:
-            if usuario == 2 and dados[9] == "professor":
-                novas_linhas = []
-                for linha in linhas:
-                    if f"Nome do usuário: {nomeprofessor}" in linha:
-                        linha = linha.strip() + f" - Máquina: {numeracao_maquina}\n"
-
-                    novas_linhas.append(linha)
-
-                with open(nome_arquivo, "w", encoding="utf-8") as arquivo:
-                    arquivo.writelines(novas_linhas)
-
-                maquinas.append(numeracao_maquina)"""
-
-
 def acessoMaquinas(usuario, nomealuno, nomeprofessor, numeracao_maquina):
     arquivo = open("DadosApenasADM.txt", "a", encoding="utf-8")
     if usuario == 1:
-        arquivo.write(f"\nNome do login: {nomealuno} - Perfil: Aluno - Máquina: {numeracao_maquina}")
+        arquivo3 = open("DadosApenasADM.txt", "r", encoding="utf-8")
+        for linha in arquivo3:
+            dados = linha.strip().split()
+            if not dados:
+                continue
+            if dados[3] == nomealuno and dados[9] != numeracao_maquina:
+                arquivo2 = open("BancoDeDados.txt", "a", encoding="utf-8")
+                arquivo2.write(f"\nTentativa de login suspeita do Aluno {nomealuno} na máquina {numeracao_maquina}\n")
+                arquivo2.close()
+                break
+        else:
+            arquivo.write(f"\nNome do login: {nomealuno} - Perfil: Aluno - Máquina: {numeracao_maquina}")
+
+        arquivo3.close()
+        arquivo.close()
 
     elif usuario == 2:
         arquivo3 = open("DadosApenasADM.txt", "r", encoding="utf-8")
@@ -129,7 +114,7 @@ login_suspeito = []
 maquinas_normais = []
 maquinas_suspeitas = []
 
-def timer(HorarioDeAcesso, tipo_usuario, conta_estudante, conta_professor, ):
+"""def timer(HorarioDeAcesso, tipo_usuario, conta_estudante, conta_professor, ):
     if HorarioDeAcesso >= 7 and HorarioDeAcesso <= 22:
         if tipo_usuario == 1:
             acesso_normal+=1
@@ -154,7 +139,7 @@ def timer(HorarioDeAcesso, tipo_usuario, conta_estudante, conta_professor, ):
             login_suspeito.append(conta_professor)
             maquinas_suspeitas.append()
         return "Tente logar em outro horario"
-        #nessa parte a gente vai ter que classificar já que a tentativa é suspeita
+        #nessa parte a gente vai ter que classificar já que a tentativa é suspeita """
         
 ARQUIVO_USUARIOS = "BancoDeContasExistentes.txt"
 SEPARADOR = ";"
@@ -302,7 +287,7 @@ def excluirUsuario(nomes, matriculas, perfis):
     print("Usuário excluído com sucesso.")
     return True
 
-def matricula_ocultada (usuario, estudanteUsuarioLogar, numeros_visiveis=2):
+def matricula_ocultada (usuario, estudanteUsuarioLogar, numeros_visiveis=4):
     arquivo = open("BancoDeContasExistentes.txt", "r", encoding="utf8")
     for linha in arquivo:
         dados = linha.strip().split()
@@ -318,7 +303,7 @@ def matricula_ocultada (usuario, estudanteUsuarioLogar, numeros_visiveis=2):
                     matriculastringada = str(stringado)
     arquivo.close()
     estrelas = "*" * (len(matriculastringada) - numeros_visiveis)
-    return f"A matrícula é: {matriculastringada[:2]}{estrelas}"
+    return f"A matrícula é: {matriculastringada[:2]}{estrelas}{matriculastringada[-2:]}"
 
 def mostrar_matricula(usuario, estudanteUsuarioLogar):
     arquivo = open("BancoDeContasExistentes.txt", "r", encoding="utf8")
@@ -507,7 +492,7 @@ def adicionarFaltas(matriculaEstudante):
                     return print("falta adicionada com sucesso")                               
     arquivo.close()
 
-def mostrarFaltas(estudanteUsuarioLogar):  ######### TESTAR ESSA FUNCAO, APOS A DE ADICIONAR FALTAS ESTIVER FUNCIONANDO 100%
+def mostrarFaltas(estudanteUsuarioLogar):
     arquivo = open("BancoDeContasExistentes.txt", "r", encoding="utf-8")
     for linha in arquivo:
         dados = linha.strip().split()
@@ -523,7 +508,8 @@ def mostrarFaltas(estudanteUsuarioLogar):  ######### TESTAR ESSA FUNCAO, APOS A 
                     return print(f"quantidade de faltas: {dados1[7]}") 
             else:
                 return print("não existe faltas atreladas ao seu usuario no sistema")
-def mostrarFaltas(estudanteUsuarioLogar):  ######### TESTAR ESSA FUNCAO, APOS A DE ADICIONAR FALTAS ESTIVER FUNCIONANDO 100%
+            
+def mostrarFaltas(estudanteUsuarioLogar):
     arquivo = open("BancoDeContasExistentes.txt", "r", encoding="utf-8")
     for linha in arquivo:
         dados = linha.strip().split()

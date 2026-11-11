@@ -31,14 +31,13 @@ while True:
         estudanteUsuarioLogar = input("Digite o nome do estudante: ").strip()
         estudanteSenhaLogar = input("Digite a senha do estudante: ").strip()
         maquina = int(input("Insira o número da máquina utilizada (entre 01-30): "))
-#Mari: coloquei máquina como input para entrar no if
         resultado = logarNormal(usuario, estudanteUsuarioLogar, estudanteSenhaLogar, "", "")
 
         if maquina <= 0 or maquina > 30:
             print("Opção inválida!")
 
         elif maquina >= 1 and maquina <= 30: 
-            acessoMaquinas(usuario, "", estudanteUsuarioLogar, maquina)
+            acessoMaquinas(usuario, estudanteUsuarioLogar, "", maquina)
             print(resultado)
 
             if resultado == "Login de estudante permitido":
@@ -50,7 +49,7 @@ while True:
                         escolha = int(input("1. ver nota1, 2. nota2, 3. nota3, 4. mediaFinal: "))
                         mostrarNotas(escolha)
                     elif opcaoE == 2:
-                        matricula_censurada = matricula_ocultada(usuario, estudanteUsuarioLogar, 2)
+                        matricula_censurada = matricula_ocultada(usuario, estudanteUsuarioLogar, 4)
                         print(matricula_censurada)
                         revelar = input("Você deseja exibir a sua matrícula? ").strip().lower()
                         if revelar == "sim":
@@ -84,8 +83,10 @@ while True:
                     elif opcaoE == 4:
                         print("Encerrando Login...")
                         break
+
                     else:
                         print("Opção inválida")
+
             if resultado == "Login não autorizado":
                 tentativas123-=1
                 erros123+=1
@@ -133,14 +134,10 @@ while True:
                             print("codigo para adicionar notas invalido")
                         else:
                             adicionarNotas(matriculaEstudante, notas)
-                      
-                       
-                        """adicionarNotas(matriculaEstudante, nota1, nota1add, nota2, nota2add, nota3, nota3add, mediaFinal)
-                        """
       
                     elif opcaoP == 2:
                         estudanteUsuarioLogar = input("Digite o nome do estudante: ").strip()
-                        matricula_censurada = matricula_ocultada(usuario, estudanteUsuarioLogar, 2)
+                        matricula_censurada = matricula_ocultada(usuario, estudanteUsuarioLogar, 4)
                         print(matricula_censurada)
 
                     elif opcaoP == 3:
@@ -193,7 +190,7 @@ while True:
                     print("=== Dados Cadastrados ===")
                     with open("BancoDeContasExistentes.txt", "r", encoding="utf-8") as senhaler:
                         print(senhaler.read())
-                    matricula_censurada = matricula_ocultada(matriculas, 2)
+                    matricula_censurada = matricula_ocultada(matriculas, 4)
                     print(matricula_censurada)
 
             # Lucas: tem que mudar isso aqui porque pensa comigo vai ser um programa para muitas pessoas usar, -
