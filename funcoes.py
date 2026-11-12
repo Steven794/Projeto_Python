@@ -1,4 +1,5 @@
 from datetime import datetime
+import random
 
 def clear_terminal():
     import os, platform
@@ -66,8 +67,6 @@ def logarNormal(usuario, estudanteUsuarioLogar="", estudanteSenhaLogar="", profe
     arquivo.close()
     return "Login não autorizado"
 
-maquinas = []
-
 def acessoMaquinas(usuario, nomealuno, nomeprofessor, numeracao_maquina):
     arquivo = open("DadosApenasADM.txt", "a", encoding="utf-8")
     if usuario == 1:
@@ -103,6 +102,7 @@ def acessoMaquinas(usuario, nomealuno, nomeprofessor, numeracao_maquina):
 
         arquivo3.close()
     arquivo.close()
+
 
 print("Estrutura geral do sistema de hórario: ")
 hora = datetime.now()
@@ -297,9 +297,10 @@ def matricula_ocultada (usuario, estudanteUsuarioLogar, numeros_visiveis=4):
             if usuario == 1 and dados[9] == "estudante" and dados[3] == estudanteUsuarioLogar:
                 stringado = dados[6]
                 matriculastringada = str(stringado)
+
             elif usuario == 2:
                 if dados[9] == "estudante" and dados[3] == estudanteUsuarioLogar:
-                    stringado = dados [6]
+                    stringado = dados[6]
                     matriculastringada = str(stringado)
     arquivo.close()
     estrelas = "*" * (len(matriculastringada) - numeros_visiveis)
@@ -491,23 +492,6 @@ def adicionarFaltas(matriculaEstudante):
                         arquivo2.close()
                     return print("falta adicionada com sucesso")                               
     arquivo.close()
-
-def mostrarFaltas(estudanteUsuarioLogar):
-    arquivo = open("BancoDeContasExistentes.txt", "r", encoding="utf-8")
-    for linha in arquivo:
-        dados = linha.strip().split()
-        if not dados:
-            continue
-        if dados[3] == estudanteUsuarioLogar:
-            arquivo1 = open("DadosDoAluno.txt", "r", encoding="utf-8")
-            for linha1 in arquivo1:
-                dados1 = linha1.strip().split()
-                if not dados1:
-                    continue
-                if (dados1[3] == dados[6]) and (dados1[6] == "faltas:"):
-                    return print(f"quantidade de faltas: {dados1[7]}") 
-            else:
-                return print("não existe faltas atreladas ao seu usuario no sistema")
             
 def mostrarFaltas(estudanteUsuarioLogar):
     arquivo = open("BancoDeContasExistentes.txt", "r", encoding="utf-8")
@@ -526,4 +510,28 @@ def mostrarFaltas(estudanteUsuarioLogar):
             else:
                 return print("não existe faltas atreladas ao seu usuario no sistema")
     arquivo.close()
-    arquivo.close()
+    arquivo1.close()
+
+def captcha(usuario, estudanteUsuarioLogar):
+    numeros = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+    operacao = ["+", "-", "*", "/"]
+    numero1 = random.choice(numeros)
+    numero2 = random.choice(numeros)
+    operador = random.choice(operacao)
+    pergunta = f"{numero1} {operador} {numero2}"
+    if operador == "+":
+        resultado2 = numero1 + numero2
+    elif operador == "-":
+        resultado2 = numero1 - numero2
+    elif operador == "*":
+        resultado2 = numero1 * numero2
+    elif operador == "/":
+        resultado2 = numero1 / numero2
+    print(pergunta)
+    resposta = int(input("Resposta: "))
+    if resposta == resultado2:
+        print("Confirmação concluida com exito.")
+        matricula_sem_censura = mostrar_matricula(usuario, estudanteUsuarioLogar)
+        print(matricula_sem_censura)
+    else:
+        print("Resposta incorreta.")

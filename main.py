@@ -53,29 +53,8 @@ while True:
                         print(matricula_censurada)
                         revelar = input("Você deseja exibir a sua matrícula? ").strip().lower()
                         if revelar == "sim":
-                            import random ################################TRANSFORMAR ISSO EM DEF EM FUNCOES.PY
-                            numeros = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-                            operacao = ["+", "-", "*", "/"]
-                            numero1 = random.choice(numeros)
-                            numero2 = random.choice(numeros)
-                            operador = random.choice(operacao)
-                            pergunta = f"{numero1} {operador} {numero2}"
-                            if operador == "+":
-                                resultado2 = numero1 + numero2
-                            elif operador == "-":
-                                resultado2 = numero1 - numero2
-                            elif operador == "*":
-                                resultado2 = numero1 * numero2
-                            elif operador == "/":
-                                resultado2 = numero1 / numero2
-                            print(pergunta)
-                            resposta = int(input("Resposta: "))
-                            if resposta == resultado2:
-                                print("Confirmação concluida com exito.")
-                                matricula_sem_censura = mostrar_matricula(usuario, estudanteUsuarioLogar)
-                                print(matricula_sem_censura)
-                            else:
-                                print("Resposta incorreta.")
+                            seguranca_captcha = captcha(usuario, estudanteUsuarioLogar)
+                            print(seguranca_captcha)
 
                     elif opcaoE == 3:
                         mostrarFaltas(estudanteUsuarioLogar)
@@ -150,6 +129,7 @@ while True:
 
                     else:
                         print("Opção inválida")
+                        
             if resultado == "Login não autorizado":#fiz a mesma coisa do "Login não autorizado" de estudante aqui
                 tentativas123-=1
                 erros123+=1
@@ -190,7 +170,7 @@ while True:
                     print("=== Dados Cadastrados ===")
                     with open("BancoDeContasExistentes.txt", "r", encoding="utf-8") as senhaler:
                         print(senhaler.read())
-                    matricula_censurada = matricula_ocultada(matriculas, 4)
+                    matricula_censurada = matricula_ocultada(usuario, estudanteUsuarioLogar, 4)
                     print(matricula_censurada)
 
             # Lucas: tem que mudar isso aqui porque pensa comigo vai ser um programa para muitas pessoas usar, -
