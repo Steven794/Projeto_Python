@@ -333,6 +333,7 @@ def identificar_risco(tentativas, horario_permitido, maquinajabloqueada):
     
     else:
         return "NORMAL"
+    
 def adicionarNotas(matriculaEstudante, notas):
     arquivo1 = open("BancoDeContasExistentes.txt", "r", encoding="utf8")
     nota1 = 0
@@ -514,7 +515,7 @@ def mostrarFaltas(estudanteUsuarioLogar):
 
 def captcha(usuario, estudanteUsuarioLogar):
     numeros = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-    operacao = ["+", "-", "*", "/"]
+    operacao = ["+", "-", "*"]
     numero1 = random.choice(numeros)
     numero2 = random.choice(numeros)
     operador = random.choice(operacao)
@@ -525,8 +526,6 @@ def captcha(usuario, estudanteUsuarioLogar):
         resultado2 = numero1 - numero2
     elif operador == "*":
         resultado2 = numero1 * numero2
-    elif operador == "/":
-        resultado2 = numero1 / numero2
     print(pergunta)
     resposta = int(input("Resposta: "))
     if resposta == resultado2:
