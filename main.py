@@ -34,16 +34,13 @@ while True:
             maquina = int(input("Insira o número da máquina utilizada (entre 01-30): "))
             resultado = logarNormal(usuario, estudanteUsuarioLogar, estudanteSenhaLogar, "", "")
 
-            try: 
-                if maquina <= 0 or maquina > 30:
-                    print("Opção inválida!")
+            #Mari: seria interessante colocar um try aqui mas tem que ter cuidado pra nao alterar a funcionalidade do programa
+            if maquina <= 0 or maquina > 30:
+                print("Opção inválida!")
 
-                elif maquina >= 1 and maquina <= 30: 
-                    acessoMaquinas(usuario, estudanteUsuarioLogar, "", maquina)
-                    print(resultado)
-
-            except ValueError:
-                print("Esses caracteres não são permitidos!")
+            elif maquina >= 1 and maquina <= 30: 
+                acessoMaquinas(usuario, estudanteUsuarioLogar, "", maquina)
+                print(resultado)
 
                 if resultado == "Login de estudante permitido":
                     print("Bem vindo ao menu do estudante")
@@ -103,16 +100,13 @@ while True:
             maquina = int(input("Insira o número da máquina utilizada (entre 01-30): "))
             resultado = logarNormal(usuario, "", "", professorUsuarioLogar, professorSenhaLogar)
 
-            try:
-                if maquina <= 0 or maquina > 30:
-                    print("Opção inválida!")
+            #Mari: seria interessante colocar um try aqui mas tem que ter cuidado pra nao alterar a funcionalidade do programa
+            if maquina <= 0 or maquina > 30:
+                print("Opção inválida!")
 
-                elif maquina >= 1 and maquina <= 30: 
-                    acessoMaquinas(usuario, "", professorUsuarioLogar, maquina)
-                    print(resultado)
-
-            except ValueError:
-                print("Esses caracteres não são permitidos!")
+            elif maquina >= 1 and maquina <= 30: 
+                acessoMaquinas(usuario, "", professorUsuarioLogar, maquina)
+                print(resultado)
             
                 if resultado == "Login de professor permitido":
                     while True:
