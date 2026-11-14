@@ -182,8 +182,8 @@ while True:
                             print("=== Dados Cadastrados ===")
                             with open("BancoDeContasExistentes.txt", "r", encoding="utf-8") as senhaler:
                                 print(senhaler.read())
-                            matricula_censurada = matricula_ocultada(usuario, estudanteUsuarioLogar, 4)
-                            print(matricula_censurada)
+                            #matricula_censurada = matricula_ocultada(usuario, estudanteUsuarioLogar, 4)
+                            #print(matricula_censurada)
 
                     # Lucas: tem que mudar isso aqui porque pensa comigo vai ser um programa para muitas pessoas usar, -
                     # como a pessoa X vai saber o indice do nome e da matricula dela?? nao faz sentido
