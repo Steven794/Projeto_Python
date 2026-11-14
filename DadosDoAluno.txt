@@ -1,0 +1,4 @@
+matricula do estudante: 6052767547 nota primeira unidade: 6.0
+matricula do estudante: 6052767547 nota segunda unidade: 7.0
+matricula do estudante: 6052767547 nota terceira unidade: 8.0
+matricula do estudante: 6052767547 media-final: 7.0
