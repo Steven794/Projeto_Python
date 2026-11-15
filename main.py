@@ -164,7 +164,7 @@ while True:
             else:
                 while True:
                     print("Bem vindo ao menu administrativo!")
-                    print("1.Adicionar usuário.\n2.Consultar dados.\n3.Editar dados.\n4.Excluir usuário.\n5.Encerrar o programa. ")
+                    print("1.Adicionar usuário.\n2.Adicionar ADM \n3.Consultar dados.\n4.Editar dados.\n5.Excluir usuário.\n6.Encerrar o programa. ")
                     opcao = int(input("Digite a opção que você deseja acessar: "))
 
                     if opcao == 1:
@@ -172,15 +172,15 @@ while True:
                         adicionarFraseContas(primeira_frase)
                         adicionarUsuario(nomes, matriculas, perfis, nome, perfil, senhas, maquinas, maquinas)
 
-                    #elif opcao == 2:
-                        #criar_ADM()
-                        
                     elif opcao == 2:
+                        criar_ADM()
+
+                    elif opcao == 3:
                         print("=== Dados Cadastrados ===")
                         with open("BancoDeContasExistentes.txt", "r", encoding="utf-8") as senhaler:
                             print(senhaler.read())
 
-                    elif opcao == 3:
+                    elif opcao == 4:
                         linhas_atualizadas = []
                         encontrado = False
                         escolher = int(input("1.Editar nome.\n2.Editar matrícula.\n3.Editar nome e matrícula: "))
@@ -251,7 +251,7 @@ while True:
                         else:
                             print("Digite um valor válido!")
 
-                    elif opcao == 4:
+                    elif opcao == 5:
                             # excluirUsuario(nomes, matriculas, perfis)
                             # Vamo testar com o código que Omar fez e com a função acima, o que der melhor vai ser usado
                         with open("BancoDeContasExistentes.txt", "r", encoding='utf-8') as senhas123:
@@ -264,7 +264,7 @@ while True:
                         with open("BancoDeContasExistentes.txt", "w", encoding='utf-8') as senhas123:
                             senhas123.writelines(linhas)
 
-                    elif opcao == 5:
+                    elif opcao == 6:
                         print("Encerrando...")
                         break
 

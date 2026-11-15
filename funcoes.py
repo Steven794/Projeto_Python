@@ -12,25 +12,26 @@ def clear_terminal():
 def confirmacao_adm():
     import time
     confirmacao = open("ApenasADM's.txt", "r", encoding="utf-8")
-    dadosCorretos = confirmacao.readline().strip()
+    dadosCorretos = confirmacao.readlines()
     arquivo = open("BancoDeDados.txt", "a", encoding="utf-8")
     hora = datetime.now()
     HorarioAjeitado = hora.strftime("%d/%m/%Y %H:%M")
     tentativas = 5
     erros = 0
-
+    batata = 0
+    
     while tentativas > 0:
         usuarioADM = input("Informe o usuario do administrador: ").strip()
         sobrenomeADM = input("Informe o segundo nome do ADM: ").strip()
         senhaADM = input("Informe a senha do administrador: ").strip()
         ostresjuntos = f"Nome e sobrenome do ADM: {usuarioADM} {sobrenomeADM} Senha do ADM: {senhaADM}"
 
-        if ostresjuntos == dadosCorretos:
+        if ostresjuntos in [linha.strip() for linha in dadosCorretos]:
             print("Senha correta, login concluido.")
             confirmacao.close()
             arquivo.close()
             return True
-        
+    
         tentativas-=1
         erros+=1
 
@@ -72,7 +73,7 @@ def criar_ADM ():
     arquivo.write(f"\nNome e sobrenome do ADM: {nomeADM} {sobrenomeADM} Senha do ADM: {senha_aleatoria_ADM}")
     arquivo.close()
 
-def sera_que_e_omar (coxinha):
+def sera_que_e_omar ():
     arquivo = open("ApenasADM's", "a", encoding="utf-8")
 
     arquivo.seek(0)
@@ -84,6 +85,7 @@ def sera_que_e_omar (coxinha):
             print("Bem vindo Omar!")
             return True
 
+    arquivo.close()
 
 def logarNormal(usuario, estudanteUsuarioLogar="", estudanteSenhaLogar="", professorUsuarioLogar="", professorSenhaLogar=""):
     arquivo = open("BancoDeContasExistentes.txt", "r", encoding="utf8")
