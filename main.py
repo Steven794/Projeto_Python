@@ -112,7 +112,7 @@ while True:
                         opcaoP = int(input("Digite um número de 1 a 4 para acessar suas opções: "))
 
                         if opcaoP == 1:
-                            matriculaEstudante = int(input("digite os 2 primeiros digitos da matricula do aluno: "))
+                            matriculaEstudante = int(input("digite os 2 primeiros e 2 ultimos digitos da matricula do aluno juntos: "))
                             notas = int(input("1. adicionar nota 1, 2. nota2, 3. nota3: "))
                             if notas != 1 and notas != 2 and notas != 3:
                                 print("codigo para adicionar notas invalido")
@@ -125,7 +125,7 @@ while True:
                             print(matricula_censurada)
 
                         elif opcaoP == 3:
-                            matriculaEstudante = int(input("Digite os 2 primeiros digitos da matricula do aluno: "))
+                            matriculaEstudante = int(input("digite os 2 primeiros e 2 ultimos digitos da matricula do aluno juntos: "))
                             adicionarFaltas(matriculaEstudante)
                         
                         elif opcaoP == 4:
@@ -160,6 +160,7 @@ while True:
         elif usuario == 3:  # Gustavo:Aqui coloquei se a confirmação_adm for falsa, acesso negado, se nao acesso ao menu administrativo
             if not confirmacao_adm():
                 print()
+
             else:
                 while True:
                     print("Bem vindo ao menu administrativo!")
@@ -171,20 +172,13 @@ while True:
                         adicionarFraseContas(primeira_frase)
                         adicionarUsuario(nomes, matriculas, perfis, nome, perfil, senhas, maquinas, maquinas)
 
+                    #elif opcao == 2:
+                        #criar_ADM()
+                        
                     elif opcao == 2:
                         print("=== Dados Cadastrados ===")
                         with open("BancoDeContasExistentes.txt", "r", encoding="utf-8") as senhaler:
                             print(senhaler.read())
-                            #matricula_censurada = matricula_ocultada(usuario, estudanteUsuarioLogar, 4)
-                            #print(matricula_censurada)
-
-                    # Lucas: tem que mudar isso aqui porque pensa comigo vai ser um programa para muitas pessoas usar, -
-                    # como a pessoa X vai saber o indice do nome e da matricula dela?? nao faz sentido
-
-                    # tem que ter alguma forma de linkar a conta com seus dados ja no login da pesssoa, pegando-
-                    # diretamente da lista de nomes e matriculas, porque como eu vou saber-
-                    # o indice da minha matricula e do meu usuario no portal de aluno da cesar??? wtf
-                    # mas fiz desse jeito por enquanto
 
                     elif opcao == 3:
                         linhas_atualizadas = []

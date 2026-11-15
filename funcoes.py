@@ -12,6 +12,7 @@ def clear_terminal():
 def confirmacao_adm():
     import time
     confirmacao = open("ApenasADM's.txt", "r", encoding="utf-8")
+    dadosCorretos = confirmacao.readline().strip()
     arquivo = open("BancoDeDados.txt", "a", encoding="utf-8")
     hora = datetime.now()
     HorarioAjeitado = hora.strftime("%d/%m/%Y %H:%M")
@@ -20,15 +21,19 @@ def confirmacao_adm():
 
     while tentativas > 0:
         usuarioADM = input("Informe o usuario do administrador: ").strip()
+        sobrenomeADM = input("Informe o segundo nome do ADM: ").strip()
         senhaADM = input("Informe a senha do administrador: ").strip()
-        osdoisjuntos = usuarioADM+senhaADM
+        ostresjuntos = f"Nome e sobrenome do ADM: {usuarioADM} {sobrenomeADM} Senha do ADM: {senhaADM}"
 
-        if osdoisjuntos == confirmacao.readline():
+        if ostresjuntos == dadosCorretos:
             print("Senha correta, login concluido.")
+            confirmacao.close()
+            arquivo.close()
             return True
         
         tentativas-=1
         erros+=1
+
         print(f"Senha incorreta {tentativas} tentativas restantes!")
         if tentativas == 0:
             time.sleep(5)
@@ -39,10 +44,46 @@ def confirmacao_adm():
         if erros == 5:
             arquivo.write(f"\nTentativa de invasão as {HorarioAjeitado}")
             time.sleep(10)
+
     print("Acesso negado!")
-    return False
     confirmacao.close()
-    arquivo.close()    
+    arquivo.close()   
+    return False
+
+#Mari: Função pra criar mais ADMs tirando a entidade original(Omar)
+def criar_ADM ():
+    arquivo = open("ApenasADM's.txt", "a+", encoding="utf-8")
+    nomeADM = input("Insira o nome do ADM: ")
+    sobrenomeADM = input("Insira o sobrenome do ADM: ")
+
+    arquivo.seek(0)
+    for linha in arquivo:
+        dados = linha.strip().split()
+        if not dados:
+            continue
+
+        if len(dados)>= 7  and dados[4] == "ADM:" and dados [5]== nomeADM and dados[6] == sobrenomeADM:
+            print("Já existe um ADM com esse nome e sobrenome!")
+            arquivo.close()
+            return
+
+    senha_aleatoria_ADM = random.randint(10000000, 99999999)
+    print(f"A sua senha é: {senha_aleatoria_ADM}")   
+    arquivo.write(f"\nNome e sobrenome do ADM: {nomeADM} {sobrenomeADM} Senha do ADM: {senha_aleatoria_ADM}")
+    arquivo.close()
+
+def sera_que_e_omar (coxinha):
+    arquivo = open("ApenasADM's", "a", encoding="utf-8")
+
+    arquivo.seek(0)
+    for linha in arquivo:
+        dados = linha.strip().split()
+        if not dados:
+            continue
+        if dados[5] == "Omar" and dados[6] == "Formiga":
+            print("Bem vindo Omar!")
+            return True
+
 
 def logarNormal(usuario, estudanteUsuarioLogar="", estudanteSenhaLogar="", professorUsuarioLogar="", professorSenhaLogar=""):
     arquivo = open("BancoDeContasExistentes.txt", "r", encoding="utf8")
@@ -369,7 +410,7 @@ def adicionarNotas(matriculaEstudante, notas):
             continue            
         if dados[0] == "Nome":
             if dados[9] == "estudante":
-                if int(dados[6][:2]) == matriculaEstudante:
+                if int(dados[6][:2] + dados[6][-2:]) == matriculaEstudante:
                     print("Estudante encontrado!")
                     arquivo2 = open("DadosDoAluno.txt", "r", encoding="utf8") ###
                     for linha2 in arquivo2:
@@ -489,7 +530,7 @@ def adicionarFaltas(matriculaEstudante):
             continue            
         if dados[0] == "Nome":
             if dados[9] == "estudante":
-                if int(dados[6][:2]) == matriculaEstudante:
+                if int(dados[6][:2] + dados[6][-2:]) == matriculaEstudante:
                     print("Estudante encontrado!")
                     quantidadefaltas = int(input("Insira a quantidade de faltas: "))
                     arquivo1 = open("DadosDoAluno.txt", "r", encoding="utf-8")
