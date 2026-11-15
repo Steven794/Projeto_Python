@@ -215,7 +215,7 @@ def carregarUsuario(nomes, matriculas, perfis, maquinas):
 
 #RODOLFO: Função para adicionar novos usuários (lembrar de chamar no código principa).
 def adicionarUsuario(nomes, matriculas, perfis, nome, perfil, senhas, maquina, maquinas):
-    senhas123 = open("BancoDeContasExistentes.txt", "r+", encoding="utf-8")
+    senhas123 = open("BancoDeContasExistentes.txt", "a+", encoding="utf-8")
     import random
     nome = input("Digite o nome do novo usuário: ").strip()
     matricula = random.randint(1000000000, 9999999999)
@@ -562,14 +562,9 @@ def captcha(usuario, estudanteUsuarioLogar):
     
 def adicionarFraseContas(primeira_frase):
     arquivo = open("BancoDeContasExistentes.txt", "r+", encoding="utf-8")
-    primeira_frase = "Nome-do-usuário:-'nome'-Matrícula:-'matricula'-Perfil:-'perfil'-Senha:-'senhaAleatoria'-Máquina:-'maquina'"
-    linhas = arquivo.readlines()
-    for i in range(len(linhas)):
-        dados = linhas[i].strip().split()
-        if not dados:
-            continue
-        if not dados in arquivo:
-            arquivo.write(primeira_frase)
-        else:
-            return print()
-    arquivo.close()
+    primeira_frase = "Nome do usuário: 'nome' - Matrícula: 'matricula' - Perfil: 'perfil' - Senha: 'senhaAleatoria' - Máquina: 'maquina'"
+    arquivo.seek(0)
+    conteudo = arquivo.read()
+    if primeira_frase.strip() not in conteudo:
+        arquivo.write(primeira_frase)
+        
