@@ -365,27 +365,27 @@ def adicionarNotas(matriculaEstudante, notas):
                     if notas == 1:
                         nota1add = float(input("digite a primeira nota: "))
                         if nota1add < 0 or nota1add > 10:
-                            print("notas so podem ser de 0 a 10")
+                            print("Notas só podem ser entre 0 a 10")
                         else:
                             nota1 = nota1 + nota1add
                             arquivo3 = open("DadosDoAluno.txt", "a", encoding="utf8")
                             arquivo3.write(f"\nmatricula do estudante: {dados[6]} nota primeira unidade: {nota1}")
                             arquivo3.close()
-                            return print("nota1 adicioanda com sucesso")
+                            return print("Nota 1 adicionada com sucesso")
                     elif notas == 2:
-                        nota2add = float(input("digite a primeira nota: "))
+                        nota2add = float(input("digite a segunda nota: "))
                         if nota2add < 0 or nota2add > 10:
-                            print("notas so podem ser de 0 a 10")
+                            print("Notas só podem ser entre 0 a 10")
                         else:
                             nota2 = nota2 + nota2add
                             arquivo3 = open("DadosDoAluno.txt", "a", encoding="utf8")
                             arquivo3.write(f"\nmatricula do estudante: {dados[6]} nota segunda unidade: {nota2}")
                             arquivo3.close()
-                            return print("nota2 adicioanda com sucesso")
+                            return print("Nota 2 adicionada com sucesso")
                     elif notas == 3:
-                        nota3add = float(input("digite a primeira nota: "))
+                        nota3add = float(input("digite a terceira nota: "))
                         if nota3add < 0 or nota3add > 10:
-                            print("notas so podem ser de 0 a 10")
+                            print("Notas só podem ser entre 0 a 10")
                         else:
                             nota3 = nota3 + nota3add
                             arquivo3 = open("DadosDoAluno.txt", "a", encoding="utf8")
@@ -409,10 +409,10 @@ def adicionarNotas(matriculaEstudante, notas):
                                                     nota3float = float(dados4[7])
                             mediaFinal = (nota1float + nota2float + nota3float) / 3
                             arquivo3 = open("DadosDoAluno.txt", "a", encoding="utf8")
-                            arquivo3.write(f"\nmatricula do estudante: {dados[6]} media-final: {mediaFinal:2f}")
+                            arquivo3.write(f"\nmatricula do estudante: {dados[6]} media-final: {mediaFinal:.2f}")
                             arquivo4.close()
                             arquivo3.close()
-                            return print("nota3 adicioanda com sucesso, e media final formada")
+                            return print("Nota 3 adicionada com sucesso, e média final calculada")
                     arquivo2.close()
     arquivo1.close()
 
@@ -467,7 +467,7 @@ def adicionarFaltas(matriculaEstudante):
             if dados[9] == "estudante":
                 if int(dados[6][:2]) == matriculaEstudante:
                     print("Estudante encontrado!")
-                    quantidadefaltas = int(input("qual a quantidade de faltas: "))
+                    quantidadefaltas = int(input("Insira a quantidade de faltas: "))
                     arquivo1 = open("DadosDoAluno.txt", "r", encoding="utf-8")
                     linhas = arquivo1.readlines()
                     arquivo1.close()
@@ -491,7 +491,7 @@ def adicionarFaltas(matriculaEstudante):
                         arquivo2 = open("DadosDoAluno.txt", "a", encoding="utf-8")
                         arquivo2.write(f"\nMatricula do estudante: {dados[6]} total de faltas: {quantidadefaltas}")
                         arquivo2.close()
-                    return print("falta adicionada com sucesso")                               
+                    return print("Falta adicionada com sucesso")                               
     arquivo.close()
             
 def mostrarFaltas(estudanteUsuarioLogar):
@@ -528,9 +528,10 @@ def captcha(usuario, estudanteUsuarioLogar):
         resultado2 = numero1 * numero2
     print(pergunta)
     resposta = int(input("Resposta: "))
+
     if resposta == resultado2:
         print("Confirmação concluida com exito.")
-        matricula_sem_censura = mostrar_matricula(usuario, estudanteUsuarioLogar)
-        print(matricula_sem_censura)
+        return mostrar_matricula(usuario, estudanteUsuarioLogar)
+
     else:
-        print("Resposta incorreta.")
+        return print("Resposta incorreta.")

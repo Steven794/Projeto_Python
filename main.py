@@ -50,6 +50,7 @@ while True:
                         if opcaoE == 1:
                             escolha = int(input("1. ver nota1, 2. nota2, 3. nota3, 4. mediaFinal: "))
                             mostrarNotas(escolha)
+
                         elif opcaoE == 2:
                             matricula_censurada = matricula_ocultada(usuario, estudanteUsuarioLogar, 4)
                             print(matricula_censurada)
@@ -107,7 +108,7 @@ while True:
                 if resultado == "Login de professor permitido":
                     while True:
                         print("Bem vindo ao menu Professor")
-                        print("1.Publicar notas.\n2.Consultar dados dos alunos.\n3.adicionar faltas dos alunos.\n4.Para Encerrar o seu Login.")
+                        print("1.Publicar notas.\n2.Consultar dados dos alunos.\n3.Adicionar faltas dos alunos.\n4.Para Encerrar o seu Login.")
                         opcaoP = int(input("Digite um número de 1 a 4 para acessar suas opções: "))
 
                         if opcaoP == 1:
@@ -124,7 +125,7 @@ while True:
                             print(matricula_censurada)
 
                         elif opcaoP == 3:
-                            matriculaEstudante = int(input("digite os 2 primeiros digitos da matricula do aluno: "))
+                            matriculaEstudante = int(input("Digite os 2 primeiros digitos da matricula do aluno: "))
                             adicionarFaltas(matriculaEstudante)
                         
                         elif opcaoP == 4:
