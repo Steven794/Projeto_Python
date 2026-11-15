@@ -167,6 +167,8 @@ while True:
                     opcao = int(input("Digite a opção que você deseja acessar: "))
 
                     if opcao == 1:
+                        primeira_frase = "Cabeçário"
+                        adicionarFraseContas(primeira_frase)
                         adicionarUsuario(nomes, matriculas, perfis, nome, perfil, senhas, maquinas, maquinas)
 
                     elif opcao == 2:

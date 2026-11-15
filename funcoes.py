@@ -21,7 +21,6 @@ def confirmacao_adm():
     while tentativas > 0:
         usuarioADM = input("Informe o usuario do administrador: ").strip()
         senhaADM = input("Informe a senha do administrador: ").strip()
-        #maquina = input("Insira o número da máquina utilizada (entre 01-30): ")
         osdoisjuntos = usuarioADM+senhaADM
 
         if osdoisjuntos == confirmacao.readline():
@@ -75,7 +74,7 @@ def acessoMaquinas(usuario, nomealuno, nomeprofessor, numeracao_maquina):
             dados = linha.strip().split()
             if not dados:
                 continue
-            if dados[3] == nomealuno and dados[9] != numeracao_maquina:
+            if dados[3] == nomealuno and dados[15] != numeracao_maquina:
                 arquivo2 = open("BancoDeDados.txt", "a", encoding="utf-8")
                 arquivo2.write(f"\nTentativa de login suspeita do Aluno {nomealuno} na máquina {numeracao_maquina}\n")
                 arquivo2.close()
@@ -92,7 +91,7 @@ def acessoMaquinas(usuario, nomealuno, nomeprofessor, numeracao_maquina):
             dados = linha.strip().split()
             if not dados:
                 continue
-            if dados[3] == nomeprofessor and dados[9] != numeracao_maquina:
+            if dados[3] == nomeprofessor and dados[15] != numeracao_maquina:
                 arquivo2 = open("BancoDeDados.txt", "a", encoding="utf-8")
                 arquivo2.write(f"\nTentativa de login suspeita do Professor {nomeprofessor} na máquina {numeracao_maquina}\n")
                 arquivo2.close()
@@ -216,7 +215,7 @@ def carregarUsuario(nomes, matriculas, perfis, maquinas):
 
 #RODOLFO: Função para adicionar novos usuários (lembrar de chamar no código principa).
 def adicionarUsuario(nomes, matriculas, perfis, nome, perfil, senhas, maquina, maquinas):
-    senhas123 = open("BancoDeContasExistentes.txt", "a", encoding="utf-8")
+    senhas123 = open("BancoDeContasExistentes.txt", "r+", encoding="utf-8")
     import random
     nome = input("Digite o nome do novo usuário: ").strip()
     matricula = random.randint(1000000000, 9999999999)
@@ -244,17 +243,42 @@ def adicionarUsuario(nomes, matriculas, perfis, nome, perfil, senhas, maquina, m
         print("Perfil inválido!")
         return False
 
-    nomes.append(nome)
-    matriculas.append(matricula)
-    maquinas.append(maquina)
-    perfis.append(perfil)
-    senhas.append(senhaAleatoria)
+    else:
+        arquivo3 = open("BancoDeContasExistentes.txt", "r", encoding="utf-8")
+        for linha in arquivo3:
+            dados = linha.strip().split()
+            if not dados:
+                continue
 
-    #salvarUsuario(nomes, matriculas, perfis)
-    senhas123.write(f"\nNome do usuário: {nome} - Matrícula: {matricula} - Perfil: {perfil} - Senha: {senhaAleatoria} - Máquina: {maquina}")
-    print("Usuário adicionado com sucesso. ")
-    senhas123.close()
-    return True
+            if dados[0] == "Cabeçário":
+                break
+                
+            if dados[15] == maquina:
+                return print("Não foi possível criar uma conta pois essa máquina já está em uso!")
+
+            else:
+                if perfil == "estudante":
+                    nomes.append(nome)
+                    matriculas.append(matricula)
+                    maquinas.append(maquina)
+                    perfis.append(perfil)
+                    senhas.append(senhaAleatoria)
+
+                    senhas123.write(f"\nNome do usuário: {nome} - Matrícula: {matricula} - Perfil: {perfil} - Senha: {senhaAleatoria} - Máquina: {maquina}")
+                    print("Usuário adicionado com sucesso. ")
+                    senhas123.close()
+
+                elif perfil == "professor":
+                    nomes.append(nome)
+                    maquinas.append(maquina)
+                    perfis.append(perfil)
+                    senhas.append(senhaAleatoria)
+
+                    senhas123.write(f"\nNome do usuário: {nome} - ---------- ---------- - Perfil: {perfil} - Senha: {senhaAleatoria} - Máquina: {maquina}")
+                    print("Usuário adicionado com sucesso. ")
+                    senhas123.close()
+                arquivo3.close()
+                return True
 
 #RODOLFO: Função para excluir o usuário (só chamar lá no código principal agr).
 def excluirUsuario(nomes, matriculas, perfis):
@@ -535,3 +559,17 @@ def captcha(usuario, estudanteUsuarioLogar):
 
     else:
         return print("Resposta incorreta.")
+    
+def adicionarFraseContas(primeira_frase):
+    arquivo = open("BancoDeContasExistentes.txt", "r+", encoding="utf-8")
+    primeira_frase = "Nome-do-usuário:-'nome'-Matrícula:-'matricula'-Perfil:-'perfil'-Senha:-'senhaAleatoria'-Máquina:-'maquina'"
+    linhas = arquivo.readlines()
+    for i in range(len(linhas)):
+        dados = linhas[i].strip().split()
+        if not dados:
+            continue
+        if not dados in arquivo:
+            arquivo.write(primeira_frase)
+        else:
+            return print()
+    arquivo.close()
