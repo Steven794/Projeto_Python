@@ -166,7 +166,7 @@ while True:
                 while True:
                     print("Bem vindo ao menu administrativo!")
                     #Mari: a opção de banir maquinas ainda esta em desenvolvimento
-                    print("1.Adicionar usuário.\n2.Adicionar ADM \n3.Consultar dados.\n4.Editar dados.\n5.Excluir usuário.\n6.Banir Máquinas.\n7.Encerrar o programa. ")
+                    print("1.Adicionar usuário.\n2.Adicionar ADM \n3.Consultar dados.\n4.Editar dados.\n5.Excluir usuário.\n6.Banir Máquinas.\n7.Consultar Máquinas Banidas.\n8.Encerrar o programa. ")
                     opcao = int(input("Digite a opção que você deseja acessar: "))
 
                     if opcao == 1:
@@ -176,7 +176,7 @@ while True:
 
                     elif opcao == 2:
                         criar_ADM()
-d
+
                     elif opcao == 3:
                         print("=== Dados Cadastrados ===")
                         with open("BancoDeContasExistentes.txt", "r", encoding="utf-8") as senhaler:
@@ -186,6 +186,7 @@ d
                         linhas_atualizadas = []
                         encontrado = False
                         escolher = int(input("1.Editar nome.\n2.Editar matrícula.\n3.Editar nome e matrícula: "))
+                        print("OBS: As matriculas tem 10 caracteres e a senha 12.")
 
 
                         if escolher == 1:
@@ -258,7 +259,7 @@ d
                             # Vamo testar com o código que Omar fez e com a função acima, o que der melhor vai ser usado
                         with open("BancoDeContasExistentes.txt", "r", encoding='utf-8') as senhas123:
                             LinhaDoExcluirUsuario = int(
-                                input("Informe a linha do usuário que deseja apagar: ")) - 1
+                                input("Informe a linha do usuário que deseja apagar: \nOBS: A linha inicial é a 1. ")) - 1
                             linhas = senhas123.readlines()
                         if 0 <= LinhaDoExcluirUsuario < len(linhas):
                             del linhas[LinhaDoExcluirUsuario]
@@ -270,6 +271,11 @@ d
                         maquinas_banidas(maquinas_banidas)
 
                     elif opcao == 7:
+                        with open("DadosApenasADM.txt", "r", encoding="utf-8") as ArquivoDasMaquinasBanidas:
+                            print(ArquivoDasMaquinasBanidas.read())
+
+
+                    elif opcao == 8:
                         print("Encerrando...")
                         break
 

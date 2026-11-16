@@ -94,3 +94,28 @@ Tentativa de login suspeita as 15/11/2026 19:55
 Tentativa de invasão as 15/11/2026 19:55
 tentativa login estudante nome digitado: mariles senha digitada: 727383902541
 Tentativa de login suspeita do Aluno mariles na máquina 1
+
+Aluno: 1
+Tentativas incorretas: 1
+Nível de risco: NORMAL
+Perfil da tentativa: Estudante
+Tentativa de login suspeita do Aluno Omar na máquina 1
+
+Aluno: 1
+Tentativas incorretas: 1
+Nível de risco: NORMAL
+Perfil da tentativa: Estudante
+tentativa login estudante nome digitado: Omar senha digitada: 259889130994
+Tentativa de login suspeita do Aluno Omar na máquina 1
+
+tentativa login professor nome digitado: teste senha digitada: 288205103133
+Tentativa de login suspeita do Professor teste na máquina 2
+
+tentativa login professor nome digitado: teste senha digitada: 288205103133
+Tentativa de login suspeita do Professor teste na máquina 2
+
+tentativa login professor nome digitado: teste senha digitada: 288205103133
+Tentativa de login suspeita do Professor teste na máquina 2
+
+tentativa login estudante nome digitado: Omar senha digitada: 259889130994
+Tentativa de login suspeita do Aluno Omar na máquina 8

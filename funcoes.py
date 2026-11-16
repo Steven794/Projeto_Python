@@ -78,13 +78,18 @@ def maquinas_banidas(maquinas_barradas):
     contador_linhas = 0
     arquivo = open("DadosApenasADM.txt", "a+", encoding="utf-8")
     qnt_maquinas = int(input("Insira quantas máquinas serão banidas: "))
+    ArquivoMaquinasBanidas = open("DadosApenasADM.txt", "r", encoding="utf-8")
 
     for i in range(qnt_maquinas):
+        for linha in ArquivoMaquinasBanidas:
+            dados = linha.strip().split()
         banida = int(input("Insira um número entre 1 e 30: "))
+        banidamodostring = str(banida)
         if banida < 1 or banida > 30:
             print("Numeração inválida!")
             continue
-        
+        if banidamodostring == dados[4]:
+            print("Está máquina já está banida")
         else:
             arquivo.write(f"\nNúmero da máquina banida: {banida}")
             maquinas_barradas.append(banida)
@@ -100,9 +105,10 @@ def maquinas_banidas(maquinas_barradas):
 
                     if dados[15] == banida:
                         linha.pop(contador_linhas)
-
+        
             arquivo1.close()
     arquivo.close()
+    ArquivoMaquinasBanidas.close()
 
 def sera_que_e_omar ():
     arquivo = open("ApenasADM's", "a", encoding="utf-8")
@@ -319,7 +325,7 @@ def adicionarUsuario(nomes, matriculas, perfis, nome, perfil, senhas, maquina, m
         print("Essa máquina já está em uso!")
         return False
 
-    if maquina in maquinas_barradas:
+    #if maquina in maquinas_barradas:
         print("Essa máquina é banida!")
         #Mari: adicionar como parametro a lista maquinas_sem_permissao no main.py e aqui
 
@@ -563,16 +569,16 @@ def mostrarNotas(escolha):
         arquivo1.close()
     arquivo.close()
     if escolha != 1 and escolha != 2 and escolha != 3 and escolha != 4: 
-        return print("codigo para visualização de notas invalido")
+        return print("Código para visualização de notas invalido")
     else:
-        return print("nenhuma nota inserida")
+        return print("Nenhuma nota inserida")
 
 def adicionarFaltas(matriculaEstudante):
     arquivo = open("BancoDeContasExistentes.txt", "r", encoding="utf8")
     for linha in arquivo:
         dados = linha.strip().split()
         if not dados:
-            continue            
+            continue                        #tem que colocar pra printar caso não encontrado o estudante
         if dados[0] == "Nome":
             if dados[9] == "estudante":
                 if int(dados[6][:2] + dados[6][-2:]) == matriculaEstudante:
