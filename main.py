@@ -14,6 +14,7 @@ matriculas = []
 maquinas = []
 perfis = []
 senhas = []
+maquinas_sem_permissao = [] #Mari: essa lista vai servir como um dos parametros das maquinas banidas
 nome = " "
 perfil = " "
 hora123 = datetime.now()
@@ -164,7 +165,8 @@ while True:
             else:
                 while True:
                     print("Bem vindo ao menu administrativo!")
-                    print("1.Adicionar usuário.\n2.Adicionar ADM \n3.Consultar dados.\n4.Editar dados.\n5.Excluir usuário.\n6.Encerrar o programa. ")
+                    #Mari: a opção de banir maquinas ainda esta em desenvolvimento
+                    print("1.Adicionar usuário.\n2.Adicionar ADM \n3.Consultar dados.\n4.Editar dados.\n5.Excluir usuário.\n6.Banir Máquinas.\n7.Encerrar o programa. ")
                     opcao = int(input("Digite a opção que você deseja acessar: "))
 
                     if opcao == 1:
@@ -265,6 +267,9 @@ while True:
                             senhas123.writelines(linhas)
 
                     elif opcao == 6:
+                        maquinas_banidas()
+
+                    elif opcao == 7:
                         print("Encerrando...")
                         break
 

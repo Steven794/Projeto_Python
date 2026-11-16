@@ -18,7 +18,6 @@ def confirmacao_adm():
     HorarioAjeitado = hora.strftime("%d/%m/%Y %H:%M")
     tentativas = 5
     erros = 0
-    batata = 0
     
     while tentativas > 0:
         usuarioADM = input("Informe o usuario do administrador: ").strip()
@@ -71,6 +70,38 @@ def criar_ADM ():
     senha_aleatoria_ADM = random.randint(10000000, 99999999)
     print(f"A sua senha é: {senha_aleatoria_ADM}")   
     arquivo.write(f"\nNome e sobrenome do ADM: {nomeADM} {sobrenomeADM} Senha do ADM: {senha_aleatoria_ADM}")
+    arquivo.close()
+
+#Mari: essa função ainda esta sendo construida, deixa ela quieta.
+def maquinas_banidas(maquinas_barradas):
+    maquinas_barradas = []
+    contador_linhas = 0
+    arquivo = open("DadosApenasADM.txt", "a+", encoding="utf-8")
+    qnt_maquinas = int(input("Insira quantas máquinas serão banidas: "))
+
+    for i in range(qnt_maquinas):
+        banida = int(input("Insira um número entre 1 e 30: "))
+        if banida < 1 or banida > 30:
+            print("Numeração inválida!")
+            continue
+        
+        else:
+            arquivo.write(f"Número da máquina banida: {banida}")
+            maquinas_barradas.append(banida)
+            arquivo1 = open("BancoDeContasExistentes.txt", "a+", encoding="utf-8")
+            arquivo1.readlines
+            for linha in arquivo1:
+                dados = linha.strip().split()
+                
+                for linha in range(len(arquivo1.readlines())):
+                    contador_linhas = contador_linhas + 1
+                    if not dados:
+                        continue
+
+                    if dados[15] == banida:
+                        linha.pop(contador_linhas)
+
+            arquivo1.close()
     arquivo.close()
 
 def sera_que_e_omar ():
@@ -262,7 +293,15 @@ def adicionarUsuario(nomes, matriculas, perfis, nome, perfil, senhas, maquina, m
     import random
     nome = input("Digite o nome do novo usuário: ").strip()
     matricula = random.randint(1000000000, 9999999999)
-    maquina = input("Insira a máquina de acesso: ").strip()
+
+    while True:
+        maquina = int(input("Insira a máquina de acesso: "))
+        if maquina < 1 or maquina > 30 or maquina == "" or maquina == " ":
+            print("Número  de máquina inválido!")
+            continue
+        else:
+            break
+
     perfil = input("Digite o perfil (estudante/professor): ").strip().lower()
     senhaAleatoria = random.randint(100000000000, 999999999999)
     print(f"Sua senha é: {senhaAleatoria}")
@@ -279,6 +318,10 @@ def adicionarUsuario(nomes, matriculas, perfis, nome, perfil, senhas, maquina, m
     if maquina in maquinas:
         print("Essa máquina já está em uso!")
         return False
+
+    if maquina in maquinas_barradas:
+        print("Essa máquina é banida!")
+        #Mari: adicionar como parametro a lista maquinas_sem_permissao no main.py e aqui
 
     perfisValidos = ("estudante", "professor")
 
