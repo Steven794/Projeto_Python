@@ -28,7 +28,7 @@ while True:
     """OBS Steven: aqui eu atualizei o tipo de entrada, porque vini havia dito que quando nós testar daria muito trabalho digitar a 
     string 'estudante' inteira e facilitaria apenas digitar um numero."""
     try: 
-        usuario = int(input("Estudante digite [1]\nProfessor digite [2]\nAdministrador digite [3]\nEncerrar programa digite [4]\nDigite qual opção você deseja acessar: "))
+        usuario = int(input("---Opções---\n\nEstudante: digite [1]\nProfessor: digite [2]\nAdministrador: digite [3]\nEncerrar: programa digite [4]\n\nDigite qual opção você deseja acessar: "))
         if usuario == 1:
             estudanteUsuarioLogar = input("Digite o nome do estudante: ").strip()
             estudanteSenhaLogar = input("Digite a senha do estudante: ").strip()
@@ -267,7 +267,7 @@ while True:
                             senhas123.writelines(linhas)
 
                     elif opcao == 6:
-                        maquinas_banidas()
+                        maquinas_banidas(maquinas_banidas)
 
                     elif opcao == 7:
                         print("Encerrando...")

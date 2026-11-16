@@ -86,7 +86,7 @@ def maquinas_banidas(maquinas_barradas):
             continue
         
         else:
-            arquivo.write(f"Número da máquina banida: {banida}")
+            arquivo.write(f"\nNúmero da máquina banida: {banida}")
             maquinas_barradas.append(banida)
             arquivo1 = open("BancoDeContasExistentes.txt", "a+", encoding="utf-8")
             arquivo1.readlines
