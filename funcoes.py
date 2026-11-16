@@ -112,7 +112,7 @@ def logarNormal(usuario, estudanteUsuarioLogar="", estudanteSenhaLogar="", profe
 def acessoMaquinas(usuario, nomealuno, nomeprofessor, numeracao_maquina):
     arquivo = open("DadosApenasADM.txt", "a", encoding="utf-8")
     if usuario == 1:
-        arquivo3 = open("DadosApenasADM.txt", "r", encoding="utf-8")
+        arquivo3 = open("BancoDeContasExistentes.txt", "r", encoding="utf-8")
         for linha in arquivo3:
             dados = linha.strip().split()
             if not dados:
@@ -129,7 +129,7 @@ def acessoMaquinas(usuario, nomealuno, nomeprofessor, numeracao_maquina):
         arquivo.close()
 
     elif usuario == 2:
-        arquivo3 = open("DadosApenasADM.txt", "r", encoding="utf-8")
+        arquivo3 = open("BancoDeContasExistentes.txt", "r", encoding="utf-8")
         for linha in arquivo3:
             dados = linha.strip().split()
             if not dados:
