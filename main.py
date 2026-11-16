@@ -176,7 +176,7 @@ while True:
 
                     elif opcao == 2:
                         criar_ADM()
-
+d
                     elif opcao == 3:
                         print("=== Dados Cadastrados ===")
                         with open("BancoDeContasExistentes.txt", "r", encoding="utf-8") as senhaler:
