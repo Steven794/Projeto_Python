@@ -26,7 +26,8 @@ erros123 = 0
 """OBS Steven: aqui eu atualizei o tipo de entrada, porque vini havia dito que quando nós testar daria muito trabalho digitar a 
 string 'estudante' inteira e facilitaria apenas digitar um numero."""
 while True:
-        usuario = int(input("---Opções---\n\nEstudante: digite [1]\nProfessor: digite [2]\nAdministrador: digite [3]\nEncerrar: programa digite [4]\n\nDigite qual opção você deseja acessar: "))
+        print("---Opções de login---\n\n[1] - Estudante\n[2] - Professor\n[3] - Administrador\n[4] - Encerrar programa")
+        usuario = int(input("\nDigite qual opção você deseja acessar: "))
         if usuario == 1:
             estudanteUsuarioLogar = input("Digite o nome do estudante: ").strip()
             estudanteSenhaLogar = input("Digite a senha do estudante: ").strip()
@@ -35,10 +36,10 @@ while True:
 
             #Mari: nao precisa colocar outro try porque esse no começo do programa ja vale pra toda a estrutura
             if maquina <= 0 or maquina > 30:
-                print("Opção inválida!")
+                print("Máquina inválida!")
 
             if MaquinaBloqueadaOuNao(maquina) == "Banida":
-                print("Está máquina está banida!!")
+                print("Está máquina está banida!")
 
             elif maquina >= 1 and maquina <= 30: 
                 acessoMaquinas(usuario, estudanteUsuarioLogar, "", maquina)
@@ -47,7 +48,7 @@ while True:
                 if resultado == "Login de estudante permitido":
                     print("\nBem vindo ao menu do estudante!\n")
                     while True:
-                        print("   ---Menu do Estudante---\n\n1.Boletim.\n2.Consultar seus dados.\n3.Consultar suas faltas.\n4.Para Encerrar o seu Login.")
+                        print("---Menu do Estudante---\n\n1. Consultar boletim.\n2. Consultar seus dados.\n3 Consultar faltas.\n4. Encerrar o Login.")
                         opcaoE = int(input("\nDigite qual opção deseja acessar: "))
                         if opcaoE == 1:
                             escolha = int(input("1. ver nota1, 2. nota2, 3. nota3, 4. mediaFinal: "))
@@ -56,13 +57,14 @@ while True:
                         elif opcaoE == 2:
                             matricula_censurada = matricula_ocultada(usuario, estudanteUsuarioLogar, 4)
                             print(matricula_censurada)
-                            revelar = input("Você deseja exibir a sua matrícula?\nDigite [1] para exibir.\nDigite [2] para não exibir.\nResposta: ").strip().lower()
+                            print("Deseja exibir sua matrícula?\nDigite 'S' para exibir.\nDigite 'N' para mantê-la oculta.")
+                            revelar = input("Exibir matrícula? ").strip().upper()
                             
-                            if revelar == "1":
+                            if revelar == "S":
                                 seguranca_captcha = captcha(usuario, estudanteUsuarioLogar)
                                 print(seguranca_captcha)
 
-                            elif revelar == "2":
+                            elif revelar == "N":
                                 print()
 
                             else:
@@ -85,6 +87,7 @@ while True:
                     hora_atual = datetime.now().hour #de "hora_atual" até  "print(f"Nível de risco: {risco}.")"" é a parte de análise de risco
                     horario_permitido = 7<= hora_atual<=22
                     risco = identificar_risco(erros123,horario_permitido,False)
+                    
                     with open("BancoDeDados.txt","a",encoding="utf-8") as arquivo:
                         arquivo.write(f"\nAluno: {usuario}")
                         arquivo.write(f"\nTentativas incorretas: {erros123}")
@@ -115,14 +118,16 @@ while True:
                 print(resultado)
             
                 if resultado == "Login de professor permitido":
+                    print("\nBem vindo ao menu Professor!\n")
                     while True:
-                        print("\nBem vindo ao menu Professor!\n")
-                        print("  ---Menu do Professor---\n\n1.Publicar notas.\n2.Consultar dados dos alunos.\n3.Adicionar faltas dos alunos.\n4.Para Encerrar o seu Login.")
-                        opcaoP = int(input("\nDigite um número de 1 a 4 para acessar suas opções: "))
+                        print("---Menu do Professor---\n\n1. Publicar notas.\n2. Consultar dados dos alunos.\n3. Adicionar faltas dos alunos.\n4.Encerrar o seu Login.")
+                        opcaoP = int(input("\nDigite qual opção deseja acessar: "))
 
                         if opcaoP == 1:
                             matriculaEstudante = int(input("Digite os 2 primeiros e 2 últimos digitos da matrícula do aluno juntos: "))
-                            notas = int(input("Digite [1] para adicionar a nota 1 | [2] para adicionar a nota 2 | [3] para adicionar a nota 3: "))
+                            print("[1] - Adcionar a nota 1.\n[2] - Adcionar a nota 2.\n[3] - Adcionar a nota 3.")
+                            notas = int(input("Digite qual nota deseja adcionar: "))
+                            #notas = int(input("Digite [1] para adicionar a nota 1 | [2] para adicionar a nota 2 | [3] para adicionar a nota 3: "))
                             if notas != 1 and notas != 2 and notas != 3:
                                 print("codigo para adicionar notas invalido")
                             else:

@@ -89,30 +89,40 @@ def maquinas_banidas(maquinas_barradas):
         if banida < 1 or banida > 30:
             print("Numeração inválida!")
             continue
-        
-        if banidamodostring == dados[4]:
-            print("Está máquina já está banida")
+
         else:
-            arquivo.write(f"\nNúmero da máquina banida: {banida}")
-            maquinas_barradas.append(banida)
-            arquivo1 = open("BancoDeContasExistentes.txt", "r", encoding="utf-8")
-            linhasAura = arquivo1.readlines()
-            arquivo1.close()
-            for linha1 in linhasAura:
-                dados1 = linha1.strip().split()
-                if not dados1:
+            arquivo3 = open("DadosApenasADM.txt", "r", encoding="utf-8")
+            for linha3 in arquivo3:
+                dados3 = linha3.strip().split()
+                if not dados3:
                     continue
-                arquivo.seek(0)
-                for linha2 in arquivo:
-                    dados2 = linha2.strip().split()
-                    if not dados2:
-                        continue
-                    if dados1[15] == dados2[4]:
-                        linhasAura.remove(linha1)
+                if dados3[2] == "máquina":
+                    banidaestringada = str(banida)
+                    if dados3[4] == banidaestringada:
+                        print("Esta maquina já está banida!")
                         break
-                arquivo1 = open("BancoDeContasExistentes.txt", "w", encoding="utf-8")
-                arquivo1.writelines(linhasAura)
+            else:
+                arquivo.write(f"\nNúmero da máquina banida: {banida}")
+                maquinas_barradas.append(banida)
+                arquivo1 = open("BancoDeContasExistentes.txt", "r", encoding="utf-8")
+                linhasAura = arquivo1.readlines()
                 arquivo1.close()
+                for linha1 in linhasAura:
+                    dados1 = linha1.strip().split()
+                    if not dados1:
+                        continue
+                    arquivo.seek(0)
+                    for linha2 in arquivo:
+                        dados2 = linha2.strip().split()
+                        if not dados2:
+                            continue
+                        if dados1[15] == dados2[4]:
+                            linhasAura.remove(linha1)
+                            break
+                    arquivo1 = open("BancoDeContasExistentes.txt", "w", encoding="utf-8")
+                    arquivo1.writelines(linhasAura)
+                    arquivo1.close()
+    arquivo3.close()
     arquivo.close()
     ArquivoMaquinasBanidas.close()
 
