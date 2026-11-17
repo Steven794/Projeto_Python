@@ -1,5 +1,6 @@
 from datetime import datetime
 import random
+import time
 
 def clear_terminal():
     import os, platform
@@ -10,7 +11,6 @@ def clear_terminal():
 
 # Função que confirma se a entidade é adm
 def confirmacao_adm():
-    import time
     confirmacao = open("ApenasADM's.txt", "r", encoding="utf-8")
     dadosCorretos = confirmacao.readlines()
     arquivo = open("BancoDeDados.txt", "a", encoding="utf-8")
@@ -37,12 +37,13 @@ def confirmacao_adm():
         print(f"Senha incorreta {tentativas} tentativas restantes!")
         if tentativas == 0:
             time.sleep(5)
+
         if erros == 3:
-            arquivo.write(f"\nTentativa de login suspeita as {HorarioAjeitado}")
+            arquivo.write(f"\nTentativa de login suspeita as {HorarioAjeitado} na conta de um ADM")
             time.sleep(5)
             
         if erros == 5:
-            arquivo.write(f"\nTentativa de invasão as {HorarioAjeitado}")
+            arquivo.write(f"\nTentativa de invasão as {HorarioAjeitado} na conta de um ADM")
             time.sleep(10)
 
     print("Acesso negado!")
@@ -78,31 +79,42 @@ def maquinas_banidas(maquinas_barradas):
     contador_linhas = 0
     arquivo = open("DadosApenasADM.txt", "a+", encoding="utf-8")
     qnt_maquinas = int(input("Insira quantas máquinas serão banidas: "))
+    ArquivoMaquinasBanidas = open("DadosApenasADM.txt", "r", encoding="utf-8")
 
     for i in range(qnt_maquinas):
+        for linha in ArquivoMaquinasBanidas:
+            dados = linha.strip().split()
         banida = int(input("Insira um número entre 1 e 30: "))
+        banidamodostring = str(banida)
         if banida < 1 or banida > 30:
             print("Numeração inválida!")
             continue
         
+        if banidamodostring == dados[4]:
+            print("Está máquina já está banida")
         else:
             arquivo.write(f"\nNúmero da máquina banida: {banida}")
             maquinas_barradas.append(banida)
-            arquivo1 = open("BancoDeContasExistentes.txt", "a+", encoding="utf-8")
-            arquivo1.readlines
-            for linha in arquivo1:
-                dados = linha.strip().split()
-                
-                for linha in range(len(arquivo1.readlines())):
-                    contador_linhas = contador_linhas + 1
-                    if not dados:
-                        continue
-
-                    if dados[15] == banida:
-                        linha.pop(contador_linhas)
-
+            arquivo1 = open("BancoDeContasExistentes.txt", "r", encoding="utf-8")
+            linhasAura = arquivo1.readlines()
             arquivo1.close()
+            for linha1 in linhasAura:
+                dados1 = linha1.strip().split()
+                if not dados1:
+                    continue
+                arquivo.seek(0)
+                for linha2 in arquivo:
+                    dados2 = linha2.strip().split()
+                    if not dados2:
+                        continue
+                    if dados1[15] == dados2[4]:
+                        linhasAura.remove(linha1)
+                        break
+                arquivo1 = open("BancoDeContasExistentes.txt", "w", encoding="utf-8")
+                arquivo1.writelines(linhasAura)
+                arquivo1.close()
     arquivo.close()
+    ArquivoMaquinasBanidas.close()
 
 def sera_que_e_omar ():
     arquivo = open("ApenasADM's", "a", encoding="utf-8")
@@ -142,6 +154,7 @@ def logarNormal(usuario, estudanteUsuarioLogar="", estudanteSenhaLogar="", profe
 
 def acessoMaquinas(usuario, nomealuno, nomeprofessor, numeracao_maquina):
     arquivo = open("DadosApenasADM.txt", "a", encoding="utf-8")
+    data_hora = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
     if usuario == 1:
         arquivo3 = open("BancoDeContasExistentes.txt", "r", encoding="utf-8")
         for linha in arquivo3:
@@ -150,7 +163,7 @@ def acessoMaquinas(usuario, nomealuno, nomeprofessor, numeracao_maquina):
                 continue
             if dados[3] == nomealuno and dados[15] != numeracao_maquina:
                 arquivo2 = open("BancoDeDados.txt", "a", encoding="utf-8")
-                arquivo2.write(f"\nTentativa de login suspeita do Aluno {nomealuno} na máquina {numeracao_maquina}\n")
+                arquivo2.write(f"\nTentativa de login suspeita do Aluno {nomealuno} na máquina {numeracao_maquina} as {data_hora}\n")
                 arquivo2.close()
                 break
         else:
@@ -161,13 +174,14 @@ def acessoMaquinas(usuario, nomealuno, nomeprofessor, numeracao_maquina):
 
     elif usuario == 2:
         arquivo3 = open("BancoDeContasExistentes.txt", "r", encoding="utf-8")
+        data_hora = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
         for linha in arquivo3:
             dados = linha.strip().split()
             if not dados:
                 continue
             if dados[3] == nomeprofessor and dados[15] != numeracao_maquina:
                 arquivo2 = open("BancoDeDados.txt", "a", encoding="utf-8")
-                arquivo2.write(f"\nTentativa de login suspeita do Professor {nomeprofessor} na máquina {numeracao_maquina}\n")
+                arquivo2.write(f"\nTentativa de login suspeita do Professor {nomeprofessor} na máquina {numeracao_maquina} as {data_hora}\n")
                 arquivo2.close()
                 break
         else:
@@ -175,7 +189,6 @@ def acessoMaquinas(usuario, nomealuno, nomeprofessor, numeracao_maquina):
 
         arquivo3.close()
     arquivo.close()
-
 
 print("Estrutura geral do sistema de hórario: ")
 hora = datetime.now()
@@ -263,29 +276,25 @@ def consultarUsuario(nomes, matriculas, perfis):
     return True
 
 #RODOLFO: Essa função serve pra carregar os usuários de uma rodagem do código pra outra.
-def carregarUsuario(nomes, matriculas, perfis, maquinas):
-    try:
-        with open(ARQUIVO_USUARIOS, "r", encoding="utf-8") as arquivo:
-            for linha in arquivo:
-                linha = linha.strip()
+"""def carregarUsuario(nomes, matriculas, perfis, maquinas):
+    with open(ARQUIVO_USUARIOS, "r", encoding="utf-8") as arquivo:
+        for linha in arquivo:
+            linha = linha.strip()
 
-                if not linha:
-                    continue
+            if not linha:
+                continue
 
-                dados = linha.split(SEPARADOR)
+            dados = linha.split(SEPARADOR)
 
-                if len(dados) != 3:
-                    continue
+            if len(dados) != 3:
+                continue
 
-                nome, matricula, perfil, numeracao_maquina = dados
+            nome, matricula, perfil, numeracao_maquina = dados
 
-                nomes.append(nome)
-                matriculas.append(matricula)
-                perfis.append(perfil)
-                maquinas.append(numeracao_maquina)
-
-    except FileNotFoundError:
-        pass
+            nomes.append(nome)
+            matriculas.append(matricula)
+            perfis.append(perfil)
+            maquinas.append(numeracao_maquina)"""
 
 #RODOLFO: Função para adicionar novos usuários (lembrar de chamar no código principa).
 def adicionarUsuario(nomes, matriculas, perfis, nome, perfil, senhas, maquina, maquinas):
@@ -315,14 +324,25 @@ def adicionarUsuario(nomes, matriculas, perfis, nome, perfil, senhas, maquina, m
         print("Esse usuário já foi registrado.")
         return False
 
-    if maquina in maquinas:
-        print("Essa máquina já está em uso!")
-        return False
-
-    if maquina in maquinas_barradas:
-        print("Essa máquina é banida!")
-        #Mari: adicionar como parametro a lista maquinas_sem_permissao no main.py e aqui
-
+    for linha4 in senhas123:
+        dados4 = linha4.strip().split()
+        if not dados4:
+            continue
+        if dados4[15] == maquina:
+            print("Essa máquina já está em uso!")
+            return False
+    
+    arquivo5 = open("DadosApenasADM.txt", "r", encoding="utf-8")
+    for linha5 in arquivo5:
+        dados5 = linha5.strip().split()
+        if not dados5:
+            continue
+        maquinaStringada = str(maquina)
+        if dados5[4] == maquinaStringada:
+            print("Essa máquina está banida pelo administradores!")
+            return False
+    arquivo5.close()
+    
     perfisValidos = ("estudante", "professor")
 
     if perfil not in perfisValidos:
@@ -414,7 +434,7 @@ def matricula_ocultada (usuario, estudanteUsuarioLogar, numeros_visiveis=4):
                     matriculastringada = str(stringado)
     arquivo.close()
     estrelas = "*" * (len(matriculastringada) - numeros_visiveis)
-    return f"A matrícula é: {matriculastringada[:2]}{estrelas}{matriculastringada[-2:]}"
+    return f"\nA matrícula é: {matriculastringada[:2]}{estrelas}{matriculastringada[-2:]}"
 
 def mostrar_matricula(usuario, estudanteUsuarioLogar):
     arquivo = open("BancoDeContasExistentes.txt", "r", encoding="utf8")
@@ -454,76 +474,99 @@ def adicionarNotas(matriculaEstudante, notas):
         if not dados:
             continue            
         if dados[0] == "Nome":
-            if dados[9] == "estudante":
+            if dados[6] != "'matricula'" and dados[6] != "----------":
                 if int(dados[6][:2] + dados[6][-2:]) == matriculaEstudante:
                     print("Estudante encontrado!")
-                    arquivo2 = open("DadosDoAluno.txt", "r", encoding="utf8") ###
+                    arquivo2 = open("DadosDoAluno.txt", "r", encoding="utf8") 
                     for linha2 in arquivo2:
                         if dados[6] in linha2:
                             if notas == 1 and "nota primeira unidade:" in linha2:
                                 arquivo2.close()
                                 arquivo1.close()
-                                return print("Nota 1 ja foi inserida!")
-                            elif notas == 2 and "nota segunda unidade:" in linha2:
-                                arquivo2.close()
-                                arquivo1.close()
-                                return print("Nota 2 ja foi inserida!")
-                            elif notas == 3 and "nota terceira unidade:" in linha2:
-                                arquivo2.close()
-                                arquivo1.close()
-                                return print("Nota 3 ja foi inserida!")  ###
-                    if notas == 1:
-                        nota1add = float(input("digite a primeira nota: "))
-                        if nota1add < 0 or nota1add > 10:
-                            print("Notas só podem ser entre 0 a 10")
-                        else:
-                            nota1 = nota1 + nota1add
-                            arquivo3 = open("DadosDoAluno.txt", "a", encoding="utf8")
-                            arquivo3.write(f"\nmatricula do estudante: {dados[6]} nota primeira unidade: {nota1}")
-                            arquivo3.close()
-                            return print("Nota 1 adicionada com sucesso")
-                    elif notas == 2:
-                        nota2add = float(input("digite a segunda nota: "))
-                        if nota2add < 0 or nota2add > 10:
-                            print("Notas só podem ser entre 0 a 10")
-                        else:
-                            nota2 = nota2 + nota2add
-                            arquivo3 = open("DadosDoAluno.txt", "a", encoding="utf8")
-                            arquivo3.write(f"\nmatricula do estudante: {dados[6]} nota segunda unidade: {nota2}")
-                            arquivo3.close()
-                            return print("Nota 2 adicionada com sucesso")
-                    elif notas == 3:
-                        nota3add = float(input("digite a terceira nota: "))
-                        if nota3add < 0 or nota3add > 10:
-                            print("Notas só podem ser entre 0 a 10")
-                        else:
-                            nota3 = nota3 + nota3add
-                            arquivo3 = open("DadosDoAluno.txt", "a", encoding="utf8")
-                            arquivo3.write(f"\nmatricula do estudante: {dados[6]} nota terceira unidade: {nota3}")
-                            arquivo3.close()
-                            nota1float = 0.0
-                            nota2float = 0.0
-                            nota3float = 0.0
-                            arquivo4 = open("DadosDoAluno.txt", "r", encoding="utf8")
-                            for linha4 in arquivo4:
-                                dados4 = linha4.strip().split()
-                                if len(dados4) >= 8:
-                                    if dados4[0] == "matricula":
-                                        if dados4[3] == dados[6]:
-                                            if dados4[6] == "unidade:":
-                                                if dados4[5] == "primeira":
-                                                    nota1float = float(dados4[7])
-                                                elif dados4[5] == "segunda":
-                                                    nota2float = float(dados4[7])
-                                                elif dados4[5] == "terceira":
-                                                    nota3float = float(dados4[7])
-                            mediaFinal = (nota1float + nota2float + nota3float) / 3
-                            arquivo3 = open("DadosDoAluno.txt", "a", encoding="utf8")
-                            arquivo3.write(f"\nmatricula do estudante: {dados[6]} media-final: {mediaFinal:.2f}")
-                            arquivo4.close()
-                            arquivo3.close()
-                            return print("Nota 3 adicionada com sucesso, e média final calculada")
-                    arquivo2.close()
+                                return print("Nota 1 já foi inserida!")
+                            
+                            elif notas == 2:
+                                if "nota segunda unidade:" in linha2:
+                                    arquivo2.close()
+                                    arquivo1.close()
+                                    return print("Nota 2 já foi inserida!")
+
+                                #elif "nota primeira unidade:" not in linha2:
+                                    print("Insira a nota 1 primeiro!")
+
+                            elif notas == 3: 
+                                if "nota terceira unidade:" in linha2:
+                                    arquivo2.close()
+                                    arquivo1.close()
+                                    return print("Nota 3 já foi inserida!")  
+
+                                #elif "nota primeira unidade:" not in linha2 and "nota segunda unidade:" not in linha2:
+                                    print("Insira as notas 1 e 2 primeiro!")
+
+                                #elif "nota segunda unindade: " not in linha2:
+                                    print("Insira a nota 2 primeiro!")
+
+                    while True:
+                        if notas == 1:
+                            nota1add = float(input("Digite a primeira nota: "))
+                            if nota1add < 0 or nota1add > 10:
+                                print("Notas só podem ser entre 0 a 10")
+                                break
+
+                            else:
+                                nota1 = nota1 + nota1add
+                                arquivo3 = open("DadosDoAluno.txt", "a", encoding="utf8")
+                                arquivo3.write(f"\nmatricula do estudante: {dados[6]} nota primeira unidade: {nota1}")
+                                arquivo3.close()
+                                return print("Nota 1 adicionada com sucesso")
+
+                        elif notas == 2:
+                            nota2add = float(input("Digite a segunda nota: "))
+                            if nota2add < 0 or nota2add > 10:
+                                print("Notas só podem ser entre 0 a 10")
+                                break
+
+                            else:
+                                nota2 = nota2 + nota2add
+                                arquivo3 = open("DadosDoAluno.txt", "a", encoding="utf8")
+                                arquivo3.write(f"\nmatricula do estudante: {dados[6]} nota segunda unidade: {nota2}")
+                                arquivo3.close()
+                                return print("Nota 2 adicionada com sucesso")
+                                        
+                        elif notas == 3:
+                            nota3add = float(input("Digite a terceira nota: "))
+                            if nota3add < 0 or nota3add > 10:
+                                print("Notas só podem ser entre 0 a 10")
+                                break
+
+                            else:
+                                nota3 = nota3 + nota3add
+                                arquivo3 = open("DadosDoAluno.txt", "a", encoding="utf8")
+                                arquivo3.write(f"\nmatricula do estudante: {dados[6]} nota terceira unidade: {nota3}")
+                                arquivo3.close()
+                                nota1float = 0.0
+                                nota2float = 0.0
+                                nota3float = 0.0
+                                arquivo4 = open("DadosDoAluno.txt", "r", encoding="utf8")
+                                for linha4 in arquivo4:
+                                    dados4 = linha4.strip().split()
+                                    if len(dados4) >= 8:
+                                        if dados4[0] == "matricula":
+                                            if dados4[3] == dados[6]:
+                                                if dados4[6] == "unidade:":
+                                                    if dados4[5] == "primeira":
+                                                        nota1float = float(dados4[7])
+                                                    elif dados4[5] == "segunda":
+                                                        nota2float = float(dados4[7])
+                                                    elif dados4[5] == "terceira":
+                                                        nota3float = float(dados4[7])
+                                mediaFinal = (nota1float + nota2float + nota3float) / 3
+                                arquivo3 = open("DadosDoAluno.txt", "a", encoding="utf8")
+                                arquivo3.write(f"\nmatricula do estudante: {dados[6]} media-final: {mediaFinal:.2f}")
+                                arquivo4.close()
+                                arquivo3.close()
+                                return print             
+                    arquivo2.close()                      
     arquivo1.close()
 
 def mostrarNotas(escolha):
@@ -563,16 +606,16 @@ def mostrarNotas(escolha):
         arquivo1.close()
     arquivo.close()
     if escolha != 1 and escolha != 2 and escolha != 3 and escolha != 4: 
-        return print("codigo para visualização de notas invalido")
+        return print("Código para visualização de notas invalido")
     else:
-        return print("nenhuma nota inserida")
+        return print("Nenhuma nota inserida")
 
 def adicionarFaltas(matriculaEstudante):
     arquivo = open("BancoDeContasExistentes.txt", "r", encoding="utf8")
     for linha in arquivo:
         dados = linha.strip().split()
         if not dados:
-            continue            
+            continue                        #tem que colocar pra printar caso não encontrado o estudante
         if dados[0] == "Nome":
             if dados[9] == "estudante":
                 if int(dados[6][:2] + dados[6][-2:]) == matriculaEstudante:
@@ -601,7 +644,7 @@ def adicionarFaltas(matriculaEstudante):
                         arquivo2 = open("DadosDoAluno.txt", "a", encoding="utf-8")
                         arquivo2.write(f"\nMatricula do estudante: {dados[6]} total de faltas: {quantidadefaltas}")
                         arquivo2.close()
-                    return print("Falta adicionada com sucesso")                               
+                    return print("Falta(s) adicionada(s) com sucesso")                               
     arquivo.close()
             
 def mostrarFaltas(estudanteUsuarioLogar):
@@ -637,6 +680,7 @@ def captcha(usuario, estudanteUsuarioLogar):
     elif operador == "*":
         resultado2 = numero1 * numero2
     print(pergunta)
+    
     resposta = int(input("Resposta: "))
 
     if resposta == resultado2:
@@ -653,4 +697,17 @@ def adicionarFraseContas(primeira_frase):
     conteudo = arquivo.read()
     if primeira_frase.strip() not in conteudo:
         arquivo.write(primeira_frase)
-        
+
+def MaquinaBloqueadaOuNao(maquina):
+    ArquivoMaquinasBanidas = open("DadosApenasADM.txt", "r", encoding="utf-8")
+    data_hora = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
+    for linha in ArquivoMaquinasBanidas:
+        dados = linha.strip().split()
+        maquinaModoString = str(maquina)
+        if maquinaModoString == dados[4]:
+            print("Está máquina está banida!!")
+            time.sleep(5)
+            with open("BancoDeDados.txt", "a", encoding="utf-8") as arquivo67:
+                arquivo67.write(f"Tentativa de login suspeita as {data_hora} pela máquina {maquina} que está banida")
+            return "Banida"
+    ArquivoMaquinasBanidas.close()

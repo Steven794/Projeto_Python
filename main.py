@@ -23,11 +23,9 @@ tentativas123 = 5
 erros123 = 0
 
 # OBS omar: pode ser bom criar uma pasta so de registro de acesso com o nome da pessoa e a classificação
-
+"""OBS Steven: aqui eu atualizei o tipo de entrada, porque vini havia dito que quando nós testar daria muito trabalho digitar a 
+string 'estudante' inteira e facilitaria apenas digitar um numero."""
 while True:
-    """OBS Steven: aqui eu atualizei o tipo de entrada, porque vini havia dito que quando nós testar daria muito trabalho digitar a 
-    string 'estudante' inteira e facilitaria apenas digitar um numero."""
-    try: 
         usuario = int(input("---Opções---\n\nEstudante: digite [1]\nProfessor: digite [2]\nAdministrador: digite [3]\nEncerrar: programa digite [4]\n\nDigite qual opção você deseja acessar: "))
         if usuario == 1:
             estudanteUsuarioLogar = input("Digite o nome do estudante: ").strip()
@@ -39,15 +37,18 @@ while True:
             if maquina <= 0 or maquina > 30:
                 print("Opção inválida!")
 
+            if MaquinaBloqueadaOuNao(maquina) == "Banida":
+                print("Está máquina está banida!!")
+
             elif maquina >= 1 and maquina <= 30: 
                 acessoMaquinas(usuario, estudanteUsuarioLogar, "", maquina)
                 print(resultado)
 
                 if resultado == "Login de estudante permitido":
-                    print("Bem vindo ao menu do estudante")
+                    print("\nBem vindo ao menu do estudante!\n")
                     while True:
-                        print("1.Boletim.\n2.Consultar seus dados.\n3.Consultar suas faltas.\n4.Para Encerrar o seu Login.")
-                        opcaoE = int(input("Digite qual opção deseja acessar: "))
+                        print("   ---Menu do Estudante---\n\n1.Boletim.\n2.Consultar seus dados.\n3.Consultar suas faltas.\n4.Para Encerrar o seu Login.")
+                        opcaoE = int(input("\nDigite qual opção deseja acessar: "))
                         if opcaoE == 1:
                             escolha = int(input("1. ver nota1, 2. nota2, 3. nota3, 4. mediaFinal: "))
                             mostrarNotas(escolha)
@@ -55,10 +56,17 @@ while True:
                         elif opcaoE == 2:
                             matricula_censurada = matricula_ocultada(usuario, estudanteUsuarioLogar, 4)
                             print(matricula_censurada)
-                            revelar = input("Você deseja exibir a sua matrícula? ").strip().lower()
-                            if revelar == "sim":
+                            revelar = input("Você deseja exibir a sua matrícula?\nDigite [1] para exibir.\nDigite [2] para não exibir.\nResposta: ").strip().lower()
+                            
+                            if revelar == "1":
                                 seguranca_captcha = captcha(usuario, estudanteUsuarioLogar)
                                 print(seguranca_captcha)
+
+                            elif revelar == "2":
+                                print()
+
+                            else:
+                                print("Você digitou um caracter inválido")
 
                         elif opcaoE == 3:
                             mostrarFaltas(estudanteUsuarioLogar)
@@ -108,13 +116,13 @@ while True:
             
                 if resultado == "Login de professor permitido":
                     while True:
-                        print("Bem vindo ao menu Professor")
-                        print("1.Publicar notas.\n2.Consultar dados dos alunos.\n3.Adicionar faltas dos alunos.\n4.Para Encerrar o seu Login.")
-                        opcaoP = int(input("Digite um número de 1 a 4 para acessar suas opções: "))
+                        print("\nBem vindo ao menu Professor!\n")
+                        print("  ---Menu do Professor---\n\n1.Publicar notas.\n2.Consultar dados dos alunos.\n3.Adicionar faltas dos alunos.\n4.Para Encerrar o seu Login.")
+                        opcaoP = int(input("\nDigite um número de 1 a 4 para acessar suas opções: "))
 
                         if opcaoP == 1:
-                            matriculaEstudante = int(input("digite os 2 primeiros e 2 ultimos digitos da matricula do aluno juntos: "))
-                            notas = int(input("1. adicionar nota 1, 2. nota2, 3. nota3: "))
+                            matriculaEstudante = int(input("Digite os 2 primeiros e 2 últimos digitos da matrícula do aluno juntos: "))
+                            notas = int(input("Digite [1] para adicionar a nota 1 | [2] para adicionar a nota 2 | [3] para adicionar a nota 3: "))
                             if notas != 1 and notas != 2 and notas != 3:
                                 print("codigo para adicionar notas invalido")
                             else:
@@ -147,7 +155,7 @@ while True:
                         arquivo.write(f"\nProfessor: {usuario}")
                         arquivo.write(f"\nTentativas incorretas: {erros123}")
                         arquivo.write(f"\nNível de risco: {risco}")
-                        arquivo.write(f"Perfil da tentativa: Professor")
+                        arquivo.write(f"\nPerfil da tentativa: Professor")
                         if erros123 == 3:
                             arquivo.write(f"\nTentativa de login suspeita as {HorarioAjeitado123}")
                             time.sleep(5)
@@ -164,10 +172,10 @@ while True:
 
             else:
                 while True:
-                    print("Bem vindo ao menu administrativo!")
+                    print("\nBem vindo ao menu administrativo!\n")
                     #Mari: a opção de banir maquinas ainda esta em desenvolvimento
-                    print("1.Adicionar usuário.\n2.Adicionar ADM \n3.Consultar dados.\n4.Editar dados.\n5.Excluir usuário.\n6.Banir Máquinas.\n7.Encerrar o programa. ")
-                    opcao = int(input("Digite a opção que você deseja acessar: "))
+                    print("   ---Menu do Adminstrador---\n\n1.Adicionar usuário.\n2.Adicionar ADM \n3.Consultar dados.\n4.Editar dados.\n5.Excluir usuário.\n6.Banir máquinas.\n7.Consultar máquinas banidas.\n8.Encerrar o programa. ")
+                    opcao = int(input("\nDigite a opção que você deseja acessar: "))
 
                     if opcao == 1:
                         primeira_frase = "Cabeçário"
@@ -176,9 +184,9 @@ while True:
 
                     elif opcao == 2:
                         criar_ADM()
-d
+
                     elif opcao == 3:
-                        print("=== Dados Cadastrados ===")
+                        print("\n=== Dados Cadastrados ===")
                         with open("BancoDeContasExistentes.txt", "r", encoding="utf-8") as senhaler:
                             print(senhaler.read())
 
@@ -186,6 +194,7 @@ d
                         linhas_atualizadas = []
                         encontrado = False
                         escolher = int(input("1.Editar nome.\n2.Editar matrícula.\n3.Editar nome e matrícula: "))
+                        print("OBS: As matriculas tem 10 caracteres e a senha 12.")
 
 
                         if escolher == 1:
@@ -258,7 +267,7 @@ d
                             # Vamo testar com o código que Omar fez e com a função acima, o que der melhor vai ser usado
                         with open("BancoDeContasExistentes.txt", "r", encoding='utf-8') as senhas123:
                             LinhaDoExcluirUsuario = int(
-                                input("Informe a linha do usuário que deseja apagar: ")) - 1
+                                input("Informe a linha do usuário que deseja apagar: \nOBS: A linha inicial é a 1. ")) - 1
                             linhas = senhas123.readlines()
                         if 0 <= LinhaDoExcluirUsuario < len(linhas):
                             del linhas[LinhaDoExcluirUsuario]
@@ -270,6 +279,11 @@ d
                         maquinas_banidas(maquinas_banidas)
 
                     elif opcao == 7:
+                        with open("DadosApenasADM.txt", "r", encoding="utf-8") as ArquivoDasMaquinasBanidas:
+                            print(ArquivoDasMaquinasBanidas.read())
+
+
+                    elif opcao == 8:
                         print("Encerrando...")
                         break
 
@@ -283,9 +297,6 @@ d
         else:
             print("Valor inválido!")
             continue
-
-    except ValueError:
-        print("Esses caracteres não são permitidos!")
 
 arquivo.close()
 senhasar.close()

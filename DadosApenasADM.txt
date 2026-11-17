@@ -1,3 +1,5 @@
 Número da máquina banida: 30
 Número da máquina banida: 29
-Número da máquina banida: 30
+Número da máquina banida: 5
+Número da máquina banida: 9
+Número da máquina banida: 5
