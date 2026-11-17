@@ -698,6 +698,14 @@ def adicionarFraseContas(primeira_frase):
     if primeira_frase.strip() not in conteudo:
         arquivo.write(primeira_frase)
 
+def adicionarCabecarioBanimento(primeira_frase):
+    arquivo = open("DadosApenasADM.txt", "r+", encoding="utf-8")
+    primeira_frase = "Os itens nesse arquivo são os dados visíveis apenas para os Administradores!"
+    arquivo.seek(0)
+    conteudo = arquivo.read()
+    if primeira_frase.strip() not in conteudo:
+        arquivo.write(primeira_frase)
+
 def MaquinaBloqueadaOuNao(maquina):
     ArquivoMaquinasBanidas = open("DadosApenasADM.txt", "r", encoding="utf-8")
     data_hora = datetime.now().strftime("%d/%m/%Y %H:%M:%S")

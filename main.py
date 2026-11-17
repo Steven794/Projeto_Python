@@ -276,6 +276,8 @@ while True:
                             senhas123.writelines(linhas)
 
                     elif opcao == 6:
+                        primeira_frase = "Cabeçário"
+                        adicionarCabecarioBanimento(primeira_frase)
                         maquinas_banidas(maquinas_banidas)
 
                     elif opcao == 7:
