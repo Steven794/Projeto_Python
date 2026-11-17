@@ -593,22 +593,22 @@ def mostrarNotas(escolha):
             if len(dados1) < 7:
                 continue
             if dados[3] == dados1[6]:
-                if escolha == 1 and dados[5] == "primeira":
+                if escolha == 1 and dados[5] == "1":
                     print(dados[7])
                     arquivo1.close()
                     arquivo.close()
                     return
-                elif escolha == 2 and dados[5] == "segunda":
+                elif escolha == 2 and dados[5] == "2":
                     print(dados[7])
                     arquivo1.close()
                     arquivo.close()
                     return
-                elif escolha == 3 and dados[5] == "terceira":
+                elif escolha == 3 and dados[5] == "3":
                     print(dados[7])
                     arquivo1.close()
                     arquivo.close()
                     return
-                elif escolha == 4 and dados[4] == "media-final:":
+                elif escolha == 4 and dados[4] == "4":
                     print(dados[5])
                     arquivo1.close()
                     arquivo.close()

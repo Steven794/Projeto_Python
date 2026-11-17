@@ -46,12 +46,13 @@ while True:
                 print(resultado)
 
                 if resultado == "Login de estudante permitido":
-                    print("\nBem vindo ao menu do estudante!\n")
+                    print("\nBem vindo ao menu do Estudante!\n")
                     while True:
-                        print("---Menu do Estudante---\n\n1. Consultar boletim.\n2. Consultar seus dados.\n3 Consultar faltas.\n4. Encerrar o Login.")
+                        print("---Menu do Estudante---\n\n[1] - Consultar boletim.\n[2] - Consultar seus dados.\n[3] - Consultar faltas.\n[4] - Encerrar o seu Login.")
                         opcaoE = int(input("\nDigite qual opção deseja acessar: "))
                         if opcaoE == 1:
-                            escolha = int(input("1. ver nota1, 2. nota2, 3. nota3, 4. mediaFinal: "))
+                            print("1. nota 1\n2. Nota 2\n3. Nota 3\n4. Média Final")
+                            escolha = int(input("Digite qual nota deseja consultar: "))
                             mostrarNotas(escolha)
 
                         elif opcaoE == 2:
@@ -120,7 +121,7 @@ while True:
                 if resultado == "Login de professor permitido":
                     print("\nBem vindo ao menu Professor!\n")
                     while True:
-                        print("---Menu do Professor---\n\n1. Publicar notas.\n2. Consultar dados dos alunos.\n3. Adicionar faltas dos alunos.\n4.Encerrar o seu Login.")
+                        print("---Menu do Professor---\n\n[1] - Publicar notas.\n[2] - Consultar dados dos alunos.\n[3] - Adicionar faltas dos alunos.\n[4] - Encerrar o seu Login.")
                         opcaoP = int(input("\nDigite qual opção deseja acessar: "))
 
                         if opcaoP == 1:
@@ -179,7 +180,7 @@ while True:
                 while True:
                     print("\nBem vindo ao menu administrativo!\n")
                     #Mari: a opção de banir maquinas ainda esta em desenvolvimento
-                    print("   ---Menu do Adminstrador---\n\n1.Adicionar usuário.\n2.Adicionar ADM \n3.Consultar dados.\n4.Editar dados.\n5.Excluir usuário.\n6.Banir máquinas.\n7.Consultar máquinas banidas.\n8.Encerrar o programa. ")
+                    print("---Menu do Adminstrador---\n\n1.Adicionar usuário.\n2.Adicionar ADM \n3.Consultar dados.\n4.Editar dados.\n5.Excluir usuário.\n6.Banir máquinas.\n7.Consultar máquinas banidas.\n8.Encerrar o programa. ")
                     opcao = int(input("\nDigite a opção que você deseja acessar: "))
 
                     if opcao == 1:
