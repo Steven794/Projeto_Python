@@ -324,3 +324,9 @@ Tentativa de login suspeita do Professor eu na máquina 16 as 18/11/2026 02:02:0
 
 tentativa login professor nome digitado: eu senha digitada: 564114087949
 Tentativa de login suspeita do Professor eu na máquina 16 as 18/11/2026 02:03:56
+
+tentativa login estudante nome digitado: aura senha digitada: 414153769837
+Tentativa de login suspeita do Aluno aura na máquina 13 as 18/11/2026 08:29:53
+
+Nome do login: aura - Perfil: Aluno - Máquina: 13
+Nome do login: aura - Perfil: Aluno - Máquina: 13

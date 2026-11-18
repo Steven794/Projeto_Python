@@ -192,7 +192,7 @@ def logarNormal(usuario, estudanteUsuarioLogar="", estudanteSenhaLogar="", profe
 
 def acessoMaquinas(usuario, nomealuno, nomeprofessor, numeracao_maquina):
     #arquivo = open("DadosApenasADM.txt", "a", encoding="utf-8")
-    with open("DadosApenasADM.txt", "a", encoding="utf-8") as arquivo:
+    with open("BancoDeDados.txt", "a", encoding="utf-8") as arquivo:      #OBS OMAR AQUI tava escrito DadosApenasADM troquei
         data_hora = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
         if usuario == 1:
             #arquivo3 = open("BancoDeContasExistentes.txt", "r", encoding="utf-8")
@@ -287,7 +287,7 @@ def registrarResultado(usuario, maquina, sucesso):
     registrarAuditoria(f"CONSULTA_INFORMAÇÕES\nUsuário={usuario}\nMáquina={maquina}\nResultado={resultado}")
 
 #RODOLFO: Isso daqui é pra conferir se o usuário de fato existe, usei ela nas funções de adicionar e excluir usuário.
-def salvarUsuario(nomes, matriculas, perfis):
+"""def salvarUsuario(nomes, matriculas, perfis):
     if not (len(nomes) == len(matriculas) == len(perfis)):
         raise ValueError("Usuário não encontrado ou incoerente com o que foi listado.")
 
@@ -296,7 +296,7 @@ def salvarUsuario(nomes, matriculas, perfis):
             arquivo.write(
                 f"{nome}{SEPARADOR}"
                 f"{matricula}{SEPARADOR}"
-                f"{perfil}\n")
+                f"{perfil}\n")"""
 
 #RODOLFO: Essa daqui é pra chamar no código principal, vai dizer se a consulta deu certo ou errado.
 def consultarUsuario(nomes, matriculas, perfis):
