@@ -330,3 +330,18 @@ Tentativa de login suspeita do Aluno aura na máquina 13 as 18/11/2026 08:29:53
 
 Nome do login: aura - Perfil: Aluno - Máquina: 13
 Nome do login: aura - Perfil: Aluno - Máquina: 13
+Aluno: 1
+Tentativas incorretas: 1
+Nível de risco: NORMAL
+Perfil da tentativa: Estudante
+tentativa login estudante nome digitado: wow senha digitada: 579597066529
+Tentativa de login suspeita do Aluno wow na máquina 12 as 18/11/2026 09:55:16
+
+tentativa login estudante nome digitado: wow senha digitada: 579597066529
+Tentativa de login suspeita do Aluno wow na máquina 12 as 18/11/2026 09:58:17
+
+tentativa login estudante nome digitado: wow senha digitada: 579597066529
+Tentativa de login suspeita do Aluno wow na máquina 12 as 18/11/2026 10:01:19
+
+tentativa login estudante nome digitado: wow senha digitada: 579597066529
+Tentativa de login suspeita do Aluno wow na máquina 12 as 18/11/2026 10:02:14

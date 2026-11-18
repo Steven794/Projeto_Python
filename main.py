@@ -61,20 +61,8 @@ while True:
                         elif opcaoE == 2:
                             #Rodolfo aqui, n podemos esquecer de deixar essa parte menos 'complicada', seguindo as dicas de Vini
                             clear_terminal()
-                            matricula_censurada = matricula_ocultada(usuario, estudanteUsuarioLogar, 4)
-                            print(matricula_censurada)
-                            print("Deseja exibir sua matrícula?\nDigite 'S' para exibir.\nDigite 'N' para mantê-la oculta.")
-                            revelar = input("Exibir matrícula? ").strip().upper()
-                            
-                            if revelar == "S":
-                                seguranca_captcha = captcha(usuario, estudanteUsuarioLogar)
-                                print(seguranca_captcha)
-
-                            elif revelar == "N":
-                                print()
-
-                            else:
-                                print("Você digitou um caracter inválido")
+                            seguranca_captcha = captcha(usuario, estudanteUsuarioLogar)
+                            print(f"{seguranca_captcha}\n")
                         
                         elif opcaoE == 3:
                             clear_terminal()

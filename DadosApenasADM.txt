@@ -2,3 +2,7 @@ Os itens nesse arquivo são os dados visíveis apenas para os Administradores!
 Número da máquina banida: 7
 Número da máquina banida: 2
 Número da máquina banida: 6
+Nome do login: wow - Perfil: Aluno - Máquina: 12
+Nome do login: wow - Perfil: Aluno - Máquina: 12
+Nome do login: wow - Perfil: Aluno - Máquina: 12
+Nome do login: wow - Perfil: Aluno - Máquina: 12

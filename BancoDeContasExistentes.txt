@@ -1,3 +1,3 @@
 Nome do usuário: 'nome' - Matrícula: 'matricula' - Perfil: 'perfil' - Senha: 'senhaAleatoria' - Máquina: 'maquina'
-Nome do usuário: eu - ---------- ---------- - Perfil: professor - Senha: 564114087949 - Máquina: 16
-Nome do usuário: aura - Matrícula: 63199592866 - Perfil: estudante - Senha: 414153769837 - Máquina: 13
+Nome do usuário: wow - Matrícula: 4984451380 - Perfil: estudante - Senha: 579597066529 - Máquina: 12
+Nome do usuário: eu - ---------- ---------- - Perfil: professor - Senha: 693064607132 - Máquina: 13
