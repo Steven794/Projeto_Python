@@ -11,234 +11,246 @@ def clear_terminal():
 
 # Função que confirma se a entidade é adm
 def confirmacao_adm():
-    confirmacao = open("ApenasADM's.txt", "r", encoding="utf-8")
-    dadosCorretos = confirmacao.readlines()
-    arquivo = open("BancoDeDados.txt", "a", encoding="utf-8")
-    hora = datetime.now()
-    HorarioAjeitado = hora.strftime("%d/%m/%Y %H:%M")
-    tentativas = 5
-    erros = 0
-    
-    while tentativas > 0:
-        usuarioADM = input("Informe o usuario do administrador: ").strip()
-        sobrenomeADM = input("Informe o segundo nome do ADM: ").strip()
-        senhaADM = input("Informe a senha do administrador: ").strip()
-        ostresjuntos = f"Nome e sobrenome do ADM: {usuarioADM} {sobrenomeADM} Senha do ADM: {senhaADM}"
+    #confirmacao = open("ApenasADM's.txt", "r", encoding="utf-8")
+    with open("ApenasADM's.txt", "r", encoding="utf-8") as confirmacao:
+        dadosCorretos = confirmacao.readlines()
+        #arquivo = open("BancoDeDados.txt", "a", encoding="utf-8")
+        with open("BancoDeDados.txt", "a", encoding="utf-8") as arquivo:
+            hora = datetime.now()
+            HorarioAjeitado = hora.strftime("%d/%m/%Y %H:%M") 
+            tentativas = 5
+            erros = 0
+        
+            while tentativas > 0:
+                usuarioADM = input("Informe o usuario do administrador: ").strip()
+                sobrenomeADM = input("Informe o segundo nome do ADM: ").strip()
+                senhaADM = input("Informe a senha do administrador: ").strip()
+                ostresjuntos = f"Nome e sobrenome do ADM: {usuarioADM} {sobrenomeADM} Senha do ADM: {senhaADM}"
 
-        if ostresjuntos in [linha.strip() for linha in dadosCorretos]:
-            print("Senha correta, login concluido.")
-            confirmacao.close()
-            arquivo.close()
-            return True
-    
-        tentativas-=1
-        erros+=1
-
-        print(f"Senha incorreta {tentativas} tentativas restantes!")
-        if tentativas == 0:
-            time.sleep(5)
-
-        if erros == 3:
-            arquivo.write(f"\nTentativa de login suspeita as {HorarioAjeitado} na conta de um ADM")
-            time.sleep(5)
+                if ostresjuntos in [linha.strip() for linha in dadosCorretos]:
+                    print("Senha correta, login concluido.")
+                    #confirmacao.close()
+                    #arquivo.close()
+                    return True
             
-        if erros == 5:
-            arquivo.write(f"\nTentativa de invasão as {HorarioAjeitado} na conta de um ADM")
-            time.sleep(10)
+                tentativas-=1
+                erros+=1
 
-    print("Acesso negado!")
-    confirmacao.close()
-    arquivo.close()   
-    return False
+                print(f"Senha incorreta {tentativas} tentativas restantes!")
+                if tentativas == 0:
+                    time.sleep(5)
+
+                if erros == 3:
+                    arquivo.write(f"\nTentativa de login suspeita as {HorarioAjeitado} na conta de um ADM")
+                    time.sleep(5)
+                    
+                if erros == 5:
+                    arquivo.write(f"\nTentativa de invasão as {HorarioAjeitado} na conta de um ADM")
+                    time.sleep(10)
+
+            print("Acesso negado!")
+            #confirmacao.close()
+            #arquivo.close()   
+            return False
 
 #Mari: Função pra criar mais ADMs tirando a entidade original(Omar)
 def criar_ADM ():
-    arquivo = open("ApenasADM's.txt", "a+", encoding="utf-8")
-    nomeADM = input("Insira o nome do ADM: ")
-    sobrenomeADM = input("Insira o sobrenome do ADM: ")
+    #arquivo = open("ApenasADM's.txt", "a+", encoding="utf-8")
+    with open("ApenasADM's.txt", "a+", encoding="utf-8") as arquivo:
+        nomeADM = input("Insira o nome do ADM: ")
+        sobrenomeADM = input("Insira o sobrenome do ADM: ")
 
-    arquivo.seek(0)
-    for linha in arquivo:
-        dados = linha.strip().split()
-        if not dados:
-            continue
+        arquivo.seek(0)
+        for linha in arquivo:
+            dados = linha.strip().split()
+            if not dados:
+                continue
 
-        if len(dados)>= 7  and dados[4] == "ADM:" and dados [5]== nomeADM and dados[6] == sobrenomeADM:
-            print("Já existe um ADM com esse nome e sobrenome!")
-            arquivo.close()
-            return
+            if len(dados)>= 7  and dados[4] == "ADM:" and dados [5]== nomeADM and dados[6] == sobrenomeADM:
+                print("Já existe um ADM com esse nome e sobrenome!")
+                return
 
-    senha_aleatoria_ADM = random.randint(10000000, 99999999)
-    print(f"A sua senha é: {senha_aleatoria_ADM}")   
-    arquivo.write(f"\nNome e sobrenome do ADM: {nomeADM} {sobrenomeADM} Senha do ADM: {senha_aleatoria_ADM}")
-    arquivo.close()
+        senha_aleatoria_ADM = random.randint(10000000, 99999999)
+        print(f"A sua senha é: {senha_aleatoria_ADM}")   
+        arquivo.write(f"\nNome e sobrenome do ADM: {nomeADM} {sobrenomeADM} Senha do ADM: {senha_aleatoria_ADM}")
 
-#Mari: essa função ainda esta sendo construida, deixa ela quieta.
 def maquinas_banidas(maquinas_barradas):
     maquinas_barradas = []
     contador_linhas = 0
-    arquivo = open("DadosApenasADM.txt", "a+", encoding="utf-8")
-    qnt_maquinas = int(input("Insira quantas máquinas serão banidas: "))
-    ArquivoMaquinasBanidas = open("DadosApenasADM.txt", "r", encoding="utf-8")
+    #arquivo = open("DadosApenasADM.txt", "a+", encoding="utf-8")
+    with open("DadosApenasADM.txt", "a+", encoding="utf-8") as arquivo:
+        qnt_maquinas = int(input("Insira quantas máquinas serão banidas: "))
+    #ArquivoMaquinasBanidas = open("DadosApenasADM.txt", "r", encoding="utf-8")
+        with open("DadosApenasADM.txt", "r", encoding="utf-8") as ArquivoMaquinasBanidas:
 
-    for i in range(qnt_maquinas):
-        for linha in ArquivoMaquinasBanidas:
-            dados = linha.strip().split()
-        banida = int(input("Insira um número entre 1 e 30: "))
-        banidamodostring = str(banida)
-        if banida < 1 or banida > 30:
-            print("Numeração inválida!")
-            continue
-
-        else:
-            arquivo3 = open("DadosApenasADM.txt", "r", encoding="utf-8")
-            for linha3 in arquivo3:
-                dados3 = linha3.strip().split()
-                if not dados3:
+            for i in range(qnt_maquinas):
+                for linha in ArquivoMaquinasBanidas:
+                    dados = linha.strip().split()
+                banida = int(input("Insira um número entre 1 e 30: "))
+                banidamodostring = str(banida)
+                if banida < 1 or banida > 30:
+                    print("Numeração inválida!")
                     continue
-                if dados3[2] == "máquina":
-                    banidaestringada = str(banida)
-                    if dados3[4] == banidaestringada:
-                        print("Esta maquina já está banida!")
-                        break
-            else:
-                arquivo.write(f"\nNúmero da máquina banida: {banida}")
-                maquinas_barradas.append(banida)
-                arquivo1 = open("BancoDeContasExistentes.txt", "r", encoding="utf-8")
-                linhasAura = arquivo1.readlines()
-                arquivo1.close()
-                for linha1 in linhasAura:
-                    dados1 = linha1.strip().split()
-                    if not dados1:
-                        continue
-                    arquivo.seek(0)
-                    for linha2 in arquivo:
-                        dados2 = linha2.strip().split()
-                        if not dados2:
-                            continue
-                        if dados1[15] == dados2[4]:
-                            linhasAura.remove(linha1)
-                            break
-                    arquivo1 = open("BancoDeContasExistentes.txt", "w", encoding="utf-8")
-                    arquivo1.writelines(linhasAura)
-                    arquivo1.close()
-    arquivo3.close()
-    arquivo.close()
-    ArquivoMaquinasBanidas.close()
+
+                else:
+                    #arquivo3 = open("DadosApenasADM.txt", "r", encoding="utf-8")
+                    with open("DadosApenasADM.txt", "r", encoding="utf-8") as arquivo3:
+                        for linha3 in arquivo3:
+                            dados3 = linha3.strip().split()
+                            if not dados3:
+                                continue
+                            if dados3[2] == "máquina":
+                                banidaestringada = str(banida)
+                                if dados3[4] == banidaestringada:
+                                    print("Esta maquina já está banida!")
+                                    break
+                            else:
+                                arquivo.write(f"\nNúmero da máquina banida: {banida}")
+                                maquinas_barradas.append(banida)
+                                #arquivo1 = open("BancoDeContasExistentes.txt", "r", encoding="utf-8")
+                                with open("BancoDeContasExistentes.txt", "r", encoding="utf-8") as arquivo1:
+                                    linhasAura = arquivo1.readlines()
+                                    arquivo1.close()
+                                    for linha1 in linhasAura:
+                                        dados1 = linha1.strip().split()
+                                        if not dados1:
+                                            continue
+                                        arquivo.seek(0)
+                                        for linha2 in arquivo:
+                                            dados2 = linha2.strip().split()
+                                            if not dados2:
+                                                continue
+                                            if dados1[15] == dados2[4]:
+                                                linhasAura.remove(linha1)
+                                                break
+                                        #arquivo1 = open("BancoDeContasExistentes.txt", "w", encoding="utf-8")
+                                        with open("BancoDeContasExistentes.txt", "w", encoding="utf-8") as arquivo1:
+                                            arquivo1.writelines(linhasAura)
+#                    arquivo1.close()
+#    arquivo3.close()
+#    arquivo.close()
+#    ArquivoMaquinasBanidas.close()
 
 def sera_que_e_omar ():
-    arquivo = open("ApenasADM's", "a", encoding="utf-8")
+    #arquivo = open("ApenasADM's", "a", encoding="utf-8")
+    with open("ApenasADM's", "a", encoding="utf-8") as arquivo:
 
-    arquivo.seek(0)
-    for linha in arquivo:
-        dados = linha.strip().split()
-        if not dados:
-            continue
-        if dados[5] == "Omar" and dados[6] == "Formiga":
-            print("Bem vindo Omar!")
-            return True
-
-    arquivo.close()
+        arquivo.seek(0)
+        for linha in arquivo:
+            dados = linha.strip().split()
+            if not dados:
+                continue
+            if dados[5] == "Omar" and dados[6] == "Formiga":
+                print("Bem vindo Omar!")
+                return True
 
 def logarNormal(usuario, estudanteUsuarioLogar="", estudanteSenhaLogar="", professorUsuarioLogar="", professorSenhaLogar=""):
-    arquivo = open("BancoDeContasExistentes.txt", "r", encoding="utf8")
-    for linha in arquivo:
-        dados = linha.strip().split()
-        if not dados:
-            continue            
-        if dados[0] == "Nome":
-            if usuario == 1 and dados[9] == "estudante":
-                if estudanteUsuarioLogar == dados[3] and estudanteSenhaLogar == dados[12]:        
-                    arquivo = open("BancoDeDados.txt", "a", encoding="utf8")
-                    arquivo.write("\ntentativa login estudante nome digitado: " + estudanteUsuarioLogar + " " + "senha digitada: " + estudanteSenhaLogar)
-                    arquivo.close()
-                    return "Login de estudante permitido"
-            elif usuario == 2 and dados[9] == "professor":
-                if professorUsuarioLogar == dados[3] and professorSenhaLogar == dados[12]:
-                    arquivo = open("BancoDeDados.txt", "a", encoding="utf8")
-                    arquivo.write("\ntentativa login professor nome digitado: " + professorUsuarioLogar + " " + "senha digitada: " + professorSenhaLogar)
-                    arquivo.close()
-                    return "Login de professor permitido"
-    arquivo.close()
-    return "Login não autorizado"
+    #arquivo = open("BancoDeContasExistentes.txt", "r", encoding="utf8")
+    with open("BancoDeContasExistentes.txt", "r", encoding="utf8") as arquivo:
+        for linha in arquivo:
+            dados = linha.strip().split()
+            if not dados:
+                continue            
+            if dados[0] == "Nome":
+                if usuario == 1 and dados[9] == "estudante":
+                    if estudanteUsuarioLogar == dados[3] and estudanteSenhaLogar == dados[12]:        
+                        #arquivo = open("BancoDeDados.txt", "a", encoding="utf8")
+                        with open("BancoDeDados.txt", "a", encoding="utf8") as arquivo:
+                            arquivo.write("\ntentativa login estudante nome digitado: " + estudanteUsuarioLogar + " " + "senha digitada: " + estudanteSenhaLogar)
+                        #arquivo.close()
+                        return "Login de estudante permitido"
+                elif usuario == 2 and dados[9] == "professor":
+                    if professorUsuarioLogar == dados[3] and professorSenhaLogar == dados[12]:
+                        #arquivo = open("BancoDeDados.txt", "a", encoding="utf8")
+                        with open("BancoDeDados.txt", "a", encoding="utf8") as arquivo:
+                            arquivo.write("\ntentativa login professor nome digitado: " + professorUsuarioLogar + " " + "senha digitada: " + professorSenhaLogar)
+                        #arquivo.close()
+                        return "Login de professor permitido"
+        #arquivo.close()
+        return "Login não autorizado"
 
 def acessoMaquinas(usuario, nomealuno, nomeprofessor, numeracao_maquina):
-    arquivo = open("DadosApenasADM.txt", "a", encoding="utf-8")
-    data_hora = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
-    if usuario == 1:
-        arquivo3 = open("BancoDeContasExistentes.txt", "r", encoding="utf-8")
-        for linha in arquivo3:
-            dados = linha.strip().split()
-            if not dados:
-                continue
-            if dados[3] == nomealuno and dados[15] != numeracao_maquina:
-                arquivo2 = open("BancoDeDados.txt", "a", encoding="utf-8")
-                arquivo2.write(f"\nTentativa de login suspeita do Aluno {nomealuno} na máquina {numeracao_maquina} as {data_hora}\n")
-                arquivo2.close()
-                break
-        else:
-            arquivo.write(f"\nNome do login: {nomealuno} - Perfil: Aluno - Máquina: {numeracao_maquina}")
-
-        arquivo3.close()
-        arquivo.close()
-
-    elif usuario == 2:
-        arquivo3 = open("BancoDeContasExistentes.txt", "r", encoding="utf-8")
+    #arquivo = open("DadosApenasADM.txt", "a", encoding="utf-8")
+    with open("DadosApenasADM.txt", "a", encoding="utf-8") as arquivo:
         data_hora = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
-        for linha in arquivo3:
-            dados = linha.strip().split()
-            if not dados:
-                continue
-            if dados[3] == nomeprofessor and dados[15] != numeracao_maquina:
-                arquivo2 = open("BancoDeDados.txt", "a", encoding="utf-8")
-                arquivo2.write(f"\nTentativa de login suspeita do Professor {nomeprofessor} na máquina {numeracao_maquina} as {data_hora}\n")
-                arquivo2.close()
-                break
-        else:
-            arquivo.write(f"\nNome do login: {nomeprofessor} - Perfil: Professor - Máquina: {numeracao_maquina}")
+        if usuario == 1:
+            #arquivo3 = open("BancoDeContasExistentes.txt", "r", encoding="utf-8")
+            with open("BancoDeContasExistentes.txt", "r", encoding="utf-8") as arquivo3:
+                for linha in arquivo3:
+                    dados = linha.strip().split()
+                    if not dados:
+                        continue
+                    if dados[3] == nomealuno and dados[15] != numeracao_maquina:
+                        #arquivo2 = open("BancoDeDados.txt", "a", encoding="utf-8")
+                        with open("BancoDeDados.txt", "a", encoding="utf-8") as arquivo2:
+                            arquivo2.write(f"\nTentativa de login suspeita do Aluno {nomealuno} na máquina {numeracao_maquina} as {data_hora}\n")
+                        #arquivo2.close()
+                            break
+                    else:
+                        arquivo.write(f"\nNome do login: {nomealuno} - Perfil: Aluno - Máquina: {numeracao_maquina}")
 
-        arquivo3.close()
-    arquivo.close()
+            #arquivo3.close()
+            #arquivo.close()
 
-print("Estrutura geral do sistema de hórario: ")
-hora = datetime.now()
-HorarioDeAcesso = hora.strftime("%H")
-acesso_normal = 0
-acesso_suspeito = 0
-login_normal = []
-login_suspeito = []
-maquinas_normais = []
-maquinas_suspeitas = []
+        elif usuario == 2:
+            #arquivo3 = open("BancoDeContasExistentes.txt", "r", encoding="utf-8")
+            with open("BancoDeContasExistentes.txt", "r", encoding="utf-8") as arquivo3:
+                data_hora = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
+                for linha in arquivo3:
+                    dados = linha.strip().split()
+                    if not dados:
+                        continue
+                    if dados[3] == nomeprofessor and dados[15] != numeracao_maquina:
+                        #arquivo2 = open("BancoDeDados.txt", "a", encoding="utf-8")
+                        with open("BancoDeDados.txt", "a", encoding="utf-8") as arquivo2:
+                            arquivo2.write(f"\nTentativa de login suspeita do Professor {nomeprofessor} na máquina {numeracao_maquina} as {data_hora}\n")
+                            #arquivo2.close()
+                            break
+                    else:
+                        arquivo.write(f"\nNome do login: {nomeprofessor} - Perfil: Professor - Máquina: {numeracao_maquina}")
 
-"""def timer(HorarioDeAcesso, tipo_usuario, conta_estudante, conta_professor, ):
-    if HorarioDeAcesso >= 7 and HorarioDeAcesso <= 22:
-        if tipo_usuario == 1:
-            acesso_normal+=1
-            login_normal.append(conta_estudante)
-            maquinas_normais.append()
+                #    arquivo3.close()
+                #arquivo.close()
 
-        elif tipo_usuario ==2:
-            acesso_normal+=1
-            login_normal.append(conta_estudante)
-            maquinas_normais.append()
+            print("Estrutura geral do sistema de hórario: ")
+            hora = datetime.now()
+            HorarioDeAcesso = hora.strftime("%H")
+            acesso_normal = 0
+            acesso_suspeito = 0
+            login_normal = []
+            login_suspeito = []
+            maquinas_normais = []
+            maquinas_suspeitas = []
 
-        return 
-        #(OMAR): isso vai dizer que pelo menos o horário de acesso não é suspeito
-    else:
-        if tipo_usuario == 1:
-            acesso_suspeito+=1
-            login_suspeito.append(conta_professor)
-            maquinas_suspeitas.append()
+        """def timer(HorarioDeAcesso, tipo_usuario, conta_estudante, conta_professor, ):
+            if HorarioDeAcesso >= 7 and HorarioDeAcesso <= 22:
+                if tipo_usuario == 1:
+                    acesso_normal+=1
+                    login_normal.append(conta_estudante)
+                    maquinas_normais.append()
 
-        elif tipo_usuario ==2:
-            acesso_normal+=1
-            login_suspeito.append(conta_professor)
-            maquinas_suspeitas.append()
-        return "Tente logar em outro horario"
-        #nessa parte a gente vai ter que classificar já que a tentativa é suspeita """
-        
-ARQUIVO_USUARIOS = "BancoDeContasExistentes.txt"
-SEPARADOR = ";"
+                elif tipo_usuario ==2:
+                    acesso_normal+=1
+                    login_normal.append(conta_estudante)
+                    maquinas_normais.append()
+
+                return 
+                #(OMAR): isso vai dizer que pelo menos o horário de acesso não é suspeito
+            else:
+                if tipo_usuario == 1:
+                    acesso_suspeito+=1
+                    login_suspeito.append(conta_professor)
+                    maquinas_suspeitas.append()
+
+                elif tipo_usuario ==2:
+                    acesso_normal+=1
+                    login_suspeito.append(conta_professor)
+                    maquinas_suspeitas.append()
+                return "Tente logar em outro horario"
+                #nessa parte a gente vai ter que classificar já que a tentativa é suspeita """
+                
+        ARQUIVO_USUARIOS = "BancoDeContasExistentes.txt"
+        SEPARADOR = ";"
 
 #RODOLFO: Registrar Horário de entrada
 def registrarAuditoria(operacao, usuarioAfetado):

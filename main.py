@@ -18,7 +18,7 @@ maquinas_sem_permissao = [] #Mari: essa lista vai servir como um dos parametros 
 nome = " "
 perfil = " "
 hora123 = datetime.now()
-HorarioAjeitado123 = hora.strftime("%d/%m/%Y %H:%M")
+HorarioAjeitado123 = hora123.strftime("%d/%m/%Y %H:%M") 
 tentativas123 = 5
 erros123 = 0
 
@@ -49,12 +49,11 @@ while True:
                 if resultado == "Login de estudante permitido":
                     print("\nBem vindo ao menu do Estudante!\n")
                     while True:
-                        clear_terminal()
                         print("---Menu do Estudante---\n\n[1] - Consultar boletim.\n[2] - Consultar seus dados.\n[3] - Consultar faltas.\n[4] - Encerrar o seu Login.")
                         opcaoE = int(input("\nDigite qual opção deseja acessar: "))
                         if opcaoE == 1:
                             #Rodolfo aqui, vamo lembrar de melhorar a exibição das notas que nem Vini disse
-                            clear_terminal()
+                            clear_terminal
                             print("1. nota 1\n2. Nota 2\n3. Nota 3\n4. Média Final")
                             escolha = int(input("Digite qual nota deseja consultar: "))
                             mostrarNotas(escolha)
@@ -76,7 +75,7 @@ while True:
 
                             else:
                                 print("Você digitou um caracter inválido")
-
+                        
                         elif opcaoE == 3:
                             clear_terminal()
                             mostrarFaltas(estudanteUsuarioLogar)
@@ -121,7 +120,9 @@ while True:
             #Mari: seria interessante colocar um try aqui mas tem que ter cuidado pra nao alterar a funcionalidade do programa
             if maquina <= 0 or maquina > 30:
                 print("Opção inválida!")
-
+            if MaquinaBloqueadaOuNao(maquina) == "Banida":
+                print("Está máquina está banida!")
+            
             elif maquina >= 1 and maquina <= 30: 
                 acessoMaquinas(usuario, "", professorUsuarioLogar, maquina)
                 print(resultado)
@@ -129,15 +130,14 @@ while True:
                 if resultado == "Login de professor permitido":
                     print("Bem vindo ao menu Professor!\n")
                     while True:
-                        clear_terminal()
                         print("---Menu do Professor---\n\n[1] - Publicar notas.\n[2] - Consultar dados dos alunos.\n[3] - Adicionar faltas dos alunos.\n[4] - Encerrar o seu Login.")
                         opcaoP = int(input("\nDigite qual opção deseja acessar: "))
 
                         if opcaoP == 1:
                             clear_terminal()
                             matriculaEstudante = int(input("Digite os 2 primeiros e 2 últimos digitos da matrícula do aluno juntos: "))
-                            print("[1] - Adcionar a nota 1.\n[2] - Adcionar a nota 2.\n[3] - Adcionar a nota 3.")
-                            notas = int(input("Digite qual nota deseja adcionar: "))
+                            print("[1] - Adicionar a nota 1.\n[2] - Adicionar a nota 2.\n[3] - Adicionar a nota 3.")
+                            notas = int(input("Digite qual nota deseja adicionar: "))
                             #notas = int(input("Digite [1] para adicionar a nota 1 | [2] para adicionar a nota 2 | [3] para adicionar a nota 3: "))
                             if notas != 1 and notas != 2 and notas != 3:
                                 print("codigo para adicionar notas invalido")
@@ -191,7 +191,7 @@ while True:
 
             else:
                 while True:
-                    clear_terminal()
+                    #clear_terminal()
                     print("\nBem vindo ao menu administrativo!\n")
                     #Mari: a opção de banir maquinas ainda esta em desenvolvimento
                     print("---Menu do Adminstrador---\n\n[1] - Adicionar usuário.\n[2] - Adicionar ADM\n[3] - Consultar dados\n[4] - Editar dados.\n[5] - Excluir usuário.\n[6] - Banir máquinas.\n[7] - Consultar máquinas banidas.\n[8] - Encerrar sessão.")
@@ -267,7 +267,7 @@ while True:
                                 print("Usuário não encontrado no arquivo.")
 
                         elif escolher == 3:
-                            clear_terminal()
+                            #clear_terminal()
                             matricula_antiga = input("Digite a matricula do aluno para ver se esta no sistema: ")
                             nome_antigo = input("Digite o nome do aluno para atualizar\nObs: com letra maiuscula e minuscula\n")
                             matricula_nova = input("\nDigite a nova matricula do aluno para atualizar\n")
@@ -298,7 +298,7 @@ while True:
                         clear_terminal()
                         with open("BancoDeContasExistentes.txt", "r", encoding='utf-8') as senhas123:
                             LinhaDoExcluirUsuario = int(
-                                input("Informe a linha do usuário que deseja apagar: \nOBS: A linha inicial é a 1. ")) - 1
+                                input("Digite a linha do arquivo que deseja apagar: \nOBS: A linha inicial é a 1. ")) - 1
                             linhas = senhas123.readlines()
                         if 0 <= LinhaDoExcluirUsuario < len(linhas):
                             del linhas[LinhaDoExcluirUsuario]
@@ -307,13 +307,13 @@ while True:
                             senhas123.writelines(linhas)
 
                     elif opcao == 6:
-                        clear_terminal()
+                        #clear_terminal()
                         primeira_frase = "Cabeçário"
                         adicionarCabecarioBanimento(primeira_frase)
                         maquinas_banidas(maquinas_banidas)
 
                     elif opcao == 7:
-                        clear_terminal()
+                        #clear_terminal()
                         with open("DadosApenasADM.txt", "r", encoding="utf-8") as ArquivoDasMaquinasBanidas:
                             print(ArquivoDasMaquinasBanidas.read())
 
