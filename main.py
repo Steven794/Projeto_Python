@@ -194,7 +194,7 @@ while True:
                     #clear_terminal()
                     print("\nBem vindo ao menu administrativo!\n")
                     #Mari: a opção de banir maquinas ainda esta em desenvolvimento
-                    print("---Menu do Adminstrador---\n\n[1] - Adicionar usuário.\n[2] - Adicionar ADM\n[3] - Consultar dados\n[4] - Editar dados.\n[5] - Excluir usuário.\n[6] - Banir máquinas.\n[7] - Consultar máquinas banidas.\n[8] - Encerrar sessão.")
+                    print("---Menu do Adminstrador---\n\n[1] - Adicionar usuário.\n[2] - Adicionar ADM\n[3] - Consultar dados/IA\n[4] - Editar dados.\n[5] - Excluir usuário.\n[6] - Banir máquinas.\n[7] - Consultar máquinas banidas.\n[8] - Encerrar sessão.")
                     opcao = int(input("\nDigite a opção que você deseja acessar: "))
 
                     if opcao == 1:
@@ -209,6 +209,16 @@ while True:
 
                     elif opcao == 3:
                         clear_terminal()
+                        escolha_nova = int(input("[1] - Dados do estudante. \n[2] - Dados do Professor. \n[3] - Acessar a IA. \n Insira uma das opções acima: "))
+                        if escolha_nova == 1:
+                            print("Ta sendo feito")
+
+                        elif escolha_nova == 2:
+                            print("Tambem ta sendo feito")
+                            
+                        elif escolha_nova == 3:
+                            consultarIA()
+
                         print("\n=== Dados Cadastrados ===")
                         with open("BancoDeContasExistentes.txt", "r", encoding="utf-8") as senhaler:
                             print(senhaler.read())

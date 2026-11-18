@@ -1,3 +1,24 @@
+def consultarIA():
+    print("\n--- Assistente Inteligente ---")
+    from agente import falar_com_agente_texto
+    while True:
+        pergunta = input("\nFaça sua pergunta sobre os dados (ou digite 'sair'): ").strip()
+        if pergunta.lower() == "sair":
+            break
+
+        usuarios_seguros = ""
+        with open("BancoDeContasExistentes.txt", "r", encoding="utf-8") as arq_contas:
+            for linha in arq_contas:
+                partes = linha.strip().split(" - ")
+                if len(partes) >= 3 and "'nome'" not in linha:
+                    usuarios_seguros += f"{partes[0]} - {partes[1]} - {partes[2]}\n"
+
+        with open("DadosDoAluno.txt", "r", encoding="utf-8") as arq_notas:
+            notas_texto = arq_notas.read()
+
+        dados_combinados = f"USUÁRIOS:\n{usuarios_seguros}\nNOTAS:\n{notas_texto}"
+        falar_com_agente_texto(dados_combinados, pergunta, "Sistema Acadêmico")
+
 from datetime import datetime
 import random
 import time
@@ -126,7 +147,7 @@ def maquinas_banidas(maquinas_barradas):
                                         #arquivo1 = open("BancoDeContasExistentes.txt", "w", encoding="utf-8")
                                         with open("BancoDeContasExistentes.txt", "w", encoding="utf-8") as arquivo1:
                                             arquivo1.writelines(linhasAura)
-#                    arquivo1.close()
+#    arquivo1.close()
 #    arquivo3.close()
 #    arquivo.close()
 #    ArquivoMaquinasBanidas.close()
@@ -508,26 +529,27 @@ def adicionarNotas(matriculaEstudante, notas):
                                 return print("Nota 1 já foi inserida!")
                             
                             elif notas == 2:
-                                if "nota segunda unidade:" in linha2:
+                                if dados[5] != "primeira":
+                                    arquivo2.close()
+                                    arquivo1.close()
+                                    return print("Insira a nota 1 primeiro!")
+                                
+                                elif "nota segunda unidade:" in linha2:
                                     arquivo2.close()
                                     arquivo1.close()
                                     return print("Nota 2 já foi inserida!")
 
-                                #elif "nota primeira unidade:" not in linha2:
-                                    print("Insira a nota 1 primeiro!")
-
                             elif notas == 3: 
-                                if "nota terceira unidade:" in linha2:
+                                if dados[5] != "primeira":
+                                    arquivo2.close()
+                                    arquivo1.close()
+                                    return print("Insira as notas 1 e 2 primeiro")  
+
+                                elif "nota terceira unidade:" in linha2:
                                     arquivo2.close()
                                     arquivo1.close()
                                     return print("Nota 3 já foi inserida!")  
-
-                                #elif "nota primeira unidade:" not in linha2 and "nota segunda unidade:" not in linha2:
-                                    print("Insira as notas 1 e 2 primeiro!")
-
-                                #elif "nota segunda unindade: " not in linha2:
-                                    print("Insira a nota 2 primeiro!")
-
+                                
                     while True:
                         if notas == 1:
                             nota1add = float(input("Digite a primeira nota: "))
