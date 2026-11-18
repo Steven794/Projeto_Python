@@ -613,7 +613,7 @@ def adicionarNotas(matriculaEstudante, notas):
                     arquivo2.close()                      
     arquivo1.close()
 
-def mostrarNotas(escolha):
+'''def mostrarNotas(escolha):
     arquivo = open("DadosDoAluno.txt", "r", encoding="utf-8")
     for linha in arquivo:
         dados = linha.strip().split()
@@ -652,7 +652,81 @@ def mostrarNotas(escolha):
     if escolha != 1 and escolha != 2 and escolha != 3 and escolha != 4: 
         return print("Código para visualização de notas invalido")
     else:
-        return print("Nenhuma nota inserida")
+        return print("Nenhuma nota inserida")'''
+
+def mostrarNotas(nomeEstudante):
+    matriculaEstudante = None
+
+    try:
+        with open("BancoDeContasExistentes.txt", "r", encoding="utf-8") as arquivo:
+
+            for linha in arquivo:
+                dados = linha.strip().split()
+
+                if len(dados) < 10:
+                    continue
+
+                if (dados[0] == "Nome"and dados[3] == nomeEstudante and dados[9] == "estudante"):
+                    matricula_estudante = dados[6].strip("'")
+                    break
+
+    except FileNotFoundError:
+        print("Arquivo de contas não encontrado.")
+        input("\nAperte Enter para voltar ao menu.")
+        return
+
+    if matricula_estudante is None:
+        print("Estudante não encontrado.")
+        input("\nAperte Enter para voltar ao menu.")
+        return
+
+    notas = {"primeira": None, "segunda": None, "terceira": None}
+
+    try:
+        with open("DadosDoAluno.txt", "r", encoding="utf-8") as arquivo:
+            
+            for linha in arquivo:
+                dados = linha.strip().split()
+
+                if len(dados) < 8:
+                    continue
+
+                if (dados[0] == "matricula"and dados[3] == matricula_estudante and dados[4] == "nota" and dados[6] == "unidade:"):
+                    unidade = dados[5]
+
+                    if unidade in notas:
+                        notas[unidade] = float(dados[7])
+
+    except FileNotFoundError:
+        print("Nenhuma nota foi cadastrada ainda.")
+        input("\nAperte Enter para voltar ao menu.")
+        return
+
+    print("\n--- Boletim do estudante ---")
+
+    if notas["primeira"] is None:
+        print("Nota 1: Não lançada")
+    else:
+        print(f"Nota 1: {notas['primeira']:.2f}")
+
+    if notas["segunda"] is None:
+        print("Nota 2: Não lançada")
+    else:
+        print(f"Nota 2: {notas['segunda']:.2f}")
+
+    if notas["terceira"] is None:
+        print("Nota 3: Não lançada")
+    else:
+        print(f"Nota 3: {notas['terceira']:.2f}")
+
+    if all(nota is not None for nota in notas.values()):
+        media_final = sum(notas.values()) / 3
+        print(f"Média Final: {media_final:.2f}")
+    else:
+        print("Média Final: Ainda não disponível")
+
+    input("\nAperte Enter para voltar ao menu do estudante.")
+
 
 def adicionarFaltas(matriculaEstudante):
     arquivo = open("BancoDeContasExistentes.txt", "r", encoding="utf8")
@@ -750,7 +824,7 @@ def adicionarCabecarioBanimento(primeira_frase):
     if primeira_frase.strip() not in conteudo:
         arquivo.write(primeira_frase)
 
-def MaquinaBloqueadaOuNao(maquina):
+'''def MaquinaBloqueadaOuNao(maquina):
     ArquivoMaquinasBanidas = open("DadosApenasADM.txt", "r", encoding="utf-8")
     data_hora = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
     for linha in ArquivoMaquinasBanidas:
@@ -762,4 +836,30 @@ def MaquinaBloqueadaOuNao(maquina):
             with open("BancoDeDados.txt", "a", encoding="utf-8") as arquivo67:
                 arquivo67.write(f"Tentativa de login suspeita as {data_hora} pela máquina {maquina} que está banida")
             return "Banida"
-    ArquivoMaquinasBanidas.close()
+    ArquivoMaquinasBanidas.close()'''
+
+def MaquinaBloqueadaOuNao(maquina):
+    data_hora = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
+
+    with open("DadosApenasADM.txt", "r", encoding="utf-8") as arquivo:
+        for linha in arquivo:
+            linha = linha.strip()
+
+            if not linha:
+                continue
+
+            if not linha.startswith("Número da máquina banida:"):
+                continue
+
+            partes = linha.split(":", 1)
+            numero_banido = partes[1].strip()
+
+            if numero_banido == str(maquina):
+                print("Esta máquina está banida!")
+
+                with open("BancoDeDados.txt", "a", encoding="utf-8") as arquivo_log:
+                    arquivo_log.write(f"\nTentativa de login suspeita às {data_hora} pela máquina{maquina} que está banida.\n")
+
+                return "Banida"
+
+    return "Não banida"

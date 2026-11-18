@@ -47,16 +47,14 @@ while True:
                 print(resultado)
 
                 if resultado == "Login de estudante permitido":
-                    print("\nBem vindo ao menu do Estudante!\n")
+                    print("Bem vindo ao menu do Estudante!\n")
                     while True:
                         print("---Menu do Estudante---\n\n[1] - Consultar boletim.\n[2] - Consultar seus dados.\n[3] - Consultar faltas.\n[4] - Encerrar o seu Login.")
                         opcaoE = int(input("\nDigite qual opção deseja acessar: "))
                         if opcaoE == 1:
                             #Rodolfo aqui, vamo lembrar de melhorar a exibição das notas que nem Vini disse
-                            clear_terminal
-                            print("1. nota 1\n2. Nota 2\n3. Nota 3\n4. Média Final")
-                            escolha = int(input("Digite qual nota deseja consultar: "))
-                            mostrarNotas(escolha)
+                            clear_terminal()
+                            mostrarNotas(estudanteUsuarioLogar)
 
                         elif opcaoE == 2:
                             #Rodolfo aqui, n podemos esquecer de deixar essa parte menos 'complicada', seguindo as dicas de Vini
