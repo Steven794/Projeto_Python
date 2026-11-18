@@ -1,0 +1,326 @@
+Tentativa de login suspeita as 05/11/2026 08:32
+Tentativa de invasão as 05/11/2026 08:32
+tentativa login estudante nome: Lucas senha: 839706787797
+Tentativa de login suspeita as 05/11/2026 09:50
+tentativa login estudante nome digitado: lucas senha digitada: 892798952735
+tentativa login estudante nome digitado: lucas senha digitada: 892798952735
+tentativa login estudante nome digitado: lucas senha digitada: 892798952735
+tentativa login estudante nome digitado: lucas senha digitada: 892798952735
+tentativa login estudante nome digitado: lucas senha digitada: 892798952735
+tentativa login estudante nome digitado: lucas senha digitada: 892798952735
+tentativa login estudante nome digitado: lucas senha digitada: 892798952735
+tentativa login estudante nome digitado: lucas senha digitada: 892798952735
+tentativa login estudante nome digitado: lucas senha digitada: 892798952735
+tentativa login estudante nome digitado: lucas senha digitada: 892798952735
+tentativa login estudante nome digitado: lucas senha digitada: 892798952735
+tentativa login estudante nome digitado: lucas senha digitada: 892798952735
+tentativa login estudante nome digitado: Mariana senha digitada: 788660688427
+tentativa login estudante nome digitado: Mariana senha digitada: 788660688427
+Tentativa de login suspeita do Aluno Mariana na máquina 1
+
+tentativa login estudante nome digitado: Mariana senha digitada: 788660688427
+Tentativa de login suspeita do Aluno Mariana na máquina 1
+
+tentativa login estudante nome digitado: Mariana senha digitada: 788660688427
+Tentativa de login suspeita do Aluno Mariana na máquina 1
+
+tentativa login estudante nome digitado: Mariana senha digitada: 788660688427
+Tentativa de login suspeita do Aluno Mariana na máquina 1
+
+tentativa login estudante nome digitado: Mariana senha digitada: 788660688427
+Tentativa de login suspeita do Aluno Mariana na máquina 1
+
+tentativa login estudante nome digitado: Mariana senha digitada: 788660688427
+Tentativa de login suspeita do Aluno Mariana na máquina 1
+
+tentativa login estudante nome digitado: Mariana senha digitada: 788660688427
+Tentativa de login suspeita do Aluno Mariana na máquina 1
+
+tentativa login estudante nome digitado: Mariana senha digitada: 788660688427
+Tentativa de login suspeita do Aluno Mariana na máquina 1
+
+tentativa login estudante nome digitado: Mariana senha digitada: 788660688427
+Tentativa de login suspeita do Aluno Mariana na máquina 1
+
+tentativa login estudante nome digitado: Mariana senha digitada: 788660688427
+Tentativa de login suspeita do Aluno Mariana na máquina 1
+
+tentativa login estudante nome digitado: Mariana senha digitada: 788660688427
+Tentativa de login suspeita do Aluno Mariana na máquina 1
+
+tentativa login estudante nome digitado: Mariana senha digitada: 788660688427
+Tentativa de login suspeita do Aluno Mariana na máquina 1
+
+tentativa login estudante nome digitado: Mariana senha digitada: 788660688427
+Tentativa de login suspeita do Aluno Mariana na máquina 1
+
+tentativa login estudante nome digitado: Mariana senha digitada: 788660688427
+Tentativa de login suspeita do Aluno Mariana na máquina 1
+
+tentativa login estudante nome digitado: Mariana senha digitada: 788660688427
+Tentativa de login suspeita do Aluno Mariana na máquina 1
+
+tentativa login estudante nome digitado: Mariana senha digitada: 788660688427
+Tentativa de login suspeita do Aluno Mariana na máquina 1
+
+tentativa login estudante nome digitado: Mariana senha digitada: 788660688427
+Tentativa de login suspeita do Aluno Mariana na máquina 1
+
+tentativa login estudante nome digitado: Mariana senha digitada: 788660688427
+Tentativa de login suspeita do Aluno Mariana na máquina 1
+
+tentativa login professor nome digitado: maraura senha digitada: 204313920532
+tentativa login professor nome digitado: maraura senha digitada: 204313920532
+Tentativa de login suspeita do Professor maraura na máquina 2
+
+tentativa login professor nome digitado: maraura senha digitada: 204313920532
+Tentativa de login suspeita do Professor maraura na máquina 2
+
+tentativa login professor nome digitado: maraura senha digitada: 204313920532
+Tentativa de login suspeita do Professor maraura na máquina 2
+
+tentativa login professor nome digitado: stringado senha digitada: 976291626823
+Professor: 2
+Tentativas incorretas: 1
+Nível de risco: NORMALPerfil da tentativa: Professor
+Tentativa de login suspeita as 15/11/2026 18:12
+Tentativa de login suspeita as 15/11/2026 18:42
+Tentativa de invasão as 15/11/2026 18:42
+Professor: 2
+Tentativas incorretas: 1
+Nível de risco: NORMALPerfil da tentativa: Professor
+Tentativa de login suspeita as 15/11/2026 19:55
+Tentativa de invasão as 15/11/2026 19:55
+tentativa login estudante nome digitado: mariles senha digitada: 727383902541
+Tentativa de login suspeita do Aluno mariles na máquina 1
+
+tentativa login professor nome digitado: eu senha digitada: 384804321659
+Tentativa de login suspeita do Professor eu na máquina 7
+
+tentativa login professor nome digitado: eu senha digitada: 384804321659
+Tentativa de login suspeita do Professor eu na máquina 7
+
+tentativa login professor nome digitado: eu senha digitada: 384804321659
+Tentativa de login suspeita do Professor eu na máquina 7
+
+tentativa login professor nome digitado: eu senha digitada: 384804321659
+Tentativa de login suspeita do Professor eu na máquina 7
+
+tentativa login professor nome digitado: eu senha digitada: 384804321659
+Tentativa de login suspeita do Professor eu na máquina 7
+
+tentativa login professor nome digitado: eu senha digitada: 384804321659
+Tentativa de login suspeita do Professor eu na máquina 7
+
+tentativa login professor nome digitado: eu senha digitada: 384804321659
+Tentativa de login suspeita do Professor eu na máquina 7
+
+tentativa login professor nome digitado: eu senha digitada: 384804321659
+Tentativa de login suspeita do Professor eu na máquina 7
+
+tentativa login professor nome digitado: eu senha digitada: 384804321659
+Tentativa de login suspeita do Professor eu na máquina 7
+
+tentativa login professor nome digitado: eu senha digitada: 384804321659
+Tentativa de login suspeita do Professor eu na máquina 7
+
+tentativa login professor nome digitado: eu senha digitada: 384804321659
+Tentativa de login suspeita do Professor eu na máquina 7
+
+tentativa login professor nome digitado: eu senha digitada: 384804321659
+Tentativa de login suspeita do Professor eu na máquina 7
+
+tentativa login professor nome digitado: eu senha digitada: 384804321659
+Tentativa de login suspeita do Professor eu na máquina 7
+
+tentativa login professor nome digitado: eu senha digitada: 384804321659
+Tentativa de login suspeita do Professor eu na máquina 7
+
+tentativa login professor nome digitado: eu senha digitada: 384804321659
+Tentativa de login suspeita do Professor eu na máquina 7
+
+tentativa login professor nome digitado: eu senha digitada: 384804321659
+Tentativa de login suspeita do Professor eu na máquina 7
+
+tentativa login professor nome digitado: eu senha digitada: 384804321659
+Tentativa de login suspeita do Professor eu na máquina 7
+
+tentativa login professor nome digitado: eu senha digitada: 384804321659
+Tentativa de login suspeita do Professor eu na máquina 7
+
+tentativa login professor nome digitado: eu senha digitada: 384804321659
+Tentativa de login suspeita do Professor eu na máquina 7
+
+tentativa login professor nome digitado: eu senha digitada: 384804321659
+Tentativa de login suspeita do Professor eu na máquina 7
+
+tentativa login professor nome digitado: eu senha digitada: 384804321659
+Tentativa de login suspeita do Professor eu na máquina 7
+
+tentativa login professor nome digitado: eu senha digitada: 384804321659
+Tentativa de login suspeita do Professor eu na máquina 7
+
+tentativa login professor nome digitado: eu senha digitada: 384804321659
+Tentativa de login suspeita do Professor eu na máquina 7
+
+tentativa login professor nome digitado: eu senha digitada: 384804321659
+Tentativa de login suspeita do Professor eu na máquina 7
+
+tentativa login professor nome digitado: eu senha digitada: 384804321659
+Tentativa de login suspeita do Professor eu na máquina 7
+
+tentativa login professor nome digitado: eu senha digitada: 384804321659
+Tentativa de login suspeita do Professor eu na máquina 7
+
+tentativa login professor nome digitado: eu senha digitada: 384804321659
+Tentativa de login suspeita do Professor eu na máquina 7
+
+tentativa login professor nome digitado: eu senha digitada: 384804321659
+Tentativa de login suspeita do Professor eu na máquina 7
+
+tentativa login professor nome digitado: eu senha digitada: 384804321659
+Tentativa de login suspeita do Professor eu na máquina 7 as 16/11/2026 21:48:24
+
+tentativa login professor nome digitado: eu senha digitada: 384804321659
+Tentativa de login suspeita do Professor eu na máquina 7 as 16/11/2026 21:49:12
+
+tentativa login professor nome digitado: eu senha digitada: 384804321659
+Tentativa de login suspeita do Professor eu na máquina 7 as 16/11/2026 21:53:54
+
+tentativa login professor nome digitado: eu senha digitada: 384804321659
+Tentativa de login suspeita do Professor eu na máquina 7 as 16/11/2026 21:55:17
+
+tentativa login professor nome digitado: eu senha digitada: 384804321659
+Tentativa de login suspeita do Professor eu na máquina 7 as 16/11/2026 22:01:10
+
+tentativa login professor nome digitado: eu senha digitada: 384804321659
+Tentativa de login suspeita do Professor eu na máquina 7 as 16/11/2026 22:02:29
+
+tentativa login professor nome digitado: eu senha digitada: 384804321659
+Tentativa de login suspeita do Professor eu na máquina 7 as 16/11/2026 22:03:46
+
+tentativa login professor nome digitado: eu senha digitada: 384804321659
+Tentativa de login suspeita do Professor eu na máquina 7 as 16/11/2026 22:05:54
+
+tentativa login professor nome digitado: eu senha digitada: 384804321659
+Tentativa de login suspeita do Professor eu na máquina 7 as 16/11/2026 22:07:16
+
+tentativa login professor nome digitado: eu senha digitada: 384804321659
+Tentativa de login suspeita do Professor eu na máquina 7 as 16/11/2026 22:08:21
+
+tentativa login professor nome digitado: eu senha digitada: 384804321659
+Tentativa de login suspeita do Professor eu na máquina 7 as 16/11/2026 22:10:52
+
+tentativa login professor nome digitado: eu senha digitada: 384804321659
+Tentativa de login suspeita do Professor eu na máquina 7 as 16/11/2026 22:14:10
+
+tentativa login professor nome digitado: eu senha digitada: 384804321659
+Tentativa de login suspeita do Professor eu na máquina 7 as 16/11/2026 22:16:43
+
+tentativa login professor nome digitado: eu senha digitada: 384804321659
+Tentativa de login suspeita do Professor eu na máquina 7 as 16/11/2026 22:17:10
+
+tentativa login professor nome digitado: eu senha digitada: 384804321659
+Tentativa de login suspeita do Professor eu na máquina 7 as 16/11/2026 22:18:34
+
+tentativa login estudante nome digitado: lucasgamer senha digitada: 232105757720
+Tentativa de login suspeita do Aluno lucasgamer na máquina 9 as 16/11/2026 22:31:13
+
+tentativa login estudante nome digitado: lucasgamer senha digitada: 232105757720
+Tentativa de login suspeita do Aluno lucasgamer na máquina 9 as 16/11/2026 22:32:30
+
+tentativa login estudante nome digitado: lucasgamer senha digitada: 232105757720
+Tentativa de login suspeita do Aluno lucasgamer na máquina 9 as 16/11/2026 22:33:51
+
+tentativa login estudante nome digitado: lucasgamer senha digitada: 232105757720
+Tentativa de login suspeita do Aluno lucasgamer na máquina 9 as 16/11/2026 22:34:24
+
+tentativa login estudante nome digitado: lucasgamer senha digitada: 232105757720
+Tentativa de login suspeita do Aluno lucasgamer na máquina 9 as 16/11/2026 22:36:01
+
+tentativa login estudante nome digitado: lucasgamer senha digitada: 232105757720
+Tentativa de login suspeita do Aluno lucasgamer na máquina 9 as 16/11/2026 22:38:29
+
+tentativa login estudante nome digitado: lucasgamer senha digitada: 232105757720
+Tentativa de login suspeita do Aluno lucasgamer na máquina 9 as 16/11/2026 22:41:19
+
+tentativa login estudante nome digitado: lucasgamer senha digitada: 232105757720
+Tentativa de login suspeita do Aluno lucasgamer na máquina 9 as 16/11/2026 22:41:55
+
+tentativa login estudante nome digitado: lucasgamer senha digitada: 232105757720
+Tentativa de login suspeita do Aluno lucasgamer na máquina 9 as 16/11/2026 22:42:39
+
+tentativa login estudante nome digitado: lucasgamer senha digitada: 232105757720
+Tentativa de login suspeita do Aluno lucasgamer na máquina 9 as 16/11/2026 22:43:09
+
+tentativa login professor nome digitado: eu senha digitada: 384804321659
+Tentativa de login suspeita do Professor eu na máquina 7 as 16/11/2026 22:43:58
+
+tentativa login professor nome digitado: eu senha digitada: 384804321659
+Tentativa de login suspeita do Professor eu na máquina 9 as 16/11/2026 22:44:37
+
+tentativa login professor nome digitado: eu senha digitada: 384804321659
+Tentativa de login suspeita do Professor eu na máquina 9 as 16/11/2026 22:45:00
+
+tentativa login estudante nome digitado: lucasgamer senha digitada: 232105757720
+Tentativa de login suspeita do Aluno lucasgamer na máquina 9 as 16/11/2026 22:45:45
+
+tentativa login estudante nome digitado: lucasgamer senha digitada: 232105757720
+Tentativa de login suspeita do Aluno lucasgamer na máquina 9 as 16/11/2026 22:58:48
+
+tentativa login estudante nome digitado: lucasgamer senha digitada: 232105757720
+Tentativa de login suspeita do Aluno lucasgamer na máquina 9 as 16/11/2026 23:01:32
+
+tentativa login professor nome digitado: eu senha digitada: 384804321659
+Tentativa de login suspeita do Professor eu na máquina 7 as 16/11/2026 23:02:39
+
+tentativa login professor nome digitado: eu senha digitada: 384804321659
+Tentativa de login suspeita do Professor eu na máquina 7 as 16/11/2026 23:05:28
+
+tentativa login professor nome digitado: eu senha digitada: 384804321659
+Tentativa de login suspeita do Professor eu na máquina 9 as 16/11/2026 23:06:43
+
+tentativa login professor nome digitado: eu senha digitada: 384804321659
+Tentativa de login suspeita do Professor eu na máquina 7 as 16/11/2026 23:09:03
+
+tentativa login professor nome digitado: eu senha digitada: 384804321659
+Tentativa de login suspeita do Professor eu na máquina 7 as 16/11/2026 23:11:48
+
+tentativa login professor nome digitado: eu senha digitada: 384804321659
+Tentativa de login suspeita do Professor eu na máquina 7 as 16/11/2026 23:14:13
+
+tentativa login professor nome digitado: eu senha digitada: 564114087949
+Tentativa de login suspeita do Professor eu na máquina 16 as 18/11/2026 01:01:14
+
+tentativa login professor nome digitado: eu senha digitada: 564114087949
+Tentativa de login suspeita do Professor eu na máquina 16 as 18/11/2026 01:02:02
+
+tentativa login professor nome digitado: eu senha digitada: 564114087949
+Tentativa de login suspeita do Professor eu na máquina 16 as 18/11/2026 01:41:04
+
+tentativa login professor nome digitado: eu senha digitada: 564114087949
+Tentativa de login suspeita do Professor eu na máquina 16 as 18/11/2026 01:44:09
+
+tentativa login professor nome digitado: eu senha digitada: 564114087949
+Tentativa de login suspeita do Professor eu na máquina 16 as 18/11/2026 01:46:11
+
+tentativa login professor nome digitado: eu senha digitada: 564114087949
+Tentativa de login suspeita do Professor eu na máquina 16 as 18/11/2026 01:47:01
+
+tentativa login professor nome digitado: eu senha digitada: 564114087949
+Tentativa de login suspeita do Professor eu na máquina 16 as 18/11/2026 01:47:19
+
+tentativa login professor nome digitado: eu senha digitada: 564114087949
+Tentativa de login suspeita do Professor eu na máquina 16 as 18/11/2026 01:47:48
+
+tentativa login professor nome digitado: eu senha digitada: 564114087949
+Tentativa de login suspeita do Professor eu na máquina 16 as 18/11/2026 01:55:28
+
+tentativa login professor nome digitado: eu senha digitada: 564114087949
+Tentativa de login suspeita do Professor eu na máquina 16 as 18/11/2026 02:00:46
+
+tentativa login professor nome digitado: eu senha digitada: 564114087949
+Tentativa de login suspeita do Professor eu na máquina 16 as 18/11/2026 02:02:01
+
+tentativa login professor nome digitado: eu senha digitada: 564114087949
+Tentativa de login suspeita do Professor eu na máquina 16 as 18/11/2026 02:03:56

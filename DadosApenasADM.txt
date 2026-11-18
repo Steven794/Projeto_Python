@@ -1,0 +1,29 @@
+Os itens nesse arquivo são os dados visíveis apenas para os Administradores!
+Número da máquina banida: 7
+Número da máquina banida: 2
+Nome do login: eu - Perfil: Professor - Máquina: 16
+Nome do login: eu - Perfil: Professor - Máquina: 16
+Nome do login: eu - Perfil: Professor - Máquina: 16
+Nome do login: eu - Perfil: Professor - Máquina: 16
+Nome do login: eu - Perfil: Professor - Máquina: 16
+Nome do login: eu - Perfil: Professor - Máquina: 16
+Nome do login: eu - Perfil: Professor - Máquina: 16
+Nome do login: eu - Perfil: Professor - Máquina: 16
+Nome do login: eu - Perfil: Professor - Máquina: 16
+Nome do login: eu - Perfil: Professor - Máquina: 16
+Nome do login: eu - Perfil: Professor - Máquina: 16
+Nome do login: eu - Perfil: Professor - Máquina: 16
+Número da máquina banida: 6
+Número da máquina banida: 6
+Número da máquina banida: 6
+Número da máquina banida: 6
+Número da máquina banida: 6
+Número da máquina banida: 6
+Número da máquina banida: 6
+Número da máquina banida: 6
+Número da máquina banida: 6
+Número da máquina banida: 6
+Número da máquina banida: 6
+Número da máquina banida: 6
+Número da máquina banida: 6
+Número da máquina banida: 7
