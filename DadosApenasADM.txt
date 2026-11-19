@@ -1,0 +1,2 @@
+Número da máquina banida: 'máquina-banida'
+Número da máquina banida: 30

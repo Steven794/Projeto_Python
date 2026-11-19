@@ -1,0 +1,10 @@
+Exibição das notas e faltas de todos os alunos cadastrados no sentinela.log
+matricula do estudante: 1273401781 nota primeira unidade: 4.0
+matricula do estudante: 1273401781 nota segunda unidade: 9.0
+matricula do estudante: 1273401781 nota terceira unidade: 10.0
+matricula do estudante: 1273401781 media-final: 7.67
+Matricula do estudante: 1273401781 total de faltas: 6
+
+matricula do estudante: 1111111111 nota primeira unidade: 5.0
+matricula do estudante: 1111111111 nota segunda unidade: 8.0
+Matricula do estudante: 1111111111 total de faltas: 3

@@ -1,0 +1,4 @@
+Nome do usuário: 'nome' - Matrícula: 'matricula' - Perfil: 'perfil' - Senha: 'senhaAleatoria' - Máquina: 'maquina'
+Nome do usuário: Victorcarol - ---------- ---------- - Perfil: professor - Senha: 494897986032 - Máquina: 1
+Nome do usuário: Lucas - Matrícula: 1273401781 - Perfil: estudante - Senha: 960778179686 - Máquina: 2
+Nome do usuário: Gustavo - Matrícula: 1111111111 - Perfil: estudante - Senha: 663272967667 - Máquina: 3

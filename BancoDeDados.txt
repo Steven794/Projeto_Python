@@ -1,0 +1,45 @@
+Neste arquivo txt encontram-se os dados relacionados as tentativas de login fora do padrão considerado normal
+tentativa login professor nome digitado: Victorcarol senha digitada: 494897986032
+Tentativa de login suspeita do Professor Victorcarol na máquina 1 as 19/11/2026 07:53:35
+
+Nome do login: Victorcarol - Perfil: Professor - Máquina: 1
+Nome do login: Victor - Perfil: Professor - Máquina: 1
+Nome do login: Victor - Perfil: Professor - Máquina: 1
+Nome do login: Victor - Perfil: Professor - Máquina: 1
+Tentativas incorretas: 1
+Nível de risco: NORMAL
+Perfil da tentativa: Professor
+tentativa login professor nome digitado: Victorcarol senha digitada: 494897986032
+Tentativa de login suspeita do Professor Victorcarol na máquina 2 as 19/11/2026 07:54:48
+
+Nome do login: Victorcarol - Perfil: Professor - Máquina: 2
+tentativa login estudante nome digitado: Lucas senha digitada: 960778179686
+Tentativa de login suspeita do Aluno Lucas na máquina 1 as 19/11/2026 07:56:32
+
+Nome do login: Lucas - Perfil: Aluno - Máquina: 1
+Nome do login: Lucas - Perfil: Aluno - Máquina: 1
+tentativa login estudante nome digitado: Lucas senha digitada: 960778179686
+Tentativa de login suspeita do Aluno Lucas na máquina 7 as 19/11/2026 07:57:19
+
+Nome do login: Lucas - Perfil: Aluno - Máquina: 7
+Nome do login: Lucas - Perfil: Aluno - Máquina: 7
+tentativa login professor nome digitado: Victorcarol senha digitada: 494897986032
+Tentativa de login suspeita do Professor Victorcarol na máquina 4 as 19/11/2026 07:59:03
+
+Nome do login: Victorcarol - Perfil: Professor - Máquina: 4
+tentativa login estudante nome digitado: Gustavo senha digitada: 663272967667
+Tentativa de login suspeita do Aluno Gustavo na máquina 10 as 19/11/2026 08:00:55
+
+Nome do login: Gustavo - Perfil: Aluno - Máquina: 10
+Nome do login: Gustavo - Perfil: Aluno - Máquina: 10
+Nome do login: Gustavo - Perfil: Aluno - Máquina: 10
+tentativa login professor nome digitado: Victorcarol senha digitada: 494897986032
+Tentativa de login suspeita do Professor Victorcarol na máquina 1 as 19/11/2026 08:02:42
+
+Nome do login: Victorcarol - Perfil: Professor - Máquina: 1
+tentativa login estudante nome digitado: Gustavo senha digitada: 663272967667
+Tentativa de login suspeita do Aluno Gustavo na máquina 2 as 19/11/2026 08:05:09
+
+Nome do login: Gustavo - Perfil: Aluno - Máquina: 2
+Nome do login: Gustavo - Perfil: Aluno - Máquina: 2
+Nome do login: Gustavo - Perfil: Aluno - Máquina: 2

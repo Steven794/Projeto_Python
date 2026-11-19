@@ -10,7 +10,10 @@ No portal do aluno adicionamos opções que são demandas básicas do dia a dia,
 No portal do professor ele pode adicionar notas e faltas de algum estudante ao escrever os dois primeiros e dois últimos digitos do estudante, além de ser possível acessar matrícula ocultada do aluno.
 
 # Administrador:
-É o carro chefe do nosso projeto, ele tem diversas opções, como criar novos usuários(sendo estudantes, ADM's ou professores)  a senha(com 12 digitos) e a mátricula(com 10 digitos) é criada automaticamente para padronizar o tamanho e aumentar a segurança, consultar dados via código ou via IA, editar dados dos estudantes ou professores, excluir usuários, banir máquinas e consultar as máquinas banidas 
+É o carro chefe do nosso projeto, ele tem diversas opções, como criar novos usuários(sendo estudantes, ADM's ou professores)  a senha(com 12 digitos) e a mátricula(com 10 digitos) é criada automaticamente para padronizar o tamanho e aumentar a segurança, consultar dados via código ou via IA, editar dados dos estudantes ou professores, excluir usuários, banir máquinas e consultar as máquinas banidas.
+
+# IA do código:
+    O acesso a ia está no usuário ADM e tem acesso aos nomes e mátriculas para facilitar o acesso.
 
 # Declaração do uso de ferramentas de IA:
     *Omar: Ajuda na correção de Bugs, auxilio identificação de erros.
