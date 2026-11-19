@@ -16,6 +16,6 @@ No portal do professor ele pode adicionar notas e faltas de algum estudante ao e
     *Omar: Ajuda na correção de Bugs, auxilio identificação de erros.
     *Gustavo: Ajuda na correção de Bugs, na correção de alguns códigos não funcionais.
     *Rodolfo: Correção de erros no código, busca e correção de bugs, e comandos para usar no código.
-    *Lucas:
+    *Lucas: Criação das funções funcionais do programa, correção de erros de códigos quebrando
     *Mariana: Ajudou a encontrar erros e a soluciona-los para não quebrar o programa inteiro. Também me ajudou a entender algumas funções e comandos do python.
-    *Steven:
+    *Steven: Correção de erros, auxilio identificação de erros
