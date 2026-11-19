@@ -315,36 +315,31 @@ def adicionarUsuario(nomes, matriculas, perfis, nome, perfil, senhas, maquina, m
                 arquivo3.close()
                 return True
 
-def excluirUsuario(nomes, matriculas, perfis):
-    matricula = input("Digite a matrícula do usuário que será exluído: ").strip()
-
-    if matricula not in matriculas:
-        print("Usuário não encontrado.")
-        return False
-
+def excluirUsuario():
+    with open("BancoDeContasExistentes.txt", "r", encoding="utf-8") as arquivo:
+        listadecontas = arquivo.readlines()
+    novasLinhas = []
+    usuarioApagar = input("Digite o nome de usuario da conta: ")
+    senhaApagar = int(input("Digite a senha associada a conta: "))
+    encontrou = 0
+    for linha in listadecontas:
+        dados = linha.strip().split()
+        if not dados:
+            continue
+        usuarioApagarEstringado = str(usuarioApagar)
+        senhaApagarEstringada = str(senhaApagar)
+        if dados[3] == usuarioApagarEstringado:
+            if dados[12] == senhaApagarEstringada:
+                encontrou = 1
+                continue
+        novasLinhas.append(linha)
+    with open("BancoDeContasExistentes.txt", "w", encoding="utf-8") as arquivo1:
+        arquivo1.writelines(novasLinhas)
+    if encontrou == 1:
+        print("Usuario excluido com sucesso!")
     else:
-        indiceMatricula = matriculas.index(matricula)
-
-        print(f"Nome: {nomes[indiceMatricula]}")
-        print(f"Perfil: {perfis[indiceMatricula]}")
-
-        confirmar = input("Digite 'S' para confirmar a exclusão: ").strip().upper()
-
-        if confirmar != 'S':
-            print("Exclusão cancelada.")
-            return False
-
-    nomeExcluido = nomes[indiceMatricula]
-
-    del nomes[indiceMatricula]
-    del perfis[indiceMatricula]
-    del matriculas[indiceMatricula]
-
+        print("Usuario não encontrado!")
     
-    registrarAuditoria("EXCLUSÃO_USUARIO", f"{nomeExcluido} - matrícula {matricula}")
-    print("Usuário excluído com sucesso.")
-    return True
-
 def matricula_ocultada (usuario, estudanteUsuarioLogar, numeros_visiveis=4):
     arquivo = open("BancoDeContasExistentes.txt", "r", encoding="utf8")
     for linha in arquivo:
@@ -508,9 +503,9 @@ def adicionarNotas(matriculaEstudante, notas):
                     arquivo2.close()
     arquivo1.close()
 
-def mostrarNotas():
+def mostrarNotas(EstudanteUsuarioLogar):
     arquivo = open("DadosDoAluno.txt", "r", encoding="utf-8")
-    print("Digite 1. para acessar nota1 \nDigite 2. para acessar nota2 \nDigite 3. para acessar nota3 \nDigite 4. para acessar media final")
+    print("Digite [1] para acessar nota1 \nDigite [2] para acessar nota2 \nDigite [3] para acessar nota3 \nDigite [4] para acessar media final")
     escolha = int(input("Insira um digito entre 1 e 4: "))
     for linha in arquivo:
         dados = linha.strip().split()
@@ -521,27 +516,28 @@ def mostrarNotas():
             dados1 = linha1.strip().split()
             if not dados1:
                 continue
-            if dados[3] == dados1[6]:
-                if escolha == 1 and dados[5] == "primeira":
-                    print(dados[7])
-                    arquivo1.close()
-                    arquivo.close()
-                    return
-                elif escolha == 2 and dados[5] == "segunda":
-                    print(dados[7])
-                    arquivo1.close()
-                    arquivo.close()
-                    return
-                elif escolha == 3 and dados[5] == "terceira":
-                    print(dados[7])
-                    arquivo1.close()
-                    arquivo.close()
-                    return
-                elif escolha == 4 and dados[4] == "media-final:":
-                    print(dados[5])
-                    arquivo1.close()
-                    arquivo.close()
-                    return
+            if dados1[3] == EstudanteUsuarioLogar:   
+                if dados[3] == dados1[6]:
+                    if escolha == 1 and dados[5] == "primeira":
+                        print(dados[7])
+                        arquivo1.close()
+                        arquivo.close()
+                        return
+                    elif escolha == 2 and dados[5] == "segunda":
+                        print(dados[7])
+                        arquivo1.close()
+                        arquivo.close()
+                        return
+                    elif escolha == 3 and dados[5] == "terceira":
+                        print(dados[7])
+                        arquivo1.close()
+                        arquivo.close()
+                        return
+                    elif escolha == 4 and dados[4] == "media-final:":
+                        print(dados[5])
+                        arquivo1.close()
+                        arquivo.close()
+                        return
     if escolha != 1 and escolha != 2 and escolha != 3 and escolha != 4:            
         return print("Código para visualização de notas inválido")
     else:
@@ -705,3 +701,54 @@ def MaquinaBloqueadaOuNao(maquina):
                 return "Banida"
 
     return "Não banida"
+def desbanirMaquina():
+    with open("DadosApenasADM.txt", "r", encoding="utf-8") as arquivo:
+        listamaquina = arquivo.readlines()
+    novasLinhas = []
+    maquinadesban = int(input("Digite a máquina que você queria desbanir: "))
+    if maquinadesban < 1 or maquinadesban > 30:
+        return print("máquina invalida!")
+    encontrou = 0  
+    for linha in listamaquina:
+        dados = linha.strip().split()
+        if not dados:
+            continue
+        maquinadesbanEstringada = str(maquinadesban)
+        if dados[4] == maquinadesbanEstringada:
+            encontrou = 1
+            continue
+        novasLinhas.append(linha)
+    with open("DadosApenasADM.txt", "w", encoding="utf-8") as arquivo1:
+        arquivo1.writelines(novasLinhas)
+    if encontrou == 1:
+        print("máquina desbanida com sucesso!")
+    else:
+        print("essa máquina não estava banida!")
+
+def excluirADM():
+    with open("ApenasADM'S.txt", "r", encoding="utf-8") as arquivo:
+        listaADM = arquivo.readlines()
+    novasLinhas = []
+    nomeADM = input("Digite o primeiro nome da conta Associada ao ADM: ")
+    sobrenomeADM = input("Digite o sobrenome da conta Associada ao ADM: ")
+    senhaADM = int(input("Digite a senha da conta Associada ao ADM: "))
+    encontrou = 0
+    for linha in listaADM:
+        dados = linha.strip().split()
+        if not dados:
+            continue
+        nomeADMEstrigado = str(nomeADM)
+        sobrenomeADMEstringado = str(sobrenomeADM)
+        senhaADMEstringada = str(senhaADM)
+        if dados[5] == nomeADMEstrigado:
+            if dados[6] == sobrenomeADMEstringado:
+                if dados[10] == senhaADMEstringada:
+                    encontrou = 1
+                    continue
+        novasLinhas.append(linha)
+    with open("ApenasADM'S.txt", "w", encoding="utf-8") as arquivo1:
+        arquivo1.writelines(novasLinhas)
+    if encontrou == 1:
+        print("Conta de ADM excluida com sucesso!")
+    else:
+        print("Conta de ADM não encontrada!")

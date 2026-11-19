@@ -53,7 +53,7 @@ while True:
                         opcaoE = int(input("\nDigite qual opção você deseja acessar: "))
                         if opcaoE == 1:
                             clear_terminal()
-                            mostrarNotas()
+                            mostrarNotas(estudanteUsuarioLogar)
 
                         elif opcaoE == 2:
                             clear_terminal()
@@ -172,7 +172,7 @@ while True:
             else:
                 while True:
                     print("\nBem vindo ao Menu do Adminstrador!\n")
-                    print("---Menu do Adminstrador---\n\n[1] - Adicionar usuário.\n[2] - Adicionar ADM\n[3] - Consultar dados/IA\n[4] - Editar dados.\n[5] - Excluir usuário.\n[6] - Banir máquinas.\n[7] - Consultar máquinas banidas.\n[8] - Encerrar sessão.")
+                    print("---Menu do Adminstrador---\n\n[1] - Adicionar usuário.\n[2] - Gerenciar contas ADM\n[3] - Consultar dados/IA\n[4] - Editar dados.\n[5] - Excluir usuário.\n[6] - Gerenciar máquinas.\n[7] - Encerrar sessão.")
                     opcao = int(input("\nDigite a opção que você deseja acessar: "))
 
                     if opcao == 1:
@@ -181,7 +181,19 @@ while True:
 
                     elif opcao == 2:
                         clear_terminal()
-                        criar_ADM()
+                        print("Digite [1] adicionar conta ADM\nDigite [2] para excluir conta ADM")
+                        while True:
+                            opcao2 = int(input("Digite o código de acesso: "))
+                            if opcao2 != 1 and opcao2 != 2:
+                                print("código de escolha de conta ADM inválido!")
+                                continue
+                            else:
+                                if opcao2 == 1:
+                                    criar_ADM()
+                                    break
+                                else:
+                                    excluirADM()
+                                    break
 
                     elif opcao == 3:
                         clear_terminal()
@@ -250,10 +262,13 @@ while True:
                                 # 2. Atualiza DadosDoAluno.txt (Corrigido de nome_antigo para matricula_antiga)
                                 with open("DadosDoAluno.txt", "r", encoding="utf-8") as arquivo:
                                     for linha in arquivo:
-                                        if f"matricula do estudante: {matricula_antiga}" in linha:
+                                        if f"matricula do estudante: {matricula_antiga}" in linha or f"Matricula do estudante: {matricula_antiga}" in linha:
                                             linha = linha.replace(
                                                 f"matricula do estudante: {matricula_antiga}",
                                                 f"matricula do estudante: {matricula_nova}"
+                                            ).replace(
+                                                f"Matricula do estudante: {matricula_antiga}",
+                                                f"Matricula do estudante: {matricula_nova}"
                                             )
                                             encontrado2 = True
                                         linhas_atualizadas2.append(linha)
@@ -299,10 +314,13 @@ while True:
                                 # 2. Atualiza DadosDoAluno.txt
                                 with open("DadosDoAluno.txt", "r", encoding="utf-8") as arquivo:
                                     for linha in arquivo:
-                                        if f"matricula do estudante: {matricula_antiga}" in linha:
+                                        if f"matricula do estudante: {matricula_antiga}" in linha or f"Matricula do estudante: {matricula_antiga}" in linha:
                                             linha = linha.replace(
                                                 f"matricula do estudante: {matricula_antiga}",
                                                 f"matricula do estudante: {matricula_nova}"
+                                            ).replace(
+                                                f"Matricula do estudante: {matricula_antiga}",
+                                                f"Matricula do estudante: {matricula_nova}"
                                             )
                                             encontrado2 = True
                                         linhas_atualizadas2.append(linha)
@@ -324,25 +342,28 @@ while True:
                             print("Digite um valor válido!")
 
                     elif opcao == 5:
-                        clear_terminal()
-                        with open("BancoDeContasExistentes.txt", "r", encoding='utf-8') as senhas123:
-                            LinhaDoExcluirUsuario = int(input("Digite a linha do arquivo que você deseja apagar: \nOBS: A linha inicial é a 1. ")) - 1
-                            linhas = senhas123.readlines()
-                        if 0 <= LinhaDoExcluirUsuario < len(linhas):
-                            del linhas[LinhaDoExcluirUsuario]
-
-                        with open("BancoDeContasExistentes.txt", "w", encoding='utf-8') as senhas123:
-                            senhas123.writelines(linhas)
-
+                        excluirUsuario()
+                        
                     elif opcao == 6:
-                        maquinas_banidas(maquinas_banidas)
+                        print("Digite [1] para banir máquinas\nDigite [2] para desbanir máquinas\nDigite [3] para visualizar máquinas banidas")
+                        while True:
+                            opcao6 = int(input("Digite o código de acesso: "))
+                            if opcao6 != 1 and opcao6 != 2 and opcao6 != 3:
+                                print("código de escolha de máquina invalido!")
+                                continue
+                            else:
+                                if opcao6 == 1:
+                                    maquinas_banidas(maquinas_banidas)
+                                    break
+                                elif opcao6 == 2:
+                                    desbanirMaquina()
+                                    break
+                                else:
+                                    with open("DadosApenasADM.txt", "r", encoding="utf-8") as ArquivoDasMaquinasBanidas:
+                                        print(ArquivoDasMaquinasBanidas.read())
+                                        break
 
                     elif opcao == 7:
-                        with open("DadosApenasADM.txt", "r", encoding="utf-8") as ArquivoDasMaquinasBanidas:
-                            print(ArquivoDasMaquinasBanidas.read())
-
-
-                    elif opcao == 8:
                         print("Encerrando...")
                         break
 
